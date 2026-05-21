@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 
-    cout << "Hello World_KHS2000";
+    cout << "안녕하세요!!-송건호";
     
     return 0;
 }
