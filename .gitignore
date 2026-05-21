@@ -1,0 +1,24 @@
+# ====== 빌드 결과물 및 임시 파일 (Output & Temporaries) ======
+Debug/
+Release/
+x64/
+x86/
+[Dd]ebug/
+[Rr]elease/
+*.exe
+*.pdb
+*.ilk
+*.lk
+*.obj
+*.o
+
+# ====== Visual Studio 관련 환경 파일 (VS 내장 설정) ======
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ====== 기타 임시 파일 ======
+*.log
+*.tmp
