@@ -22,3 +22,8 @@ x86/
 # ====== 기타 임시 파일 ======
 *.log
 *.tmp
+
+# ====== JetBrains IDE (CLion, Rider 등) 관련 임시 파일 ======
+.idea/
+*.iws
+out/
