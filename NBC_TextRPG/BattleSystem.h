@@ -1,9 +1,8 @@
 #pragma once
 #include <string>
-#include "Monster.h"
+#include "Monster/Monster.h"
 #include "Player.h"
-#include "Item.h"
-
+class Monster;
 
 
 class BattleSystem
