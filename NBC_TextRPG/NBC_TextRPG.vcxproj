@@ -154,6 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ghoul.cpp" />
+    <ClCompile Include="Monster\Monster.cpp" />
     <ClCompile Include="Item\ItemBase.cpp" />
     <ClCompile Include="Item\ItemManager.cpp" />
     <ClCompile Include="NBC_TextRPG.cpp" />
@@ -161,6 +163,8 @@
     <ClCompile Include="TextPrinter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ghoul.h" />
+    <ClInclude Include="Monster\Monster.h" />
     <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\ItemManager.h" />
     <ClInclude Include="Player.h" />
