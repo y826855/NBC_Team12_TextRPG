@@ -21,33 +21,45 @@ public:
 
     void BattleStart()
     {
-        while((player->GetHp() > 0) && (monster->GetHP > 0))
+        while (true)
         {
-            cout << "전투시작!\n\n";
-
-            player->PlayerAttack();
-            cout << "플레이어가 공격합니다!";
+            //monster 몬스터생성하는 부분
 
 
-            if ((player->GetHp() > 0) && (monster->GetHP > 0))
+            while ((player->GetHp() > 0) && (monster->GetHP > 0))
             {
-                cout << "전투승리!\n";
+                cout << "\n\n========전투시작!=======\n\n";
 
-                monster->GetDeath() = true;
+                player->GetAttack();
+                cout << "플레이어가 공격합니다!\n\n";
 
-                delete monster;
-                monster = nullptr;
-            }
-            else if ((player->GetHp() <= 0) && (monster->GetHP > 0))
-            {
-                cout << "전투 배패!\n 게임을 종료합니다.";
 
-                player->GetDeath();
+                if ((player->GetHp() > 0) && (monster->GetHP > 0))
+                {
+                    cout << "전투승리!\n\n";
+
+                    monster->GetDeath() = true;
+
+                    delete monster;
+                    monster = nullptr;
+                }
+                else if ((player->GetHp() <= 0) && (monster->GetHP > 0))
+                {
+                    cout << "전투 배패!\n 게임을 종료합니다.";
+
+                    player->GetDeath();
+                }
+                else if ((player->GetHp() > 0) && (monster->GetHP > 0))
+                {
+                    monster->GetDeath() = false;
+                    cout << "전투를 지속합니다!\n\n";
+
+                    monster->MonsterAttack();
+                }
+
+
             }
-            else if ((player->GetHp() > 0) && (monster->GetHP > 0))
-            {
-                monster->GetDeath() = false;
-            }
+
         }
     }
 };
