@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 class Player
 {
 private :
@@ -9,14 +10,17 @@ private :
 	int GoalExp = 100;
 	int LV = 1;
 	int ATK = 30;
-	int Gold;
-
+	int Gold = 0;
+    std::string PlayerName = " ";
+	
 public:
 	void AddExp(int exp);
 	int GetExp();
 	int GetLevel();
 	int GetGold();
-  
+    int GetHp();
+	int GetATK();
+	std::string GetPlayerName();
 	
 	Player();
 	

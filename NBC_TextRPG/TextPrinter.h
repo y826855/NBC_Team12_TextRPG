@@ -12,9 +12,9 @@ class TextPrinter :public Singleton<TextPrinter>
     friend class Singleton<TextPrinter>;
 
 public :
-    enum TextState
+    enum ETextState
     {
-       
+       PlayerStat
     };
     
     
@@ -26,7 +26,7 @@ private:
 
 
 public:
-    void PrintText(string text);
+    void PrintText(ETextState state);
     void ResetText();
 
 private :

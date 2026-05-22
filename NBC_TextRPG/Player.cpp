@@ -1,4 +1,4 @@
-#include "Player.h"
+﻿#include "Player.h"
 #include "TextPrinter.h"
 #include <string>
 
@@ -26,6 +26,21 @@ int Player::GetGold()
 {
 }
 
+int Player::GetHp()
+{
+	return HP;
+}
+
+int Player::GetATK()
+{
+	return ATK;
+}
+
+std::string Player::GetPlayerName()
+{
+	return PlayerName;
+}
+
 Player::Player()
 {
 	
@@ -43,5 +58,6 @@ void Player::LevelUp()
 	string levelup;
 	levelup = "레벨이 올랐습니다 현재 레벨: " + std::to_string(LV);
 
-	Logger(levelup);
+	cout<<levelup<<"\n";
+	Logger(TextPrinter::PlayerStat);
 }
