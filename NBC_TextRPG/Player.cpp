@@ -41,7 +41,7 @@ void Player::LevelUp()
 	ATK += LV * 5;
 	
 	string levelup;
-	levelup = "������ �ö����ϴ� ���� ���� : " + std::to_string(LV);
+	levelup = "레벨이 올랐습니다 현재 레벨: " + std::to_string(LV);
 
 	Logger(levelup);
 }

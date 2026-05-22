@@ -16,7 +16,8 @@ public:
 	int GetExp();
 	int GetLevel();
 	int GetGold();
-
+  
+	
 	Player();
 	
 private :
