@@ -1,9 +1,9 @@
 #include "ItemBase.h"
 
-ItemBase::ItemBase(string _name, int _price)
+ItemBase::ItemBase(string name, int price)
 {
-    Name = _name;
-    Price = _price;
+    Name = name;
+    Price = price;
 }
 
 string ItemBase::GetName()

@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Item\Inventory.cpp" />
     <ClCompile Include="BattleSystem.cpp" />
     <ClCompile Include="Monster\Ghoul.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -242,6 +243,7 @@
     <ClCompile Include="TextPrinter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Item\Inventory.h" />
     <ClInclude Include="BattleSystem.h" />
     <ClInclude Include="Monster\Ghoul.h" />
     <ClInclude Include="Monster\Hillbilly.h" />
