@@ -5,18 +5,27 @@ using namespace std;
 
 class Player;
 
+struct MonsterData
+{
+    string mName;
+    int mHP;
+    int mATK;
+    int exp;
+};
+
+
 class Monster 
 {
 
 public: 
     
-    Monster(string mName, int mHP, int mATK);
+    Monster(MonsterData monsterData);
     
     virtual ~Monster();
     
     virtual void Attack(Player* player) = 0;
     
-    void TakeDamage(int damage);
+    void TakeDamage(Player* player);
     
     bool IsDeath();
     
@@ -24,8 +33,8 @@ public:
     
     int GetHP();
     
-    void SetStat(Player* player);
     
+    void SetStat(Player* player);
     
     //Item GetDropItem(); 이건 나중에 아이템 되면 생각하자
     
@@ -33,20 +42,14 @@ public:
     
     //string GetName(); 이건 나중에 게임 로그 달 때 생각하자
 
-
 protected:
-    string mName;
-    int mHP;
-    int mATK;
-    int exp;
+    void SetExp(int exp);
+    
+    MonsterData monsterData;
     bool death;
     
     /*string itemName;
     int itemPrice;
     int gold;*/
-    
-    
-    
-    
     
 };
