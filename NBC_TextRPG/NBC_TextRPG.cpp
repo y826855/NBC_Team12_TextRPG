@@ -7,6 +7,12 @@ using namespace std;
 class BattleSystem
 {
 
+public:
+
+    BattleSystem(Player* &player,)
+    {
+
+    }
 };
 
 
