@@ -55,7 +55,7 @@ int Inventory::GetItemCount(EItem itemID)
 void Inventory::ShowInventory()
 {
     std::cout<< std::endl;
-    std::cout<<"===== Inventory ====="<<std::endl;
+    std::cout<<"===== Inventory ====="<< std::endl;
     
     for (auto& pair : ItemContainer)
     {
