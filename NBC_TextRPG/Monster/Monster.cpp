@@ -14,6 +14,7 @@ Monster::~Monster()
 void Monster::TakeDamage()
 {
     monsterData.mHP = monsterData.mHP - GetPlayer()->GetATK();
+    cout << GetPlayer()->GetATK() << " 만큼의 피해를 입었다!";
 }
 
 bool Monster::IsDeath()
