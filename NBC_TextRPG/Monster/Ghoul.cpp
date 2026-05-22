@@ -16,7 +16,7 @@ Ghoul::~Ghoul()
 
 void Ghoul::Attack()
 {
-    monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp();
+    GetPlayer()->TakeDamage(monsterData.mATK);
     cout << "카구네 휘두르기: 찰싹!";
 }
 

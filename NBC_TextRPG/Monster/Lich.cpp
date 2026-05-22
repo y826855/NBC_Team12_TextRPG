@@ -17,7 +17,7 @@ Lich::~Lich()
 
 void Lich::Attack()
 {
-    monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp();
+    GetPlayer()->TakeDamage(monsterData.mATK);
     cout << "지옥의 비행: 슈우우욱!";
 }
 
