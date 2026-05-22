@@ -7,7 +7,7 @@ public:
     Lich(MonsterData monsterData);
     ~Lich() override; 
     
-    void Attack(Player* player) override;
+    void Attack() override;
 };
 
 

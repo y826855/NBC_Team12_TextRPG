@@ -230,6 +230,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Monster\Hillbilly.cpp" />
     <ClCompile Include="Monster\Lich.cpp" />
     <ClCompile Include="Monster\Monster.cpp" />
     <ClCompile Include="Item\ItemBase.cpp" />
@@ -241,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Monster\Ghoul.h" />
+    <ClInclude Include="Monster\Hillbilly.h" />
     <ClInclude Include="Monster\Lich.h" />
     <ClInclude Include="Monster\Monster.h" />
     <ClInclude Include="Item\ItemBase.h" />
