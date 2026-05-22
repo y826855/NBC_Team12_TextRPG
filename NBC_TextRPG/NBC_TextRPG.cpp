@@ -30,7 +30,17 @@ public:
 
             if ((player->GetHp() > 0) && (monster->GetHP > 0))
             {
+                cout << "전투승리!\n";
 
+                delete monster;
+                monster = nullptr;
+            }
+            else if ((player->GetHp() >= 0) && (monster->GetHP <= 0))
+            {
+                cout << "전투 배패!\n 게임을 종료합니다.";
+
+                delete player;
+                player = nullptr;
             }
 
         }
