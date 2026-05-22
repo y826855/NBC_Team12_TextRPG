@@ -1,8 +1,7 @@
 ﻿#include "Monster.h"
-#include  "Player.h"
+#include  "Player.h" //(관련 오류 모두 Pull ReQuest 시 적용 될 예정)
 
-Monster::Monster(string mName, int mHP, int mATK) 
-: mName(mName), mHP(mHP), mATK(mATK)
+Monster::Monster(MonsterData monsterData) 
 {
     SetStat(player);
 }
@@ -12,16 +11,14 @@ Monster::~Monster()
     
 }
 
-
-void Monster::TakeDamage(int damage)
+void Monster::TakeDamage(Player* player)
 {
-    
+    monsterData.mHP = monsterData.mHP - player->GetATK();
 }
-
 
 bool Monster::IsDeath()
 {
-    if (mHP <=0)
+    if (monsterData.mHP <=0)
     {
         death = true;
         cout << "몬스터 사망";
@@ -35,21 +32,29 @@ bool Monster::IsDeath()
     return death;
 }
 
-
-
 int Monster::GetHP()
 {
-    return mHP;
+    return monsterData.mHP;
 }
 
-
+int Monster::GetExp()
+{
+    return monsterData.exp;
+}
 
 void Monster::SetStat(Player* player)
 {
     int randHP = rand() % 11 + 20;
     int randATK = rand() % 6 + 5;
     
-    mHP = player->GetLevel()*randHP; //함수 구현 예정
-    mATK = player->GetLevel()*randATK; //함수 구현 예정
+    monsterData.mHP = player->GetLevel()*randHP; 
+    monsterData.mATK = player->GetLevel()*randATK; 
 }
+
+void Monster::SetExp(int exp)
+{
+    monsterData.exp = exp;
+}
+
+
 
