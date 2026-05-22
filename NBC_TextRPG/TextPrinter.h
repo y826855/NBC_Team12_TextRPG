@@ -1,6 +1,7 @@
 #pragma once
 #include "Utility/Singleton.h"
 #define Logger(msg) TextPrinter::GetInstance()->PrintText(msg)
+#define Eraser() TextPrinter::GetInstancce()->ResetText();
 #include <string>
 #include <iostream>
 
@@ -10,15 +11,23 @@ class TextPrinter :public Singleton<TextPrinter>
 {
     friend class Singleton<TextPrinter>;
 
+public :
+    enum ETextState
+    {
+       PlayerStat
+    };
+    
+    
 private:
-   //¿ÜºÎ ¼±¾ð ¿øÃµ ºÀ¼â
+   //ì™¸ë¶€ êµ¬í˜„ ê¸ˆì§€
     TextPrinter() = default;
     ~TextPrinter() override = default;
 
 
 
 public:
-    void PrintText(string text);
+    void PrintText(ETextState state);
+    void ResetText();
 
 private :
 
