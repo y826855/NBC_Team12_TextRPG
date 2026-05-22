@@ -157,10 +157,14 @@
     <ClCompile Include="Item\ItemBase.cpp" />
     <ClCompile Include="Item\ItemManager.cpp" />
     <ClCompile Include="NBC_TextRPG.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TextPrinter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\ItemManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="TextPrinter.h" />
     <ClInclude Include="Utility\InputHelper.h" />
     <ClInclude Include="Utility\Singleton.h" />
   </ItemGroup>
