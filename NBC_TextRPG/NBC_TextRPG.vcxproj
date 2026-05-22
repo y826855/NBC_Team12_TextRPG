@@ -157,6 +157,7 @@
     <ClCompile Include="NBC_TextRPG.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BattleSystem.h" />
     <ClInclude Include="Utility\InputHelper.h" />
     <ClInclude Include="Utility\Singleton.h" />
   </ItemGroup>

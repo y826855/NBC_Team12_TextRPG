@@ -45,6 +45,8 @@ public:
 
                     monster->GetDeath() = true;
 
+                    player->GetExp()+=player->GetExp + monster->GetExp
+
                     delete monster;
                     monster = nullptr;
                 }
