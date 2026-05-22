@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BattleSystem.cpp" />
     <ClCompile Include="Monster\Ghoul.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -241,6 +242,7 @@
     <ClCompile Include="TextPrinter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BattleSystem.h" />
     <ClInclude Include="Monster\Ghoul.h" />
     <ClInclude Include="Monster\Hillbilly.h" />
     <ClInclude Include="Monster\Lich.h" />
