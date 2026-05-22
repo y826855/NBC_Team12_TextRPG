@@ -7,8 +7,8 @@ using namespace std;
 
 
 
-BattleSystem::BattleSystem(Player*& player, Monster*& monster, Inventory& inventory)
-    :player(player), monster(monster),inventory(inventory)
+BattleSystem::BattleSystem(Player*& player, Monster*& monster)
+    :player(player), monster(monster)
 {
 
 }
@@ -63,21 +63,19 @@ void BattleSystem::BattleStart()
 
             cout << "플레이어가 공격합니다!\n\n";
 
-            player->Attack();  
+            player->Attack(monster);  
 
 
             if (!player->IsDeath() && monster->IsDeath())
             {
                 cout << "전투승리!\n\n";
 
-                monster->Isdeath();
 
                 delete monster;
                 monster = nullptr;
             }
             else if (player->IsDeath() && !monster->IsDeath())
             {
-                player->IsDeath();
                 cout << "전투 배패!\n 게임을 종료합니다.";
     
 
@@ -90,7 +88,7 @@ void BattleSystem::BattleStart()
                 cout << "적의 공격!\n";
 
 
-                monster->Attack();
+                monster->Attack(player);
             }
 
         }
@@ -133,7 +131,7 @@ void BattleSystem::ChoiceMenu()
         }
         case 3:
         {
-            ShowInventory();
+            ismenu = false;
             break;
         }
         }

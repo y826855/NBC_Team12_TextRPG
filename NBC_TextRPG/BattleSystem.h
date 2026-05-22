@@ -13,7 +13,6 @@ public:
 
 Player*& player;   
 Monster*& monster; 
-Inventory& inventory;
 
 
 
