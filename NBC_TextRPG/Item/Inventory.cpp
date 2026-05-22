@@ -1,16 +1,13 @@
 ﻿#include "Inventory.h"
 #include "ItemManager.h"
 
-Inventory :: Inventory(ItemManager* itemManager)
-{
-    this->itemManager = itemManager;   
-}
+
 //아이템 획득
 void Inventory :: AddItem(EItem itemID, int count)
 {
     ItemContainer[itemID] += count;
     
-    std::cout << itemManager->GetNameByID(itemID)
+    std::cout << ItemManager::GetInstance()->GetNameByID(itemID)
               << " " << count 
               <<"개 획득!"<< std::endl;
 }
