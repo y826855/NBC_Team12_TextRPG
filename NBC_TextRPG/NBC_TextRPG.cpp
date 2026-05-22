@@ -21,9 +21,18 @@ public:
 
     void BattleStart()
     {
-        if ((player->GetHp() > 0) && (monster->GetHP > 0))
+        while((player->GetHp() > 0) && (monster->GetHP > 0))
         {
             cout << "전투시작!\n\n";
+
+            player->PlayerAttack();
+            cout << "플레이어가 공격합니다!";
+
+            if ((player->GetHp() > 0) && (monster->GetHP > 0))
+            {
+
+            }
+
         }
     }
 };
