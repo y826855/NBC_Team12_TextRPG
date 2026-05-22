@@ -1,4 +1,5 @@
 #pragma once
+class Monster;
 #include <string>
 class Player
 {
@@ -12,6 +13,7 @@ private :
 	int ATK = 30;
 	int Gold = 0;
     std::string PlayerName = " ";
+	bool bisDead = false;
 	
 public:
 	void AddExp(int exp);
@@ -21,6 +23,9 @@ public:
     int GetHp();
 	int GetATK();
 	std::string GetPlayerName();
+	void Attack(Monster* monster);
+	bool IsDeath();
+	void TakeDamage(int Damage);
 	
 	Player();
 	
