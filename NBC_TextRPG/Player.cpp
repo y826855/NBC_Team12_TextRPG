@@ -2,6 +2,8 @@
 #include "TextPrinter.h"
 #include <string>
 
+#include "Monster/Monster.h"
+
 void Player::AddExp(int exp)
 {
 	CurrentExp += exp;
@@ -24,6 +26,7 @@ int Player::GetLevel()
 
 int Player::GetGold()
 {
+	 return Gold;
 }
 
 int Player::GetHp()
@@ -39,6 +42,32 @@ int Player::GetATK()
 std::string Player::GetPlayerName()
 {
 	return PlayerName;
+}
+
+void Player::Attack(Monster* monster)
+{
+	monster->TakeDamage();
+}
+
+bool Player::IsDeath()
+{
+	return bisDead;
+}
+
+void Player::TakeDamage(int Damage)
+{
+	if (bisDead)
+	{
+		HP = 0;
+		return;
+	}
+	HP -= Damage;
+	if (HP <= 0)
+	{
+		HP = 0;
+		bisDead = true;
+	}
+	
 }
 
 Player::Player()
