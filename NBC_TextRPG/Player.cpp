@@ -44,9 +44,9 @@ std::string Player::GetPlayerName()
 	return PlayerName;
 }
 
-void Player::Attack(Monster* monster)
+void Player::Attack()
 {
-	monster->TakeDamage();
+	CurrentMonster->TakeDamage();
 }
 
 bool Player::IsDeath()
@@ -68,6 +68,11 @@ void Player::TakeDamage(int Damage)
 		bisDead = true;
 	}
 	
+}
+
+void Player::SetCurrentMonster(Monster* Monster)
+{
+	CurrentMonster = Monster;
 }
 
 Player::Player()
