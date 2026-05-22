@@ -12,19 +12,19 @@ ItemManager::ItemManager()
     ItemContainer.insert(make_pair(EItem::DragonBone, new ItemBase("드래곤의뼈", 300)));
 }
 
-ItemBase* ItemManager::GetItemByID(EItem _itemID)
+ItemBase* ItemManager::GetItemByID(EItem itemID)
 {
-    auto it = ItemContainer.find(_itemID);
+    auto it = ItemContainer.find(itemID);
     if (it != ItemContainer.end())
         return it->second;
     return nullptr;
 }
 
-std::string ItemManager::GetNameByID(EItem _itemID)
+std::string ItemManager::GetNameByID(EItem itemID)
 {
-    auto it = ItemContainer.find(_itemID);
+    auto it = ItemContainer.find(itemID);
     if (it != ItemContainer.end())
-        return ItemContainer[_itemID]->GetName();
+        return ItemContainer[itemID]->GetName();
     return "";
 }
 

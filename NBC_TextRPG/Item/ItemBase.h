@@ -20,7 +20,7 @@ class ItemBase
     int Price = 0;
 
 public:
-    ItemBase(string _name, int _price);
+    ItemBase(string name, int price);
 
     string GetName();
     int GetPrice() const;

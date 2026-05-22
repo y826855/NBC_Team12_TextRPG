@@ -19,8 +19,8 @@ class ItemManager : public Singleton<ItemManager>
 public:
     ItemManager();
 
-    ItemBase* GetItemByID(EItem _itemID);
-    string GetNameByID(EItem _itemID);
+    ItemBase* GetItemByID(EItem itemID);
+    string GetNameByID(EItem itemID);
 
     ~ItemManager() override;
 };
