@@ -63,7 +63,7 @@ void BattleSystem::BattleStart()
 
             cout << "플레이어가 공격합니다!\n\n";
 
-            player->Attack(monster);  
+            player->Attack();  
 
 
             if (!player->IsDeath() && monster->IsDeath())
@@ -88,7 +88,7 @@ void BattleSystem::BattleStart()
                 cout << "적의 공격!\n";
 
 
-                monster->Attack(player);
+                monster->Attack();
             }
 
         }
