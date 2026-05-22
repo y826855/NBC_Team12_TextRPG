@@ -8,10 +8,10 @@ ItemBase::ItemBase(string _name, int _price)
 
 string ItemBase::GetName()
 {
-    return GetName();
+    return Name;
 }
 
-int ItemBase::GetPrice()
+int ItemBase::GetPrice() const
 {
     return Price;
 }
