@@ -1,19 +1,19 @@
 ﻿#include "Monster.h"
-#include  "Player.h" //(관련 오류 모두 Pull ReQuest 시 적용 될 예정)
+#include "../Player.h"
+#include "../Manager/PlayerManager.h"
 
 Monster::Monster(MonsterData monsterData) 
 {
-    SetStat(player);
+    SetStat();
 }
 
 Monster::~Monster()
 {
-    
 }
 
-void Monster::TakeDamage(Player* player)
+void Monster::TakeDamage()
 {
-    monsterData.mHP = monsterData.mHP - player->GetATK();
+    monsterData.mHP = monsterData.mHP - GetPlayer()->GetATK();
 }
 
 bool Monster::IsDeath()
@@ -28,7 +28,6 @@ bool Monster::IsDeath()
     {
         death = false;
     }
-    
     return death;
 }
 
@@ -42,13 +41,13 @@ int Monster::GetExp()
     return monsterData.exp;
 }
 
-void Monster::SetStat(Player* player)
+void Monster::SetStat()
 {
-    int randHP = rand() % 11 + 20;
-    int randATK = rand() % 6 + 5;
+    int randHP = rand() % 11 + 20; //랜덤 구현 -> 플레이어 레벨 x20~30중 무작위 (11가지 가짓수)
+    int randATK = rand() % 6 + 5;  //랜덤 구현 -> 플레이어 레벨 x 5~10중 무작위 (6가지 가짓수)
     
-    monsterData.mHP = player->GetLevel()*randHP; 
-    monsterData.mATK = player->GetLevel()*randATK; 
+    monsterData.mHP = GetPlayer()->GetLevel()*randHP; 
+    monsterData.mATK = GetPlayer()->GetLevel()*randATK; 
 }
 
 void Monster::SetExp(int exp)

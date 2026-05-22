@@ -1,5 +1,7 @@
 ﻿#include "Monster.h"
 #include "Lich.h"
+#include "../Player.h"
+#include "../Manager/PlayerManager.h"
 
 
 Lich::Lich(MonsterData monsterData) : Monster(monsterData)
@@ -13,8 +15,9 @@ Lich::~Lich()
 {
 }
 
-void Lich::Attack(Player* player)
+void Lich::Attack()
 {
+    monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp();
     cout << "지옥의 비행: 슈우우욱!";
 }
 

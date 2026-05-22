@@ -7,7 +7,7 @@ public:
     Ghoul(MonsterData monsterData);
     ~Ghoul() override; 
     
-    void Attack(Player* player) override;
+    void Attack() override;
     
 };
 

@@ -1,5 +1,7 @@
 ﻿#include "Monster.h"
 #include "Ghoul.h"
+#include "../Player.h"
+#include "../Manager/PlayerManager.h"
 
 
 Ghoul::Ghoul(MonsterData monsterData) : Monster(monsterData)
@@ -12,9 +14,9 @@ Ghoul::~Ghoul()
 {
 }
 
-void Ghoul::Attack(Player* player)
+void Ghoul::Attack()
 {
-    
+    monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp();
     cout << "카구네 휘두르기: 찰싹!";
 }
 
