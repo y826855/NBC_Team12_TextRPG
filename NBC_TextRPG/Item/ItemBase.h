@@ -23,5 +23,5 @@ public:
     ItemBase(string _name, int _price);
 
     string GetName();
-    int GetPrice();
+    int GetPrice() const;
 };
