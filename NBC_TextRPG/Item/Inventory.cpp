@@ -5,7 +5,7 @@ Inventory :: Inventory(ItemManager* itemManager)
 {
     this->itemManager = itemManager;   
 }
-
+//아이템 획득
 void Inventory :: AddItem(EItem itemID, int count)
 {
     ItemContainer[itemID] += count;
@@ -14,6 +14,7 @@ void Inventory :: AddItem(EItem itemID, int count)
               << " " << count 
               <<"개 획득!"<< std::endl;
 }
+//아이템 사용
 bool Inventory::UseItem(EItem itemID)
 {
     auto it =ItemContainer.find(itemID);
@@ -30,7 +31,7 @@ bool Inventory::UseItem(EItem itemID)
     
     return true;
 }
-
+//아이템 삭제
 bool Inventory::RemoveItem(EItem itemID, int count)
 {
     auto it = ItemContainer.find(itemID);
@@ -43,6 +44,7 @@ bool Inventory::RemoveItem(EItem itemID, int count)
     
     return true;
 }
+//아이템 개수 반환
 int Inventory::GetItemCount(EItem itemID)
 {
     auto it = ItemContainer.find(itemID);
@@ -52,6 +54,7 @@ int Inventory::GetItemCount(EItem itemID)
     
     return 0;
 }
+//인벤토리 출력
 void Inventory::ShowInventory()
 {
     std::cout<< std::endl;
