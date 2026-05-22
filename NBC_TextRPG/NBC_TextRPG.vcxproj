@@ -154,9 +154,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Item\ItemBase.cpp" />
+    <ClCompile Include="Item\ItemManager.cpp" />
     <ClCompile Include="NBC_TextRPG.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Item\ItemBase.h" />
+    <ClInclude Include="Item\ItemManager.h" />
     <ClInclude Include="Utility\InputHelper.h" />
     <ClInclude Include="Utility\Singleton.h" />
   </ItemGroup>
