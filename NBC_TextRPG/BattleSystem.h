@@ -13,13 +13,20 @@ public:
 
 Player*& player;   
 Monster*& monster; 
-bool ismenu = true;
+Inventory& inventory;
+
 
 
 BattleSystem(Player*& player, Monster*& monster);
 
 
 
+void MonsterSpawn();
+
+
 void BattleStart();
+
+
+void ChoiceMenu();
 
 };
