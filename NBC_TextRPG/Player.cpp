@@ -2,7 +2,7 @@
 #include "TextPrinter.h"
 #include <string>
 
-void Player::GainExp(int exp)
+void Player::AddExp(int exp)
 {
 	CurrentExp += exp;
 
@@ -12,9 +12,23 @@ void Player::GainExp(int exp)
 	}
 }
 
-int Player::GetLV()
+int Player::GetExp()
+{
+	return CurrentExp;
+}
+
+int Player::GetLevel()
 {
 	return LV;
+}
+
+int Player::GetGold()
+{
+}
+
+Player::Player()
+{
+	
 }
 
 void Player::LevelUp()
@@ -27,7 +41,7 @@ void Player::LevelUp()
 	ATK += LV * 5;
 	
 	string levelup;
-	levelup = "·¹º§ÀÌ ¿Ã¶ú½À´Ï´Ù ÇöÀç ·¹º§ : " + std::to_string(LV);
+	levelup = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + std::to_string(LV);
 
 	Logger(levelup);
 }
