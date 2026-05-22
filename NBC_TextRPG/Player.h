@@ -9,11 +9,16 @@ private :
 	int GoalExp = 100;
 	int LV = 1;
 	int ATK = 30;
+	int Gold;
 
 public:
-	void GainExp(int exp);
-	int GetLV();
+	void AddExp(int exp);
+	int GetExp();
+	int GetLevel();
+	int GetGold();
 
+	Player();
+	
 private :
 	void LevelUp();
 };
