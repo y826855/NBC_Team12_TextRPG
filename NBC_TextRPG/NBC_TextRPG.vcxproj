@@ -156,6 +156,9 @@
   <ItemGroup>
     <ClCompile Include="NBC_TextRPG.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utility\InputHelper.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
