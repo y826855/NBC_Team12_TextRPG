@@ -11,8 +11,8 @@ class BattleSystem
 
 public:
 
-Player*& player;   //플레이어
-Monster*& monster;  //몬스터
+Player*& player;   
+Monster*& monster; 
 bool ismenu = true;
 
 

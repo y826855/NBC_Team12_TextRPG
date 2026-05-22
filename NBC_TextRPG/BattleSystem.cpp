@@ -1,5 +1,5 @@
 #include <iostream>
-#include <random> // ·£´ý ¶óÀÌºê·¯¸® Æ÷ÇÔ
+#include <random>
 #include "BattleSystem.h"
 
 using namespace std;
@@ -7,44 +7,70 @@ using namespace std;
 
 
 
-BattleSystem(Player*& player, Monster*& monster)
-    :player(player), monster(monster)
+BattleSystem::BattleSystem(Player*& player, Monster*& monster, Inventory& inventory)
+    :player(player), monster(monster),inventory(inventory)
 {
 
 }
 
 
+void BattleSystem::MonsterSpawn()
+{
+    if (monster == nullptr)
+    {
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<int> dist(1, 3);  //1~3
+
+        int MonsterNumber = dist(gen);
+
+        switch (MonsterNumber)
+        {
+        case 1:
+        {
+            //monster = new monster1
+            break;
+        }
+        case 2:
+        {
+            //monster = new monster2
+            break;
+        }
+        case 3:
+        {
+            //monster = new monster3
+            break;
+        }
+        }
+
+
+    }
+}
 
 
 
-void BattleStart()
+void BattleSystem::BattleStart()
 {
     while (true)
     {
-        if (monster == nullptr)
-        {
-            // monster = new NormalMonster;   //monster ¸ó½ºÅÍ»ý¼ºÇÏ´Â ºÎºÐ
-        }
+        MonsterSpawn();
 
-        cout << "\n\n========ÀüÅõ½ÃÀÛ!=======\n\n";
+        cout << "\n\n========ì „íˆ¬ì‹œìž‘!=======\n\n";
 
 
         while (!player->IsDeath() && !monster->IsDeath())
         {
 
-            cout << "ÇÃ·¹ÀÌ¾î°¡ °ø°ÝÇÕ´Ï´Ù!\n\n";
+            cout << "í”Œë ˆì´ì–´ê°€ ê³µê²©í•©ë‹ˆë‹¤!\n\n";
 
-            player->Attack();  //°ø°Ý
+            player->Attack();  
 
 
-            if (!player->IsDeath() && monster->IsDeath)
+            if (!player->IsDeath() && monster->IsDeath())
             {
-                cout << "ÀüÅõ½Â¸®!\n\n";
+                cout << "ì „íˆ¬ìŠ¹ë¦¬!\n\n";
 
                 monster->Isdeath();
-
-
-
 
                 delete monster;
                 monster = nullptr;
@@ -52,53 +78,64 @@ void BattleStart()
             else if (player->IsDeath() && !monster->IsDeath())
             {
                 player->IsDeath();
-                cout << "ÀüÅõ ¹èÆÐ!\n °ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù.";
+                cout << "ì „íˆ¬ ë°°íŒ¨!\n ê²Œìž„ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.";
     
 
             }
             else if (!player->IsDeath() && !monster->IsDeath())
             {
 
-                cout << "ÀüÅõ¸¦ Áö¼ÓÇÕ´Ï´Ù!\n\n";
+                cout << "ì „íˆ¬ë¥¼ ì§€ì†í•©ë‹ˆë‹¤!\n\n";
 
-
-                cout << "ÀûÀÇ °ø°Ý!\n";
+                cout << "ì ì˜ ê³µê²©!\n";
 
 
                 monster->Attack();
             }
 
-
         }
 
-        cout << "=====¸Þ´º¸¦ ¼±ÅÃÇÏ¼¼¿ä=====\n\n";
-        cout << "1. ÀüÅõ·Î µ¹¾Æ°£´Ù\n";
-        cout << "2. »óÁ¡ÀÔÀå\n";
-        cout << "3. ÀÎº¥Åä¸® È®ÀÎ\n";
-        cout << "¼±ÅÃ: ";
-        while (ismenu)
-        {
-            int choice;
-            cin << choice;
-
-            switch (choice)
-            {
-            case 1:
-            {
-                break;
-                ismenu = false;
-            }
-            case 2:
-            {
-                break;
-            }
-            case 3:
-            {
-                break;
-            }
-            }
-        }
+        ChoiceMenu();
         
+    }
+}
 
+
+
+void BattleSystem::ChoiceMenu()
+{
+
+    bool ismenu = true;
+
+    while (ismenu)
+    {
+        cout << "=====ë©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš”=====\n\n";
+        cout << "1. ì „íˆ¬ë¡œ ëŒì•„ê°„ë‹¤\n";
+        cout << "2. ìƒì ìž…ìž¥\n";
+        cout << "3. ì¸ë²¤í† ë¦¬ í™•ì¸\n";
+        cout << "ì„ íƒ: ";
+
+        int choice;
+        cin >> choice;
+
+
+        switch (choice)
+        {
+        case 1:
+        {
+            ismenu = false;
+            break;
+        }
+        case 2:
+        {
+            //Shop
+            break;
+        }
+        case 3:
+        {
+            ShowInventory();
+            break;
+        }
+        }
     }
 }
