@@ -5,6 +5,7 @@
 
 #include "../Utility/Singleton.h"
 
+class IConsumable;
 using namespace std;
 
 enum class EItem
@@ -16,6 +17,8 @@ enum class EItem
     Berry = 4,
     GhoulSkin = 5,
     LichBone = 6,
+    HealingPotion = 7,
+    ATKBuffPotion = 8,
 };
 
 class ItemBase;
@@ -28,7 +31,8 @@ class ItemManager : public Singleton<ItemManager>
 
 public:
     ItemManager();
-
+    
+    IConsumable* GetConsumableByID(EItem itemID);
     ItemBase* GetItemByID(EItem itemID);
     string GetNameByID(EItem itemID);
 
