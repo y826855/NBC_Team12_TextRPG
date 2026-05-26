@@ -98,7 +98,7 @@ void MultiConsoleManager::RunChildMode()
         WaitNamedPipeA(pipeName.c_str(), 2000);
     }
 
-    cout << "[Child] 연결되었습니다. 메시지 수신 대기 중..." << endl;
+    cout << "[Child] 연결되었습니다. 메시지 수신 대기 중...\n\n" << endl;
 
     // 2. 데이터 수신 루프 
     char buffer[512]; //TODO : 글자수 최대치를 올려야 할 수 있습니다.
@@ -114,7 +114,7 @@ void MultiConsoleManager::RunChildMode()
                 cout << "[Child] 종료 명령을 받았습니다." << endl;
                 break;
             }
-            cout << "[Received]: " << msg << endl;
+            cout << msg << endl;
         }
         else
         {

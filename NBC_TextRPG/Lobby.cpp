@@ -2,6 +2,7 @@
 
 #include "BattleSystem.h"
 #include "Manager/PlayerManager.h"
+#include "MultiConsole/ConsoleController.h"
 #include "Utility/InputHelper.h"
 
 Lobby::Lobby()
@@ -56,6 +57,8 @@ void Lobby::ContentLoop()
             //m_Shop->OpenShop();
             break;
         default: break;
-        }    
+        }
+        
+        ConsoleController::GetInstance()->CloseAll();
     }
 }

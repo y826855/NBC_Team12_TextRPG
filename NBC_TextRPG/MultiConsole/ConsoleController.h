@@ -1,18 +1,11 @@
 #pragma once
 #include "../Utility/Singleton.h"
 #include "MultiConsoleManager.h"
+#include "ConsoleTypes.h"
+#include "ConsoleLogStream.h"
 #include <string>
 
 using namespace std;
-
-enum class EConsoleTag
-{
-    Log,
-    Battle,
-    Stat,
-    Shop,
-    Inventory,
-};
 
 class ConsoleController : public Singleton<ConsoleController>
 {
