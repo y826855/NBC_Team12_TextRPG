@@ -6,6 +6,8 @@
 #include "Item/ItemManager.h"
 #include "Manager/PlayerManager.h"
 #include "Monster/Ghoul.h"
+#include "Monster/Hillbilly.h"
+#include "Monster/Lich.h"
 
 
 using namespace std;
@@ -35,20 +37,17 @@ void BattleSystem::MonsterSpawn()
     {
     case 1:
         {
-            MonsterData data = {"구울1", 30, 1, 5, 50, EItem::Berry};
-            monster = new Ghoul(data);
+            monster = new Ghoul();
             break;
         }
     case 2:
         {
-            MonsterData data = {"구울2", 30, 1, 5, 50, EItem::Berry};
-            monster = new Ghoul(data);
+            monster = new Hillbilly();
             break;
         }
     case 3:
         {
-            MonsterData data = {"구울3", 30, 1, 5, 50, EItem::Berry};
-            monster = new Ghoul(data);
+            monster = new Lich();
             break;
         }
     }
@@ -89,18 +88,20 @@ void BattleSystem::NormalBattleLoop()//
     while (true)
     {
 
-        cout << "플레이어가 공격합니다!\n\n";
+        cout << "\n\n[플레이어가 공격합니다!]\n\n";
 
         player->Attack(monster);  
 
         if (monster->IsDeath())
         {
-            cout << "\n\n전투승리!\n\n";
+            cout << "\n\n[전투승리!]\n\n";
+            
+            BattleReward();
                 
             delete monster;
             monster = nullptr;
             
-            //BattleReward();
+            
             //TODO: 상점입장 선택
             //BossCheck();
             
@@ -113,7 +114,7 @@ void BattleSystem::NormalBattleLoop()//
         }
         else
         {
-            cout << "전투를 지속합니다!\n\n";
+            cout << "\n\n[전투를 지속합니다!]\n\n";
             monster->Attack();
         }
     }
@@ -130,7 +131,7 @@ void BattleSystem::BossBattleLoop()
     while (true)
     {
 
-        cout << "플레이어가 공격합니다!\n\n";
+        cout << "\n\n플레이어가 공격합니다!\n\n";
 
         player->Attack(monster);  
 
@@ -166,7 +167,7 @@ void BattleSystem::BattleReward()
     int gold=monster->GetDropGold();
     
     player->AddExp(exp);
-    //player->AddGold(gold);
+    player->AddGold(gold);
 }
 
 
