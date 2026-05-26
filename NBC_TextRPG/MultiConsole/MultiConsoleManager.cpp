@@ -16,23 +16,40 @@ MultiConsoleManager::~MultiConsoleManager()
 
 bool MultiConsoleManager::Initialize(int argc, char* argv[])
 {
-    if (argc > 1 && string(argv[1]) == "child")
+    if (argc > 1)
     {
-        RunChildMode();
-        return false;
+        string arg = argv[1];
+        if (arg.find("child_") == 0)
+        {
+            string tag = arg.substr(6);
+            
+            // 명령줄 인자로부터 좌표와 크기 파싱 (X, Y, W, H)
+            int x = 850, y = 100, w = 600, h = 450;
+            if (argc >= 6)
+            {
+                x = stoi(argv[2]);
+                y = stoi(argv[3]);
+                w = stoi(argv[4]);
+                h = stoi(argv[5]);
+            }
+
+            RunChildMode(tag, x, y, w, h);
+            return false;
+        }
     }
 
     return true;
 }
 
-void MultiConsoleManager::RunParentMode()
+void MultiConsoleManager::RunParentMode(const string& tag, const ConsoleWindowConfig& config)
 {
     if (hPipe != INVALID_HANDLE_VALUE)
     {
         return;
     }
 
-    cout << "[Parent] 부모 콘솔 시작. 파이프를 생성합니다..." << endl;
+    string pipeName = "\\\\.\\pipe\\NBC_RPG_" + tag;
+    cout << "[Parent] " << tag << " 콘솔용 파이프 생성..." << endl;
 
     // 1. Named Pipe 생성 (단방향 - 쓰기용)
     hPipe = CreateNamedPipeA(
@@ -52,9 +69,19 @@ void MultiConsoleManager::RunParentMode()
     char modulePath[MAX_PATH];
     GetModuleFileNameA(nullptr, modulePath, MAX_PATH);
 
-    string cmdLine = "\"" + string(modulePath) + "\" child";
+    // 자식 프로세스 실행 인자에 좌표와 크기 정보를 포함시킴
+    string cmdLine = "\"" + string(modulePath) + "\" child_" + tag + " " +
+                     to_string(config.x) + " " + to_string(config.y) + " " +
+                     to_string(config.width) + " " + to_string(config.height);
     
     STARTUPINFOA si = { sizeof(si) };
+    // STARTF_USEPOSITION와 STARTF_USESIZE를 활성화
+    si.dwFlags = STARTF_USEPOSITION | STARTF_USESIZE;
+    si.dwX = config.x;
+    si.dwY = config.y;
+    si.dwXSize = config.cols;
+    si.dwYSize = config.rows;
+
     PROCESS_INFORMATION pi = { 0 };
 
     if (CreateProcessA(nullptr, (LPSTR)cmdLine.c_str(),
@@ -74,14 +101,26 @@ void MultiConsoleManager::RunParentMode()
         return;
     }
 
-    cout << "[Parent] 자식 콘솔 연결 대기 중..." << endl;
+    cout << "[Parent] " << tag << " 자식 콘솔 연결 대기 중..." << endl;
     ConnectNamedPipe(hPipe, nullptr);
-    cout << "[Parent] 자식 콘솔(로그창) 연결 성공!" << endl;
+    cout << "[Parent] " << tag << " 연결 성공!" << endl;
 }
 
-void MultiConsoleManager::RunChildMode()
+void MultiConsoleManager::RunChildMode(const string& tag, int x, int y, int w, int h)
 {
-    SetConsoleTitleA("Child Console - Logger");
+    string fullTitle = string(CONSOLE_TITLE_PREFIX) + tag;
+    SetConsoleTitleA(fullTitle.c_str());
+    string pipeName = "\\\\.\\pipe\\NBC_RPG_" + tag;
+
+    HWND hwnd = GetConsoleWindow();
+    if (hwnd != NULL)
+    {
+        SetWindowPos(hwnd, NULL, 
+            x, y, 
+            w, h, 
+            SWP_NOZORDER | SWP_SHOWWINDOW);
+    }
+
     cout << "[Child] 부모 파이프에 연결 중..." << endl;
 
     // 1. 파이프 연결 (CreateFile)
@@ -113,6 +152,26 @@ void MultiConsoleManager::RunChildMode()
             {
                 cout << "[Child] 종료 명령을 받았습니다." << endl;
                 break;
+            }
+            else if (msg == "clear")
+            {
+                // system("cls") 대신 Windows API를 사용하여 화면을 지웁니다.
+                HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                COORD coord = { 0, 0 };
+                CONSOLE_SCREEN_BUFFER_INFO csbi;
+                DWORD written;
+
+                // 콘솔 버퍼의 현재 정보를 가져옵니다 (크기, 속성 등)
+                if (GetConsoleScreenBufferInfo(hConsole, &csbi))
+                {
+                    // 1. 화면 전체를 공백(' ')으로 채웁니다.
+                    FillConsoleOutputCharacterA(hConsole, ' ', csbi.dwSize.X * csbi.dwSize.Y, coord, &written);
+                    // 2. 화면 전체의 속성(색상 등)을 현재 설정으로 초기화합니다.
+                    FillConsoleOutputAttribute(hConsole, csbi.wAttributes, csbi.dwSize.X * csbi.dwSize.Y, coord, &written);
+                    // 3. 커서를 좌측 상단(0, 0)으로 이동시킵니다.
+                    SetConsoleCursorPosition(hConsole, coord);
+                }
+                continue;
             }
             cout << msg << endl;
         }
