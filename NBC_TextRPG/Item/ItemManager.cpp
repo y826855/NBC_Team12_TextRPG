@@ -8,8 +8,8 @@ ItemManager::ItemManager()
     ItemContainer.insert(make_pair(EItem::Berry, new ItemBase("베리", 5)));
     ItemContainer.insert(make_pair(EItem::Herb, new ItemBase("허브", 20)));
     ItemContainer.insert(make_pair(EItem::Water, new ItemBase("물", 10)));
-    ItemContainer.insert(make_pair(EItem::OrcSkin, new ItemBase("오크가죽", 100)));
-    ItemContainer.insert(make_pair(EItem::DragonBone, new ItemBase("드래곤의뼈", 300)));
+    ItemContainer.insert(make_pair(EItem::GhoulSkin, new ItemBase("오크가죽", 100)));
+    ItemContainer.insert(make_pair(EItem::LichBone, new ItemBase("드래곤의뼈", 300)));
 }
 
 ItemBase* ItemManager::GetItemByID(EItem itemID)
