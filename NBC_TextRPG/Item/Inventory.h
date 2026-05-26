@@ -12,7 +12,7 @@ class Inventory : public Singleton<Inventory>
 private:
     std::unordered_map<EItem, int> ItemContainer;
     
-    Inventory();
+   
 public:
     void AddItem(EItem itemID, int cout);
     bool RemoveItem(EItem itemID, int cout);
