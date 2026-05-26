@@ -79,12 +79,6 @@ void ConsoleController::Message(const string& message)
     Message(EConsoleTag::UpperRight, message);
 }
 
-void ConsoleController::ClearAndMessage(EConsoleTag tag, const string& message)
-{
-    Clear(tag);
-    Message(tag, message);
-}
-
 void ConsoleController::CloseConsole(EConsoleTag tag)
 {
     if (m_managers.count(tag) && m_managers[tag]->IsConnected())

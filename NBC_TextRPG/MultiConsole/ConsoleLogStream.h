@@ -4,7 +4,7 @@
 
 class ConsoleController;
 
-#define C_LOG(tag) ConsoleLogStream(EConsoleTag::tag)
+#define C_LOG(tag) ConsoleLogStream(tag)
 
 class ConsoleLogStream
 {

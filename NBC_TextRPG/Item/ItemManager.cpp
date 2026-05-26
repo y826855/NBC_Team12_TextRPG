@@ -1,6 +1,9 @@
 ﻿#include "ItemManager.h"
 
 #include "ItemBase.h"
+#include "ConsumableItem/ATKBuffPotion.h"
+#include "ConsumableItem/HealingPotion.h"
+#include "ConsumableItem/IConsumable.h"
 
 ItemManager::ItemManager()
 {
@@ -10,6 +13,14 @@ ItemManager::ItemManager()
     ItemContainer.insert(make_pair(EItem::Water, new ItemBase("물", 10)));
     ItemContainer.insert(make_pair(EItem::GhoulSkin, new ItemBase("구울의 살점", 100)));
     ItemContainer.insert(make_pair(EItem::LichBone, new ItemBase("리치의 뼈", 300)));
+    ItemContainer.insert(make_pair(EItem::HealingPotion, new HealingPotion("회복 포션", 10)));
+    ItemContainer.insert(make_pair(EItem::ATKBuffPotion, new ATKBuffPotion("공격력 포션", 20)));
+}
+
+IConsumable* ItemManager::GetConsumableByID(EItem itemID)
+{
+    auto item = GetItemByID(itemID);
+    return dynamic_cast<IConsumable*>(item);
 }
 
 ItemBase* ItemManager::GetItemByID(EItem itemID)

@@ -21,6 +21,7 @@ public:
 
     bool IsGameOver();
     void PlayerDie();
+    void EndTurnPhase();
 
 private:
     void MonsterSpawn();
