@@ -1,6 +1,7 @@
 ﻿#include "MultiConsole/ConsoleController.h"
 #include "Utility/InputHelper.h"
 #include "Lobby.h"
+#include "Item/Inventory.h"
 
 using namespace std;
 
@@ -12,10 +13,10 @@ int main(int argc, char* argv[])
     }
 
     Lobby* lobby = new Lobby();
-
+    
     lobby->Intro();
     lobby->ContentLoop();
-
+    
     delete lobby;
     
     return 0;

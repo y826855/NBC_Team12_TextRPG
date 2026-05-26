@@ -3,7 +3,7 @@
 #include "../Item/ItemManager.h"
 #include "../Manager/PlayerManager.h"
 
-Monster::Monster(MonsterData monsterData) 
+Monster::Monster() 
 {
     SetStat();
 }
@@ -68,6 +68,7 @@ void Monster::SetStat()
     
     monsterData.mHP = GetPlayer()->GetLevel()*randHP; 
     monsterData.mATK = GetPlayer()->GetLevel()*randATK; 
+    
 }
 
 void Monster::SetExp(int exp)
@@ -79,6 +80,7 @@ void Monster::SetName(string name)
 {
     monsterData.mName = name;
 }
+
 
 void Monster::SetGold(int gold)
 {

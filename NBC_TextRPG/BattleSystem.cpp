@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Item/ItemManager.h"
 #include "Manager/PlayerManager.h"
+#include "Monster/Boss.h"
 #include "Monster/Ghoul.h"
 #include "Monster/Hillbilly.h"
 #include "Monster/Lich.h"
@@ -103,7 +104,7 @@ void BattleSystem::NormalBattleLoop()//
             
             
             //TODO: 상점입장 선택
-            //BossCheck();
+            BossCheck();
             
             break;
         }
@@ -123,8 +124,7 @@ void BattleSystem::NormalBattleLoop()//
 
 void BattleSystem::BossBattleLoop()
 {
-    //monster=new bossmonster; 보스생성
-    player = GetPlayer();
+    monster = new Boss();
 
     cout << "\n\n========전투시작!=======\n\n";
     
@@ -183,6 +183,6 @@ void BattleSystem::BossCheck()
     {
         isBossSpawn=true;
         
-        cout<<"\n ==이제 일반 몬스터는 상대도 안 된다!==";
+        cout<<"\n ==이제 일반 몬스터는 상대도 안 된다!==\n\n";
     }
 }
