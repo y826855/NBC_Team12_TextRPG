@@ -70,3 +70,16 @@ void Inventory::ShowInventory()
         <<pair.second<<std::endl;
     }
 }
+
+std::vector<EItem> Inventory::GetAllItem()
+{
+    std::vector<EItem> Items;
+    Items.reserve(ItemContainer.size());
+    
+    for (const auto& Pair : ItemContainer)
+    {
+        Items.push_back(Pair.first);
+    }
+    
+    return Items;
+}
