@@ -1,4 +1,7 @@
 ﻿#include "Monster.h"
+
+#include <windows.h>
+
 #include "../Player.h"
 #include "../Item/ItemManager.h"
 #include "../Manager/PlayerManager.h"
@@ -53,6 +56,11 @@ int Monster::GetExp()
 int Monster::GetDropGold()
 {
     return monsterData.gold;
+}
+
+string Monster::GetName()
+{
+    return monsterData.mName;
 }
 
 void Monster::SetStat()
