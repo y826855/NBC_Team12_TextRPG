@@ -3,7 +3,7 @@
 
 #include "../Utility/Singleton.h"
 #define GetPlayer() PlayerManager::GetInstance()->GetPlayerInstance()
-#define SetName() PlayerManager::SetPlayerName();
+#define SetNameByInput() PlayerManager::GetInstance()->SetPlayerName();
 
 class Player;
 

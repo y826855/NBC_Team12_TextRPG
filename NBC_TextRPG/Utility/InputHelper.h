@@ -22,9 +22,9 @@ public:
             if (cin.fail() || input < min || input > max) {
                 cout << "[오류] " << min << " ~ " << max << " 사이의 값을 입력해주세요." << endl;
                 cin.clear(); // 에러 비트 초기화
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 버퍼 비우기
+                cin.ignore((numeric_limits<streamsize>::max)(), '\n'); // 버퍼 비우기
             } else {
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 남은 엔터 제거
+                cin.ignore((numeric_limits<streamsize>::max)(), '\n'); // 남은 엔터 제거
                 return input;
             }
         }
@@ -53,9 +53,9 @@ public:
             if (!allValid || cin.fail()) {
                 cout << "[오류] 모든 값은 " << min << " ~ " << max << " 사이의 숫자여야 합니다." << endl;
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.ignore((numeric_limits<streamsize>::max)(), '\n');
             } else {
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.ignore((numeric_limits<streamsize>::max)(), '\n');
                 return inputs;
             }
         }
