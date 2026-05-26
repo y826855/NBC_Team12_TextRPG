@@ -12,12 +12,12 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    inv->AddItem(EItem::Berry, 5);
-    inv->AddItem(EItem::Chainsaw, 5);
-    inv->AddItem(EItem::Herb, 5);
-    inv->AddItem(EItem::LichBone, 5);
+    Lobby* lobby = new Lobby();
     
-    shop->OpenShop(inv);
+    lobby->Intro();
+    lobby->ContentLoop();
+    
+    delete lobby;
     
     return 0;
 }
