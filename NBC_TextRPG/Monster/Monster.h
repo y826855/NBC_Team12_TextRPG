@@ -5,6 +5,8 @@ using namespace std;
 
 class Player;
 
+enum class EItem;
+
 //맴버변수를 구조체화하여 생성자 매개변수 간략화
 struct MonsterData
 {
@@ -12,6 +14,8 @@ struct MonsterData
     int mHP;
     int mATK;
     int exp;
+    int gold;
+    EItem dropItem;
 };
 
 
@@ -34,23 +38,27 @@ public:
     
     int GetHP();
     
-    void SetStat();
+    int GetDropGold();
     
-    //ToDo: Item GetDropItem(); 이건 나중에 아이템 되면 생각하자
-    
-    //ToDo: Item GetDropGold(); 이건 나중에 아이템 되면 생각하자
+    EItem GetDropItem();
     
     //ToDo: string GetName(); 이건 나중에 게임 로그 달 때 생각하자
 
 protected:
+    
+    void SetStat();
+    
     void SetExp(int exp);
+    
+    void SetGold(int gold);
+    
+    void SetDropItem(EItem dropItem);
     
     MonsterData monsterData;
     bool death;
     
     //ToDo: 이것도 나중에 생각하자
     /*string itemName;
-    int itemPrice;
-    int gold;*/
+    int itemPrice;*/
     
 };

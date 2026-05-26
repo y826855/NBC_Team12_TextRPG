@@ -1,6 +1,7 @@
 ﻿#include "Monster.h"
 #include "Lich.h"
 #include "../Player.h"
+#include "../Item/ItemManager.h"
 #include "../Manager/PlayerManager.h"
 
 
@@ -8,6 +9,8 @@ Lich::Lich(MonsterData monsterData) : Monster(monsterData)
 {
     cout << "리치 생성";
     SetExp(30);
+    SetGold(20);
+    SetDropItem(EItem::LichBone);
 
 }
 
