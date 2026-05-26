@@ -5,12 +5,12 @@ class Player
 {
 private :
 
-	int Max_HP = 200;
+	int Max_HP = 400;
 	int HP = Max_HP;
 	int CurrentExp = 0;
 	int GoalExp = 100;
 	int LV = 1;
-	int ATK = 30;
+	int ATK = 10;
 	int Gold = 0;
     std::string PlayerName = " ";
 	bool bisDead = false;
@@ -22,6 +22,7 @@ public:
 	int GetLevel();
 	int GetGold();
     int GetHp();
+	int GetMaxHP();
 	int GetATK();
 	std::string GetPlayerName();
 	void Attack(Monster* monster);
@@ -34,5 +35,6 @@ public:
 	
 private :
 	void LevelUp();
+	
 };
 

@@ -28,8 +28,9 @@ private:
 public:
     void PrintText(ETextState state);
     void ResetText();
-
+   
 private :
-
+    string MakeHpBar(int hp, int maxHp);
+    string PadRight(const string& str, int width);
 };
 

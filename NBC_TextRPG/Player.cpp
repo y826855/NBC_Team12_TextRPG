@@ -35,6 +35,11 @@ int Player::GetHp()
 	return HP;
 }
 
+int Player::GetMaxHP()
+{
+	return Max_HP;
+}
+
 int Player::GetATK()
 {
 	return ATK;
@@ -105,3 +110,5 @@ void Player::LevelUp()
 	Logger(TextPrinter::PlayerStat);
 	
 }
+
+

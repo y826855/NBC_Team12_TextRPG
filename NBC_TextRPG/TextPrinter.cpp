@@ -17,13 +17,48 @@ void TextPrinter::PrintText(ETextState state)
 		int exp = GetPlayer()->GetExp();
 		int gold = GetPlayer()->GetGold();
 		int atk = GetPlayer()->GetATK();
+		int maxHp = GetPlayer()->GetMaxHP();
 		
-		string stat = GetPlayer()->GetPlayerName() + " 레벨 : " + std::to_string(level) +"\n";
-		
-		stat += "경험치 : " + std::to_string(exp)+"\n"; 
-		stat += "생명력 : " + std::to_string(hp)+"\n";
-		stat += "공격력 : " + std::to_string(atk)+"\n";
-		stat += "골드 : " + std::to_string(gold) + "\n";
+		string stat ="\n";
+		stat += "┌──────────────────────────┐\n";
+		stat += "│      PLAYER STATUS       │\n";
+		stat += "├──────────────────────────┤\n";
+
+		stat += "│ " +
+			PadRight("이름     : " + GetPlayer()->GetPlayerName(), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("레벨     : " + to_string(level), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("경험치   : " + to_string(exp), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("생명력   : " + to_string(hp), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight(
+				"HP : " + MakeHpBar(hp, maxHp)
+				+ " "
+				,
+				25
+			)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("공격력   : " + to_string(atk), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("골드     : " + to_string(gold) + " G", 25)
+			+ "│\n";
+
+		stat += "└──────────────────────────┘\n";
+
 		
 		C_LOG(UpperRight)<<stat;
 		break;
@@ -39,4 +74,35 @@ void TextPrinter::ResetText()
     
 	// 커서를 (0, 0) 위치로 슥 이동시킵니다.
 	SetConsoleCursorPosition(hConsole, coord);
+}
+
+string TextPrinter::MakeHpBar(int hp, int maxHp)
+{
+	int barCount = 16;
+
+	int filled =
+		(hp * barCount) / maxHp;
+
+	string bar = "[";
+
+	for (int i = 0; i < barCount; i++)
+	{
+		if (i < filled)
+			bar += "#";
+		else
+			bar += "-";
+	}
+
+	bar += "]";
+
+	return bar;
+	
+}
+
+string TextPrinter::PadRight(const string& str, int width)
+{
+	if (str.length() >= width)
+		return str;
+
+	return str + string(width - str.length(), ' ');
 }
