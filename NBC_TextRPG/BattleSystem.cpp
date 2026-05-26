@@ -6,6 +6,8 @@
 #include "Item/ItemManager.h"
 #include "Manager/PlayerManager.h"
 #include "Monster/Ghoul.h"
+#include "Monster/Hillbilly.h"
+#include "Monster/Lich.h"
 
 
 using namespace std;
@@ -35,20 +37,20 @@ void BattleSystem::MonsterSpawn()
     {
     case 1:
         {
-            MonsterData data = {"구울1", 30, 1, 5, 50, EItem::Berry};
+            MonsterData data;
             monster = new Ghoul(data);
             break;
         }
     case 2:
         {
-            MonsterData data = {"구울2", 30, 1, 5, 50, EItem::Berry};
-            monster = new Ghoul(data);
+            MonsterData data;
+            monster = new Hillbilly(data);
             break;
         }
     case 3:
         {
-            MonsterData data = {"구울3", 30, 1, 5, 50, EItem::Berry};
-            monster = new Ghoul(data);
+            MonsterData data;
+            monster = new Lich(data);
             break;
         }
     }
@@ -89,13 +91,13 @@ void BattleSystem::NormalBattleLoop()//
     while (true)
     {
 
-        cout << "플레이어가 공격합니다!\n\n";
+        cout << "\n\n[플레이어가 공격합니다!]\n\n";
 
         player->Attack(monster);  
 
         if (monster->IsDeath())
         {
-            cout << "\n\n전투승리!\n\n";
+            cout << "\n\n[전투승리!]\n\n";
                 
             delete monster;
             monster = nullptr;
@@ -113,7 +115,7 @@ void BattleSystem::NormalBattleLoop()//
         }
         else
         {
-            cout << "전투를 지속합니다!\n\n";
+            cout << "\n\n[전투를 지속합니다!]\n\n";
             monster->Attack();
         }
     }
@@ -166,7 +168,7 @@ void BattleSystem::BattleReward()
     int gold=monster->GetDropGold();
     
     player->AddExp(exp);
-    //player->AddGold(gold);
+    player->AddGold(gold);
 }
 
 
