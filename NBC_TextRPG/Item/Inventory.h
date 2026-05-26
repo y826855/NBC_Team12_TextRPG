@@ -13,4 +13,5 @@ public:
     int GetItemCount(EItem itemID);
     bool UseItem(EItem itemID);
     void ShowInventory();
+    std::vector<EItem> GetAllItem();
 };
