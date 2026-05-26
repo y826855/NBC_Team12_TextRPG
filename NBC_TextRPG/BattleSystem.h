@@ -14,7 +14,11 @@ class BattleSystem
 public:
 
 Player*& player;   
-Monster*& monster; 
+Monster*& monster;
+    
+    
+bool isBossSpawn=false;
+bool isClear=false;
 
 
 
@@ -28,17 +32,15 @@ void MonsterSpawn();
 void BattleStart();
     
     
-void PlayerAttack();
-    
-    
-void MonsterAttack();
-    
     
 void BattleReward();
     
     
 void ItemReward();
 
+
+void BossCheck();
+    
     
 void ChoiceMenu();
 
