@@ -55,6 +55,12 @@ int Monster::GetDropGold()
     return monsterData.gold;
 }
 
+string Monster::GetName()
+{
+    return monsterData.mName;
+}
+
+
 void Monster::SetStat()
 {
     int randHP = rand() % 11 + 20; //랜덤 구현 -> 플레이어 레벨 x20~30중 무작위 (11가지 가짓수)
