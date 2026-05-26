@@ -1,5 +1,6 @@
 ﻿#include "Monster.h"
 #include "../Player.h"
+#include "../Item/ItemManager.h"
 #include "../Manager/PlayerManager.h"
 
 Monster::Monster(MonsterData monsterData) 
@@ -66,4 +67,28 @@ void Monster::SetGold(int gold)
     monsterData.gold = gold;
 }
 
+void Monster::SetDropItem(EItem dropItem)
+{
+    int randValue = rand() % 100;
+    if (randValue < 60)
+    {
+        monsterData.dropItem = dropItem;
+    }
+    else if (randValue < 30)
+    {
+        monsterData.dropItem = EItem::Berry;
+    }    
+    else if (randValue < 30)
+    {
+        monsterData.dropItem = EItem::Water;
+    }
+    else
+    {
+        monsterData.dropItem = EItem::Herb;
+    }
+}
 
+EItem Monster::GetDropItem()
+{
+    return monsterData.dropItem;
+}

@@ -1,6 +1,7 @@
 ﻿#include "Monster.h"
 #include "Hillbilly.h"
 #include "../Player.h"
+#include "../Item/ItemManager.h"
 #include "../Manager/PlayerManager.h"
 
 
@@ -9,7 +10,7 @@ Hillbilly::Hillbilly(MonsterData monsterData) : Monster(monsterData)
     cout << "힐빌리 생성";
     SetExp(50);
     SetGold(30);
-    
+    SetDropItem(EItem::Chainsaw);
 }
 
 Hillbilly::~Hillbilly()
