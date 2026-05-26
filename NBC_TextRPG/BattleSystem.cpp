@@ -77,6 +77,7 @@ void BattleSystem::BattleStart()
             else if (player->IsDeath() && !monster->IsDeath())
             {
                 cout << "전투 배패!\n 게임을 종료합니다.";
+                return;
     
 
             }
@@ -98,6 +99,34 @@ void BattleSystem::BattleStart()
     }
 }
 
+
+
+void BattleSystem::PlayerAttack()
+{
+    player->Attack();
+}
+
+
+void BattleSystem::MonsterAttack()
+{
+    monster->Attack();
+}
+
+
+void BattleSystem::BattleReward()
+{
+    int exp=monster->GetExp();
+    int gold=monster->GetDropGold();
+    
+    player->AddExp(exp);
+    player->AddGold(gold);
+}
+
+
+void BattleSystem::ItemReward()
+{
+    
+}
 
 
 void BattleSystem::ChoiceMenu()
