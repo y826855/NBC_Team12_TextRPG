@@ -12,7 +12,7 @@ public:
     bool Initialize(int argc, char* argv[]);
 
     // 파이프에 메시지 전송 (부모 전용 인터페이스)
-    bool SendToChild(const std::string& message);
+    bool SendToChild(const std::string& message) const;
 
 private:
     // 부모 모드: 파이프 생성 및 자식 프로세스 실행
