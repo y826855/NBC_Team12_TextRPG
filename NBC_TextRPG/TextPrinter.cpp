@@ -4,10 +4,13 @@
 
 #include "Player.h"
 #include "Manager/PlayerManager.h"
+#include "MultiConsole/ConsoleController.h"
 #include "MultiConsole/ConsoleLogStream.h"
 
 void TextPrinter::PrintText(ETextState state)
 {
+	ConsoleController::GetInstance()->Clear(EConsoleTag::UpperRight);
+	
 	switch (state)
 	{
 	case PlayerStat:
@@ -60,7 +63,7 @@ void TextPrinter::PrintText(ETextState state)
 		stat += "└──────────────────────────┘\n";
 
 		
-		C_LOG(UpperRight)<<stat;
+		C_LOG(EConsoleTag::UpperRight)<<stat;
 		break;
 		
 	}
