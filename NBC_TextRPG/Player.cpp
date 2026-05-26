@@ -44,9 +44,9 @@ std::string Player::GetPlayerName()
 	return PlayerName;
 }
 
-void Player::Attack()
+void Player::Attack(Monster* monster)
 {
-	CurrentMonster->TakeDamage();
+	monster->TakeDamage();
 }
 
 bool Player::IsDeath()
@@ -70,10 +70,16 @@ void Player::TakeDamage(int Damage)
 	
 }
 
-void Player::SetCurrentMonster(Monster* Monster)
+void Player::SetName(std::string name)
 {
-	CurrentMonster = Monster;
+	PlayerName = name;
 }
+
+void Player::AddGold(int gold)
+{
+	this->Gold += gold;
+}
+
 
 Player::Player()
 {
