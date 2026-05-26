@@ -61,7 +61,7 @@ void BattleSystem::BattleStart()
     }
 }
 
-void BattleSystem::NormalBattleStart()//
+void BattleSystem::NormalBattleLoop()//
 {
     while (!isBossSpawn)   //일반전투
     {
@@ -112,7 +112,7 @@ void BattleSystem::NormalBattleStart()//
 }//일반몬스터 전투
 
 
-void BattleSystem::BossBattleStart()
+void BattleSystem::BossBattleLoop()
 {
     while (!isClear)    //보스전투
     {
