@@ -5,12 +5,11 @@
 #include "../Manager/PlayerManager.h"
 
 
-Ghoul::Ghoul(MonsterData monsterData) : Monster(monsterData)
+Ghoul::Ghoul() : Monster()
 {
+    monsterData = {"구울", 0,0,25,15,EItem::GhoulSkin};
+    SetStat();
     cout << "구울 생성";
-    SetExp(20);
-    SetGold(15);
-    SetDropItem(EItem::GhoulSkin);
     
 }
 

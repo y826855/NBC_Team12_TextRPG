@@ -1,10 +1,10 @@
 ﻿#pragma once
 #include "Monster.h"
 
-class Hillbilly :Monster
+class Hillbilly : public Monster
 {
 public:
-    Hillbilly(MonsterData monsterData);
+    Hillbilly();
     ~Hillbilly() override; 
     
     void Attack() override;

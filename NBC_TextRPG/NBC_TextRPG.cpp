@@ -7,9 +7,10 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
- 
-    Inventory* inv = new Inventory();
-    Shop* shop = new Shop();
+    if (!ConsoleController::GetInstance()->Initialize(argc, argv))
+    {
+        return 0;
+    }
 
     inv->AddItem(EItem::Berry, 5);
     inv->AddItem(EItem::Chainsaw, 5);

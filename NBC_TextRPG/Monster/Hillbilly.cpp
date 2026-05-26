@@ -5,16 +5,16 @@
 #include "../Manager/PlayerManager.h"
 
 
-Hillbilly::Hillbilly(MonsterData monsterData) : Monster(monsterData)
+Hillbilly::Hillbilly() : Monster()
 {
+    monsterData = {"힐빌리", 0,0,30,30,EItem::Chainsaw};
+    SetStat();
     cout << "힐빌리 생성";
-    SetExp(50);
-    SetGold(30);
-    SetDropItem(EItem::Chainsaw);
 }
 
 Hillbilly::~Hillbilly()
 {
+    
 }
 
 void Hillbilly::Attack()

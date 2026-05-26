@@ -5,13 +5,11 @@
 #include "../Manager/PlayerManager.h"
 
 
-Lich::Lich(MonsterData monsterData) : Monster(monsterData)
+Lich::Lich() : Monster()
 {
+    monsterData = {"리치", 0,0,50,50,EItem::LichBone};
+    SetStat();
     cout << "리치 생성";
-    SetExp(30);
-    SetGold(20);
-    SetDropItem(EItem::LichBone);
-
 }
 
 Lich::~Lich()

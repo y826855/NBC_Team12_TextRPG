@@ -24,7 +24,7 @@ class Monster
 
 public: 
     
-    Monster(MonsterData monsterData);
+    Monster();
     
     virtual ~Monster();
     
@@ -47,7 +47,9 @@ public:
     string GetName();
 
 protected:
-    void SetStat();
+    void SetStat();   
+    
+    void SetName(string name);
     
     void SetBossStat();
     
