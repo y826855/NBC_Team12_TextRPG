@@ -42,6 +42,11 @@ int Monster::GetExp()
     return monsterData.exp;
 }
 
+int Monster::GetDropGold()
+{
+    return monsterData.gold;
+}
+
 void Monster::SetStat()
 {
     int randHP = rand() % 11 + 20; //랜덤 구현 -> 플레이어 레벨 x20~30중 무작위 (11가지 가짓수)
@@ -56,5 +61,9 @@ void Monster::SetExp(int exp)
     monsterData.exp = exp;
 }
 
+void Monster::SetGold(int gold)
+{
+    monsterData.gold = gold;
+}
 
 

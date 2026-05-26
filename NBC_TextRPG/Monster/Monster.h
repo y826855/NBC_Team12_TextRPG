@@ -12,6 +12,7 @@ struct MonsterData
     int mHP;
     int mATK;
     int exp;
+    int gold;
 };
 
 
@@ -36,9 +37,11 @@ public:
     
     void SetStat();
     
-    //ToDo: Item GetDropItem(); 이건 나중에 아이템 되면 생각하자
+    int GetDropGold();
     
-    //ToDo: Item GetDropGold(); 이건 나중에 아이템 되면 생각하자
+    void SetGold(int gold);
+    
+    //ToDo: Item GetDropItem(); 이건 나중에 아이템 되면 생각하자
     
     //ToDo: string GetName(); 이건 나중에 게임 로그 달 때 생각하자
 
@@ -50,7 +53,6 @@ protected:
     
     //ToDo: 이것도 나중에 생각하자
     /*string itemName;
-    int itemPrice;
-    int gold;*/
+    int itemPrice;*/
     
 };

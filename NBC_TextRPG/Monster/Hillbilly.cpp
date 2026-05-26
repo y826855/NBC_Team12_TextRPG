@@ -8,7 +8,8 @@ Hillbilly::Hillbilly(MonsterData monsterData) : Monster(monsterData)
 {
     cout << "힐빌리 생성";
     SetExp(50);
-
+    SetGold(30);
+    
 }
 
 Hillbilly::~Hillbilly()

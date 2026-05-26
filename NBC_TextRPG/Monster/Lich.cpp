@@ -8,6 +8,7 @@ Lich::Lich(MonsterData monsterData) : Monster(monsterData)
 {
     cout << "리치 생성";
     SetExp(30);
+    SetGold(20);
 
 }
 

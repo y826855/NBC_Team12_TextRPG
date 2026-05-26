@@ -8,6 +8,8 @@ Ghoul::Ghoul(MonsterData monsterData) : Monster(monsterData)
 {
     cout << "구울 생성";
     SetExp(20);
+    SetGold(15);
+    
 }
 
 Ghoul::~Ghoul()
