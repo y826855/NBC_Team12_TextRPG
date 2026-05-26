@@ -50,22 +50,22 @@ void Shop::BuyItem(Inventory* inventory)
     cout<< "===== 구매 ====="<<endl;
     
     cout<< "1. 힐빌리 전기톱 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Chainsaw)
-    ->GetPrice()<<"Gold"<<endl;
+    ->GetPrice()<<" Gold"<<endl;
     
     cout<< "2. 구울의 살점 : "<<ItemManager::GetInstance()->GetItemByID(EItem::GhoulSkin)
-    ->GetPrice()<<"Gold"<<endl;
+    ->GetPrice()<<" Gold"<<endl;
     
     cout<< "3. 리치의 뼈 : "<<ItemManager::GetInstance()->GetItemByID(EItem::LichBone)
-    ->GetPrice()<<"Gold"<<endl;
+    ->GetPrice()<<" Gold"<<endl;
     
     cout<< "4. 베리 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Berry)
-    ->GetPrice()<<"Gold"<<endl;
+    ->GetPrice()<<" Gold"<<endl;
     
     cout<< "5. 허브 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Herb)
-    ->GetPrice()<<"Gold"<<endl;
+    ->GetPrice()<<" Gold"<<endl;
     
     cout<< "6. 물 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Water)
-    ->GetPrice()<<"Gold"<<endl;
+    ->GetPrice()<<" Gold"<<endl;
     
     int choice = InputHelper::GetValidInput<int>("구매할 아이템 선택 : ",1,6);
     
