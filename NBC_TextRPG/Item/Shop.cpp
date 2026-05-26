@@ -49,3 +49,7 @@ void Shop::BuyItem(Player* player, Inventory* inventory)
     cout<< endl;
     cout<< "===== 구매 ====="<<endl;
 }
+
+void Shop::SellItem(Player* player, Inventory* inventory)
+{
+}

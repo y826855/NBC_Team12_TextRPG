@@ -1,52 +1,39 @@
 #pragma once
-#include <string>
 #include "Monster/Monster.h"
-#include "Player.h"
-#include "Utility/InputHelper.h"
 
 class Monster;
 
-
-
 class BattleSystem
 {
-
+    Player* player;   
+    Monster* monster;
+    
+    bool isBossSpawn=false;
+    bool isClear=false;
+    bool bIsGameOver=false;
+    
 public:
-
-Player*& player;   
-Monster*& monster;
     
-    
-bool isBossSpawn=false;
-bool isClear=false;
+    BattleSystem();
+    int GetRandom(int min, int max);
 
+    void BattleStart();
 
+    bool IsGameOver();
+    void PlayerDie();
 
-BattleSystem(Player*& player, Monster*& monster);
+private:
+    void MonsterSpawn();
 
+    void NormalBattleLoop();
+    
+    void BossBattleLoop();
+    
+    void BattleReward();
+    
+    void ItemReward();
 
-
-void MonsterSpawn();
-
+    void BossCheck();
     
-void BattleStart();
-    
-
-void NormalBattleLoop();
-    
-    
-void BossBattleLoop();
-    
-    
-void BattleReward();
-    
-    
-void ItemReward();
-
-
-void BossCheck();
-    
-    
-void ChoiceMenu();
-
+    //void ChoiceMenu();
 };

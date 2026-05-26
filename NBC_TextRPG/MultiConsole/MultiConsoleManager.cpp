@@ -16,18 +16,22 @@ MultiConsoleManager::~MultiConsoleManager()
 
 bool MultiConsoleManager::Initialize(int argc, char* argv[])
 {
-    // 1. 명령행 인자를 확인하여 모드 분기
     if (argc > 1 && string(argv[1]) == "child")
-        {
+    {
         RunChildMode();
-        return false; // 자식 모드는 여기서 종료
+        return false;
     }
-    RunParentMode();
-    return true;  // 부모 모드는 게임 로직을 계속 진행
+
+    return true;
 }
 
 void MultiConsoleManager::RunParentMode()
 {
+    if (hPipe != INVALID_HANDLE_VALUE)
+    {
+        return;
+    }
+
     cout << "[Parent] 부모 콘솔 시작. 파이프를 생성합니다..." << endl;
 
     // 1. Named Pipe 생성 (단방향 - 쓰기용)
@@ -35,10 +39,14 @@ void MultiConsoleManager::RunParentMode()
         pipeName.c_str(),
         PIPE_ACCESS_OUTBOUND,           // 부모 -> 자식 (Outbound)
         PIPE_TYPE_BYTE | PIPE_WAIT,     // 바이트 단위, 블로킹 모드
-        1, bufferSize, bufferSize, 0, NULL
+        1, bufferSize, bufferSize, 0, nullptr
     );
 
-    if (hPipe == INVALID_HANDLE_VALUE) return;
+    if (hPipe == INVALID_HANDLE_VALUE)
+    {
+        cerr << "[Error] 파이프 생성 실패: " << GetLastError() << endl;
+        return;
+    }
 
     // 3. 자기 자신(.exe)을 새로운 콘솔 창으로 실행
     char modulePath[MAX_PATH];
@@ -49,13 +57,14 @@ void MultiConsoleManager::RunParentMode()
     STARTUPINFOA si = { sizeof(si) };
     PROCESS_INFORMATION pi = { 0 };
 
-    if (CreateProcessA(nullptr, const_cast<LPSTR>(cmdLine.c_str()),
+    if (CreateProcessA(nullptr, (LPSTR)cmdLine.c_str(),
                        nullptr,
                        nullptr,
                        FALSE,
                        CREATE_NEW_CONSOLE,
                        nullptr,
-                       nullptr, &si, &pi)) {
+                       nullptr, &si, &pi))
+    {
         hChildProcess = pi.hProcess;
         CloseHandle(pi.hThread); // 스레드 핸들은 사용하지 않으므로 닫음
     }
@@ -66,20 +75,23 @@ void MultiConsoleManager::RunParentMode()
     }
 
     cout << "[Parent] 자식 콘솔 연결 대기 중..." << endl;
-    ConnectNamedPipe(hPipe, NULL); // 자식이 연결될 때까지 대기
+    ConnectNamedPipe(hPipe, nullptr);
     cout << "[Parent] 자식 콘솔(로그창) 연결 성공!" << endl;
 }
 
-void MultiConsoleManager::RunChildMode() {
+void MultiConsoleManager::RunChildMode()
+{
     SetConsoleTitleA("Child Console - Logger");
     cout << "[Child] 부모 파이프에 연결 중..." << endl;
 
     // 1. 파이프 연결 (CreateFile)
-    while (true) {
-        hPipe = CreateFileA(pipeName.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);
+    while (true)
+    {
+        hPipe = CreateFileA(pipeName.c_str(), GENERIC_READ, 0, nullptr, OPEN_EXISTING, 0, nullptr);
         if (hPipe != INVALID_HANDLE_VALUE) break;
-        
-        if (GetLastError() != ERROR_PIPE_BUSY) {
+
+        if (GetLastError() != ERROR_PIPE_BUSY)
+        {
             Sleep(500); // 잠시 대기 후 재시도
             continue;
         }
@@ -91,11 +103,12 @@ void MultiConsoleManager::RunChildMode() {
     // 2. 데이터 수신 루프 
     char buffer[512]; //TODO : 글자수 최대치를 올려야 할 수 있습니다.
     DWORD bytesRead;
-    while (true) {
-        if (ReadFile(hPipe, buffer, sizeof(buffer) - 1, &bytesRead, NULL) && bytesRead > 0) {
+    while (true)
+    {
+        if (ReadFile(hPipe, buffer, sizeof(buffer) - 1, &bytesRead, nullptr) && bytesRead > 0)
+        {
             buffer[bytesRead] = '\0';
             string msg(buffer);
-            
             if (msg == "exit")
             {
                 cout << "[Child] 종료 명령을 받았습니다." << endl;
@@ -117,9 +130,12 @@ void MultiConsoleManager::RunChildMode() {
     exit(0); // 자식 프로세스는 여기서 완전히 종료
 }
 
-bool MultiConsoleManager::SendToChild(const string& message) const
+bool MultiConsoleManager::SendToChild(const string& message)
 {
-    if (hPipe == INVALID_HANDLE_VALUE) return false;
+    if (hPipe == INVALID_HANDLE_VALUE)
+    {
+        return false;
+    }
 
     DWORD bytesWritten;
     BOOL result = WriteFile(
@@ -129,6 +145,11 @@ bool MultiConsoleManager::SendToChild(const string& message) const
         &bytesWritten,
         nullptr
     );
+
+    if (!result)
+    {
+        Cleanup(); // 전송 실패 시 핸들 정리
+    }
 
     return result;
 }
