@@ -75,6 +75,11 @@ void Monster::SetExp(int exp)
     monsterData.exp = exp;
 }
 
+void Monster::SetName(string name)
+{
+    monsterData.mName = name;
+}
+
 void Monster::SetGold(int gold)
 {
     monsterData.gold = gold;

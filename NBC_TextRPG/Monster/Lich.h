@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Monster.h"
 
-class Lich :Monster
+class Lich : public Monster
 {
 public:
     Lich(MonsterData monsterData);
