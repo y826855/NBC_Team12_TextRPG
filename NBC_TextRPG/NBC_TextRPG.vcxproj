@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="Item\Inventory.cpp" />
     <ClCompile Include="BattleSystem.cpp" />
+    <ClCompile Include="Item\Shop.cpp" />
     <ClCompile Include="Monster\Ghoul.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -246,6 +247,7 @@
   <ItemGroup>
     <ClInclude Include="Item\Inventory.h" />
     <ClInclude Include="BattleSystem.h" />
+    <ClInclude Include="Item\Shop.h" />
     <ClInclude Include="Monster\Ghoul.h" />
     <ClInclude Include="Monster\Hillbilly.h" />
     <ClInclude Include="Monster\Lich.h" />
