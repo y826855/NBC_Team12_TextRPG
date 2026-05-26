@@ -23,8 +23,20 @@ void MonsterSpawn();
 
 
 void BattleStart();
+    
+    
+void PlayerAttack();
+    
+    
+void MonsterAttack();
+    
+    
+void BattleReward();
+    
+    
+void ItemReward();
 
-
+    
 void ChoiceMenu();
 
 };
