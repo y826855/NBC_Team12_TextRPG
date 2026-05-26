@@ -14,7 +14,7 @@ private :
 	int Gold = 0;
     std::string PlayerName = " ";
 	bool bisDead = false;
-	Monster* CurrentMonster;
+	
 	
 public:
 	void AddExp(int exp);
@@ -24,10 +24,12 @@ public:
     int GetHp();
 	int GetATK();
 	std::string GetPlayerName();
-	void Attack();
+	void Attack(Monster* monster);
 	bool IsDeath();
 	void TakeDamage(int Damage);
-	void SetCurrentMonster(Monster* Monster);
+	void SetName(std::string name);
+	void AddGold(int gold);
+	
 	Player();
 	
 private :

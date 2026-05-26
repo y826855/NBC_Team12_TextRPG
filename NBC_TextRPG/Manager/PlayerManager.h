@@ -1,6 +1,9 @@
 ﻿#pragma once
+#include <string>
+
 #include "../Utility/Singleton.h"
 #define GetPlayer() PlayerManager::GetInstance()->GetPlayerInstance()
+#define SetNameByInput() PlayerManager::GetInstance()->SetPlayerName();
 
 class Player;
 
@@ -15,7 +18,9 @@ private:
   public:
     PlayerManager(); 
      Player* GetPlayerInstance();
-  
+     
+     void SetPlayerName();
+    
     
     
 };

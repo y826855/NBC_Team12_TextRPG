@@ -1,0 +1,42 @@
+#pragma once
+#include "../Utility/Singleton.h"
+#include "MultiConsoleManager.h"
+#include <string>
+
+using namespace std;
+
+enum class EConsoleTag
+{
+    Log,
+    Battle,
+    Stat,
+    Shop,
+    Inventory,
+};
+
+class ConsoleController : public Singleton<ConsoleController>
+{
+    friend class Singleton<ConsoleController>;
+public:
+    ConsoleController() = default;
+
+    // 시스템 초기화 (자식 모드 판별 및 엔진 설정)
+    bool Initialize(int argc, char* argv[]);
+
+    // 콘솔창을 열거나 이미 열려있다면 유지
+    void AddConsole();
+    
+    // 콘솔창에 메시지 전송 (닫혀있으면 자동으로 열고 전송)
+    void Message(EConsoleTag tag, const string& message);
+    void Message(const string& message);
+    
+    // 특정 태그를 지정해 콘솔창 닫기 (현재는 단일창 종료)
+    void CloseConsole(EConsoleTag tag);
+
+    // 모든 자식 콘솔창 종료
+    void CloseAll();
+
+private:
+    string TagToString(EConsoleTag tag);
+    MultiConsoleManager m_manager;
+};
