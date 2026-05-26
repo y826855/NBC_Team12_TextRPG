@@ -15,12 +15,12 @@ void Shop::OpenShop(Inventory* inventory)
 {
     while (true)
     {
-        C_LOG(Shop)<< endl;
-        C_LOG(Shop)<< "===== 상점 ====="<<endl;
+        C_LOG(LowerRight)<< endl;
+        C_LOG(LowerRight)<< "===== 상점 ====="<<endl;
         
-        C_LOG(Shop)<< "1. 구매"<<endl;
-        C_LOG(Shop)<< "2. 판매"<<endl;
-        C_LOG(Shop)<< "3. 나가기"<<endl;
+        C_LOG(LowerRight)<< "1. 구매"<<endl;
+        C_LOG(LowerRight)<< "2. 판매"<<endl;
+        C_LOG(LowerRight)<< "3. 나가기"<<endl;
         
         int input = InputHelper::GetValidInput<int>(
             "선택 : ",1,3);
@@ -39,7 +39,7 @@ void Shop::OpenShop(Inventory* inventory)
             }
         case 3:
             {
-                C_LOG(Shop)<<"상점을 떠납니다"<<endl;
+                C_LOG(LowerRight)<<"상점을 떠납니다"<<endl;
                 return;
             }
         }
@@ -47,25 +47,25 @@ void Shop::OpenShop(Inventory* inventory)
 }
 void Shop::BuyItem(Inventory* inventory)
 {
-    C_LOG(Shop)<< endl;
-    C_LOG(Shop)<< "===== 구매 ====="<<endl;
+    C_LOG(LowerRight)<< endl;
+    C_LOG(LowerRight)<< "===== 구매 ====="<<endl;
     
-    C_LOG(Shop)<< "1. 힐빌리 전기톱 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Chainsaw)
+    C_LOG(LowerRight)<< "1. 힐빌리 전기톱 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Chainsaw)
     ->GetPrice()<<" Gold"<<endl;
     
-    C_LOG(Shop)<< "2. 구울의 살점 : "<<ItemManager::GetInstance()->GetItemByID(EItem::GhoulSkin)
+    C_LOG(LowerRight)<< "2. 구울의 살점 : "<<ItemManager::GetInstance()->GetItemByID(EItem::GhoulSkin)
     ->GetPrice()<<" Gold"<<endl;
     
-    C_LOG(Shop)<< "3. 리치의 뼈 : "<<ItemManager::GetInstance()->GetItemByID(EItem::LichBone)
+    C_LOG(LowerRight)<< "3. 리치의 뼈 : "<<ItemManager::GetInstance()->GetItemByID(EItem::LichBone)
     ->GetPrice()<<" Gold"<<endl;
     
-    C_LOG(Shop)<< "4. 베리 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Berry)
+    C_LOG(LowerRight)<< "4. 베리 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Berry)
     ->GetPrice()<<" Gold"<<endl;
     
-    C_LOG(Shop)<< "5. 허브 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Herb)
+    C_LOG(LowerRight)<< "5. 허브 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Herb)
     ->GetPrice()<<" Gold"<<endl;
     
-    C_LOG(Shop)<< "6. 물 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Water)
+    C_LOG(LowerRight)<< "6. 물 : "<<ItemManager::GetInstance()->GetItemByID(EItem::Water)
     ->GetPrice()<<" Gold"<<endl;
     
     int choice = InputHelper::GetValidInput<int>("구매할 아이템 선택 : ",1,6);
@@ -107,23 +107,23 @@ void Shop::BuyItem(Inventory* inventory)
     }
     inventory->AddItem(itemID,1);
     
-    C_LOG(Shop)<<"아이템 구매 완료!"<<endl;
+    C_LOG(LowerRight)<<"아이템 구매 완료!"<<endl;
 }
 void Shop::SellItem(Inventory* inventory)
 {
     //판매할 물건 없으면 바로 퇴장, 혹은 입장 불가
-    C_LOG(Shop) << endl;
-    C_LOG(Shop) << "===== 판매 ====="<<endl;
+    C_LOG(LowerRight) << endl;
+    C_LOG(LowerRight) << "===== 판매 ====="<<endl;
     
     inventory->ShowInventory();
-    C_LOG(Shop)<< endl;
+    C_LOG(LowerRight)<< endl;
     
     auto items = inventory->GetAllItem(); // Todo Vector로 받아오기
     int i = 0;
     for (auto it : items)
     {
         auto item = ItemManager::GetInstance()->GetItemByID(it);
-        C_LOG(Shop) << i++ << "." << item->GetName() << endl;
+        C_LOG(LowerRight) << i++ << "." << item->GetName() << endl;
     }
 
     int choice = InputHelper::GetValidInput<int>("판매할 아이템 선택 : ",0,i-1);
@@ -134,7 +134,7 @@ void Shop::SellItem(Inventory* inventory)
     
     if (!isRemoved)
     {
-        C_LOG(Shop) <<"아이템이 부족합니다."<<endl;
+        C_LOG(LowerRight) <<"아이템이 부족합니다."<<endl;
         return;
     }
     
@@ -142,6 +142,6 @@ void Shop::SellItem(Inventory* inventory)
     
     int sellPrice = static_cast<int>(originPrice * 0.6f);
     
-    C_LOG(Shop) << sellPrice << " Gold 획득!"<< endl;
+    C_LOG(LowerRight) << sellPrice << " Gold 획득!"<< endl;
     
 }

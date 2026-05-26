@@ -20,6 +20,7 @@ void Lobby::Intro()
 
 void Lobby::ShowMenu()
 {
+    cout << endl;
     cout << "1. 전투" << endl;
     cout << "2. 상점" << endl;
 }
@@ -59,6 +60,5 @@ void Lobby::ContentLoop()
         default: break;
         }
         
-        ConsoleController::GetInstance()->CloseAll();
     }
 }

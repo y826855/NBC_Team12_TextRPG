@@ -242,6 +242,7 @@
     <ClCompile Include="Manager\PlayerManager.cpp" />
     <ClCompile Include="MultiConsole\ConsoleController.cpp" />
     <ClCompile Include="MultiConsole\ConsoleLogStream.cpp" />
+    <ClCompile Include="MultiConsole\EditConsole.cpp" />
     <ClCompile Include="MultiConsole\MultiConsoleManager.cpp" />
     <ClCompile Include="Monster\Boss.cpp" />
     <ClCompile Include="NBC_TextRPG.cpp" />
@@ -263,6 +264,7 @@
     <ClInclude Include="MultiConsole\ConsoleController.h" />
     <ClInclude Include="MultiConsole\ConsoleLogStream.h" />
     <ClInclude Include="MultiConsole\ConsoleTypes.h" />
+    <ClInclude Include="MultiConsole\EditConsole.h" />
     <ClInclude Include="MultiConsole\MultiConsoleManager.h" />
     <ClInclude Include="Monster\Boss.h" />
     <ClInclude Include="Player.h" />
