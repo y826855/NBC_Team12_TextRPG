@@ -157,6 +157,7 @@
     <ClCompile Include="Item\Inventory.cpp" />
     <ClCompile Include="BattleSystem.cpp" />
     <ClCompile Include="Item\Shop.cpp" />
+    <ClCompile Include="Lobby.cpp" />
     <ClCompile Include="Monster\Ghoul.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -239,6 +240,7 @@
     <ClCompile Include="Item\ItemBase.cpp" />
     <ClCompile Include="Item\ItemManager.cpp" />
     <ClCompile Include="Manager\PlayerManager.cpp" />
+    <ClCompile Include="MultiConsole\ConsoleController.cpp" />
     <ClCompile Include="MultiConsole\MultiConsoleManager.cpp" />
     <ClCompile Include="MultiConsole\TestConsole.cpp" />
     <ClCompile Include="Monster\Boss.cpp" />
@@ -250,6 +252,7 @@
     <ClInclude Include="Item\Inventory.h" />
     <ClInclude Include="BattleSystem.h" />
     <ClInclude Include="Item\Shop.h" />
+    <ClInclude Include="Lobby.h" />
     <ClInclude Include="Monster\Ghoul.h" />
     <ClInclude Include="Monster\Hillbilly.h" />
     <ClInclude Include="Monster\Lich.h" />
@@ -257,6 +260,7 @@
     <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\ItemManager.h" />
     <ClInclude Include="Manager\PlayerManager.h" />
+    <ClInclude Include="MultiConsole\ConsoleController.h" />
     <ClInclude Include="MultiConsole\MultiConsoleManager.h" />
     <ClInclude Include="MultiConsole\TestConsole.h" />
     <ClInclude Include="Monster\Boss.h" />

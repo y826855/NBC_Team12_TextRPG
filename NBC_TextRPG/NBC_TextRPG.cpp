@@ -1,11 +1,22 @@
-﻿#include <iostream>
-#include "MultiConsole/TestConsole.h"
+﻿#include "MultiConsole/ConsoleController.h"
+#include "Utility/InputHelper.h"
+#include "Lobby.h"
+
+using namespace std;
 
 int main(int argc, char* argv[])
 {
+    //if (!ConsoleController::GetInstance()->Initialize(argc, argv))
+    //{
+    //    return 0;
+    //}
 
-    TestConsole* newConsole = new TestConsole();
-    newConsole->TestOpenConsole(argc, argv);
+    Lobby* lobby = new Lobby();
+
+    lobby->Intro();
+    lobby->ContentLoop();
+
+    delete lobby;
     
     return 0;
 }
