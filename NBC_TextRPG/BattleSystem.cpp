@@ -37,20 +37,17 @@ void BattleSystem::MonsterSpawn()
     {
     case 1:
         {
-            MonsterData data;
-            monster = new Ghoul(data);
+            monster = new Ghoul();
             break;
         }
     case 2:
         {
-            MonsterData data;
-            monster = new Hillbilly(data);
+            monster = new Hillbilly();
             break;
         }
     case 3:
         {
-            MonsterData data;
-            monster = new Lich(data);
+            monster = new Lich();
             break;
         }
     }
@@ -98,11 +95,13 @@ void BattleSystem::NormalBattleLoop()//
         if (monster->IsDeath())
         {
             cout << "\n\n[전투승리!]\n\n";
+            
+            BattleReward();
                 
             delete monster;
             monster = nullptr;
             
-            //BattleReward();
+            
             //TODO: 상점입장 선택
             //BossCheck();
             
@@ -132,7 +131,7 @@ void BattleSystem::BossBattleLoop()
     while (true)
     {
 
-        cout << "플레이어가 공격합니다!\n\n";
+        cout << "\n\n플레이어가 공격합니다!\n\n";
 
         player->Attack(monster);  
 
