@@ -128,7 +128,7 @@ EItem Monster::GetDropItem()
 void Monster::AsciiArt()
 {
     
-    C_LOG(Battle) << 
+    C_LOG(LargePopup) << 
         R"(
 
 

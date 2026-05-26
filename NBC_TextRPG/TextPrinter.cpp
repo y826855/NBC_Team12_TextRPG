@@ -25,7 +25,7 @@ void TextPrinter::PrintText(ETextState state)
 		stat += "공격력 : " + std::to_string(atk)+"\n";
 		stat += "골드 : " + std::to_string(gold) + "\n";
 		
-		C_LOG(Stat)<<stat;
+		C_LOG(UpperRight)<<stat;
 		break;
 		
 	}
