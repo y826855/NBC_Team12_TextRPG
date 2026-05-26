@@ -238,6 +238,7 @@
     <ClCompile Include="Item\ItemBase.cpp" />
     <ClCompile Include="Item\ItemManager.cpp" />
     <ClCompile Include="Manager\PlayerManager.cpp" />
+    <ClCompile Include="Monster\Boss.cpp" />
     <ClCompile Include="NBC_TextRPG.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextPrinter.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\ItemManager.h" />
     <ClInclude Include="Manager\PlayerManager.h" />
+    <ClInclude Include="Monster\Boss.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TextPrinter.h" />
     <ClInclude Include="Utility\InputHelper.h" />
