@@ -1,7 +1,5 @@
 ﻿#pragma once
 #include <unordered_map>
-#include <iostream>
-#include "ItemBase.h"
 #include "ItemManager.h"
 
 using namespace std;
