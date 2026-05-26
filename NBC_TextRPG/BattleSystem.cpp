@@ -103,21 +103,23 @@ void BattleSystem::BattleStart()
 
 void BattleSystem::PlayerAttack()
 {
-    int damage = player->GetATK();
-    monster->TakeDamage(damage);
+    player->Attack();
 }
 
 
 void BattleSystem::MonsterAttack()
 {
-    int damage = monster->GetATK();
-    player() ===>TakeDamage(damage);
+    monster->Attack();
 }
 
 
 void BattleSystem::BattleReward()
 {
+    int exp=monster->GetExp();
+    int gold=monster->GetDropGold();
     
+    player->AddExp(exp);
+    player->AddGold(gold);
 }
 
 
