@@ -2,20 +2,32 @@
 
 #include <iostream>
 
+#include "ItemBase.h"
 #include "ItemManager.h"
+#include "../MultiConsole/ConsoleController.h"
+#include "../Utility/InputHelper.h"
+#include "ConsumableItem/IConsumable.h"
 
+
+Inventory::Inventory()
+{
+    WindowTag = EConsoleTag::LowerRight;
+}
 
 //아이템 획득
-void Inventory :: AddItem(EItem itemID, int count)
+void Inventory::AddItem(EItem itemID)
 {
-    if (count <=0)
-        return;
-    ItemContainer[itemID] += count;
-    
-    std::cout << ItemManager::GetInstance()->GetNameByID(itemID)
-              << " " << count 
-              <<"개 획득!"<< std::endl;
+    AddItem(itemID, 1);
 }
+
+void Inventory::AddItem(EItem itemID, int count)
+{
+    ItemContainer[itemID] += count;
+
+    C_LOG(WindowTag) << ItemManager::GetInstance()->GetNameByID(itemID)
+        + " " + std::to_string(count) +"개 획득!\n" << endl;
+}
+
 //아이템 사용
 bool Inventory::UseItem(EItem itemID)
 {
@@ -26,13 +38,16 @@ bool Inventory::UseItem(EItem itemID)
     if (it ->second <=0)
         return false;
     
+    auto item = ItemManager::GetInstance()->GetConsumableByID(itemID);
+    if (item == nullptr)
+        return false;
+
+    item->Use(); 
     it->second--;
-    
-    std::cout << ItemManager::GetInstance()->GetNameByID(itemID)
-    << " 사용!"<<std::endl;
     
     return true;
 }
+
 //아이템 삭제
 bool Inventory::RemoveItem(EItem itemID, int count)
 {
@@ -46,6 +61,7 @@ bool Inventory::RemoveItem(EItem itemID, int count)
     
     return true;
 }
+
 //아이템 개수 반환
 int Inventory::GetItemCount(EItem itemID)
 {
@@ -56,24 +72,54 @@ int Inventory::GetItemCount(EItem itemID)
     
     return 0;
 }
+
 //인벤토리 출력
-void Inventory::ShowInventory()
+void Inventory::ShowInventory() const
 {
-    std::cout<< std::endl;
-    std::cout<<"===== Inventory ====="<< std::endl;
+    ConsoleController::GetInstance()->Clear(WindowTag);
+    
+    C_LOG(WindowTag)<< endl;
+    C_LOG(WindowTag)<<"===== Inventory ====="<< endl;
     
     for (auto& pair : ItemContainer)
     {
-        std::cout<<"Name: "
-        <<ItemManager::GetInstance()->GetNameByID(pair.first)
-        <<std::endl;
-        
-        std::cout<< "Count: "
-        <<pair.second<<std::endl;
+        ShowItemInfo(pair);
     }
 }
 
-std::vector<EItem> Inventory::GetAllItem()
+void Inventory::UseItemInBattlePhase()
+{
+    ConsoleController::GetInstance()->Clear(WindowTag);
+    
+    vector<EItem> consumableItems;
+    for (auto item : ItemContainer)
+    {
+        if (item.second > 0 && ItemManager::GetInstance()->GetConsumableByID(item.first))
+            consumableItems.push_back(item.first);
+    }
+
+    if (consumableItems.empty())
+    {
+        cout << "\n사용 가능한 아이템 없음\n" << endl;
+        return;
+    }
+
+    int index = 1;
+    for (auto consumable : consumableItems)
+    {
+        C_LOG(WindowTag) << index++ << "." << " 아이템 이름: "
+            << ItemManager::GetInstance()->GetNameByID(consumable)
+            << "[ 보유 갯수: " << ItemContainer[consumable] << " ]" << endl;
+    }
+
+    int max = consumableItems.size();
+    int choice = InputHelper::GetValidInput("\n\n사용 아이템 입력 : ", 1, max + 1) - 1;
+    
+    UseItem(consumableItems[choice]);
+}
+
+
+std::vector<EItem> Inventory::GetAllItem() const
 {
     std::vector<EItem> Items;
     Items.reserve(ItemContainer.size());
@@ -84,4 +130,23 @@ std::vector<EItem> Inventory::GetAllItem()
     }
     
     return Items;
+}
+
+bool Inventory::IsEmpty() const
+{
+    return ItemContainer.empty();
+}
+
+void Inventory::ShowItemInfo(const pair<EItem, int>& item) const
+{
+    C_LOG(WindowTag) << "아이템 이름: " << ItemManager::GetInstance()->GetNameByID(item.first)
+        << "[ 보유 갯수: " << item.second << " ]" << endl;
+}
+
+void Inventory::ShowItemInfo(EItem itemID)
+{
+    auto it = ItemContainer.find(itemID);
+    if (it == ItemContainer.end())
+        return;
+    ShowItemInfo(*it);
 }

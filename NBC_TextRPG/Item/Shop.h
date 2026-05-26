@@ -1,15 +1,26 @@
 ﻿#pragma once
+#include <vector>
+
+#include "ItemManager.h"
 
 
+enum class EConsoleTag;
 class Inventory;
 
 class Shop
 {
 public:
-    void OpenShop(Inventory* inventory);
+    Shop();
+    void OpenShop() const;
     
+
 private:
-    void BuyItem(Inventory* inventory);
+    void BuyItem() const;
+    void SellItem() const;
     
-    void SellItem(Inventory* inventory);
+    void ShowItemInfo(int idx, string name, int gold) const;
+
+    EConsoleTag WindowTag;
+
+    std::vector<EItem> ShopItemList;
 };
