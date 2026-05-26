@@ -241,8 +241,8 @@
     <ClCompile Include="Item\ItemManager.cpp" />
     <ClCompile Include="Manager\PlayerManager.cpp" />
     <ClCompile Include="MultiConsole\ConsoleController.cpp" />
+    <ClCompile Include="MultiConsole\ConsoleLogStream.cpp" />
     <ClCompile Include="MultiConsole\MultiConsoleManager.cpp" />
-    <ClCompile Include="MultiConsole\TestConsole.cpp" />
     <ClCompile Include="Monster\Boss.cpp" />
     <ClCompile Include="NBC_TextRPG.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -261,8 +261,9 @@
     <ClInclude Include="Item\ItemManager.h" />
     <ClInclude Include="Manager\PlayerManager.h" />
     <ClInclude Include="MultiConsole\ConsoleController.h" />
+    <ClInclude Include="MultiConsole\ConsoleLogStream.h" />
+    <ClInclude Include="MultiConsole\ConsoleTypes.h" />
     <ClInclude Include="MultiConsole\MultiConsoleManager.h" />
-    <ClInclude Include="MultiConsole\TestConsole.h" />
     <ClInclude Include="Monster\Boss.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TextPrinter.h" />
