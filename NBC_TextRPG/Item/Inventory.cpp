@@ -8,6 +8,8 @@
 //아이템 획득
 void Inventory :: AddItem(EItem itemID, int count)
 {
+    if (count <=0)
+        return;
     ItemContainer[itemID] += count;
     
     std::cout << ItemManager::GetInstance()->GetNameByID(itemID)
