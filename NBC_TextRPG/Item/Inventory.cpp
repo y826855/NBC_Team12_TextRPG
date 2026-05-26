@@ -8,6 +8,8 @@
 //아이템 획득
 void Inventory :: AddItem(EItem itemID, int count)
 {
+    if (count <=0)
+        return;
     ItemContainer[itemID] += count;
     
     std::cout << ItemManager::GetInstance()->GetNameByID(itemID)
@@ -69,4 +71,17 @@ void Inventory::ShowInventory()
         std::cout<< "Count: "
         <<pair.second<<std::endl;
     }
+}
+
+std::vector<EItem> Inventory::GetAllItem()
+{
+    std::vector<EItem> Items;
+    Items.reserve(ItemContainer.size());
+    
+    for (const auto& Pair : ItemContainer)
+    {
+        Items.push_back(Pair.first);
+    }
+    
+    return Items;
 }

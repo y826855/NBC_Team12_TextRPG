@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Monster.h"
 
-class Boss :Monster
+class Boss :public Monster
 {
 public:
     Boss();

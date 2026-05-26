@@ -1,16 +1,23 @@
 ﻿#pragma once
 #include <unordered_map>
+#include <vector>
+
 #include "ItemManager.h"
+#include "../Utility/Singleton.h"
 
-using namespace std;
+#define GetInventory Inventory::GetInstance();
 
-class Inventory {
+class Inventory : public Singleton<Inventory>
+{
 private:
     std::unordered_map<EItem, int> ItemContainer;
+    
+    Inventory();
 public:
     void AddItem(EItem itemID, int cout);
     bool RemoveItem(EItem itemID, int cout);
     int GetItemCount(EItem itemID);
     bool UseItem(EItem itemID);
     void ShowInventory();
+    std::vector<EItem> GetAllItem();
 };
