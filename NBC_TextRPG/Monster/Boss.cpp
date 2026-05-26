@@ -5,15 +5,13 @@
 #include "../Manager/PlayerManager.h"
 
 
-Boss::Boss(MonsterData monsterData) : Monster(monsterData)
+Boss::Boss() : Monster()
 {
+    monsterData = {"튜터팍", 0,0,100,100,EItem::Chainsaw};
     cout << "담당 튜터팍이 소환됩니다.";
     AsciiArt();
     SetBossStat();
-    SetName("튜터팍");
-    SetExp(100);
-    SetGold(100);
-    SetDropItem(EItem::Chainsaw);
+ 
 }
 
 Boss::~Boss()
