@@ -2,6 +2,7 @@
 
 #include "MultiConsole/ConsoleController.h"
 #include "Lobby.h"
+#include "MultiConsole/EditConsole.h"
 
 using namespace std;
 
@@ -14,15 +15,8 @@ void PrepareWindow()
     std::cout << endl << endl;
 }
 
-int main(int argc, char* argv[])
+void EditWindow()
 {
-    if (!ConsoleController::GetInstance()->Initialize(argc, argv))
-    {
-        return 0;
-    }
-
-    /*
-    //창 위치를 지정할때 주석 해제
     ConsoleController::GetInstance()->AddConsole(EConsoleTag::Main);
     ConsoleController::GetInstance()->AddConsole(EConsoleTag::UpperRight);
     ConsoleController::GetInstance()->AddConsole(EConsoleTag::LowerRight);
@@ -32,13 +26,24 @@ int main(int argc, char* argv[])
     // 위치 측정 도구 실행
     EditConsole editor;
     editor.StartTracking();
-    */
+}
 
-    PrepareWindow();
+int main(int argc, char* argv[])
+{
+    if (!ConsoleController::GetInstance()->Initialize(argc, argv))
+    {
+        return 0;
+    }
+
+    //창 수정을 위한 함수. 필요시 주석 해제
+    //EditWindow();
     
+    PrepareWindow();
+
     Lobby lobby;
     lobby.Intro();
     lobby.ContentLoop();
+
 
     ConsoleController::GetInstance()->CloseAll();
 
