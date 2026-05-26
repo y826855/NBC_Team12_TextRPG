@@ -68,6 +68,10 @@ void Player::TakeDamage(int Damage)
 		return;
 	}
 	HP -= Damage;
+	
+	Logger(TextPrinter::PlayerStat);
+	//Eraser();
+	
 	if (HP <= 0)
 	{
 		HP = 0;

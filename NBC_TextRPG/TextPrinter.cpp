@@ -5,9 +5,12 @@
 #include "Player.h"
 #include "Manager/PlayerManager.h"
 #include "MultiConsole/ConsoleLogStream.h"
+#include "MultiConsole/ConsoleController.h"
 
 void TextPrinter::PrintText(ETextState state)
 {
+	ConsoleController::GetInstance()->Clear(EConsoleTag::UpperRight);
+	
 	switch (state)
 	{
 	case PlayerStat:
@@ -69,11 +72,7 @@ void TextPrinter::PrintText(ETextState state)
 
 void TextPrinter::ResetText()
 {
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD coord = { 0, 0 };
-    
-	// 커서를 (0, 0) 위치로 슥 이동시킵니다.
-	SetConsoleCursorPosition(hConsole, coord);
+	ConsoleController::GetInstance()->Clear(EConsoleTag::UpperRight);
 }
 
 string TextPrinter::MakeHpBar(int hp, int maxHp)
