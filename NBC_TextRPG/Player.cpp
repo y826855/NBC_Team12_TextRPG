@@ -3,6 +3,7 @@
 #include <string>
 
 #include "Monster/Monster.h"
+#include "MultiConsole/ConsoleLogStream.h"
 
 void Player::AddExp(int exp)
 {
@@ -73,6 +74,7 @@ void Player::TakeDamage(int Damage)
 void Player::SetName(std::string name)
 {
 	PlayerName = name;
+	cout<<endl<<"환영합니다 " << PlayerName<<"님"<<endl;
 }
 
 void Player::AddGold(int gold)
@@ -99,5 +101,7 @@ void Player::LevelUp()
 	levelup = "레벨이 올랐습니다 현재 레벨: " + std::to_string(LV);
 
 	cout<<levelup<<"\n";
+	
 	Logger(TextPrinter::PlayerStat);
+	
 }
