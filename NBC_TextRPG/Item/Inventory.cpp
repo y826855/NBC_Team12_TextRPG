@@ -1,4 +1,7 @@
 ﻿#include "Inventory.h"
+
+#include <iostream>
+
 #include "ItemManager.h"
 
 

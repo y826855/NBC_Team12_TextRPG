@@ -7,7 +7,17 @@
 
 using namespace std;
 
-enum class EItem;
+enum class EItem
+{
+    None = 0,
+    SlimeJelly = 1,
+    Herb = 2,
+    Water = 3,
+    Berry = 4,
+    OrcSkin = 5,
+    DragonBone = 6,
+};
+
 class ItemBase;
 
 class ItemManager : public Singleton<ItemManager>
