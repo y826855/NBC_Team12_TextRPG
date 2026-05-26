@@ -99,7 +99,6 @@ void BattleSystem::NormalBattleLoop()//
                 
             delete monster;
             monster = nullptr;
-            bIsGameOver = true;
             
             //BattleReward();
             //TODO: 상점입장 선택
