@@ -50,7 +50,7 @@ void BattleSystem::MonsterSpawn()
 
 
 
-void BattleSystem::BattleStart()
+void BattleSystem::NormalBattleStart()//
 {
     while (!isBossSpawn)   //일반전투
     {
@@ -98,7 +98,11 @@ void BattleSystem::BattleStart()
             }
         }
     }//일반전투
-    
+}//일반몬스터 전투
+
+
+void BattleSystem::BossBattleStart()
+{
     while (!isClear)    //보스전투
     {
         if (monster == nullptr)
@@ -137,12 +141,8 @@ void BattleSystem::BattleStart()
                 monster->Attack();
             }
         }
-    }//보스전투
-    
-}
-
-
-
+    }
+}//보스전투
 
 
 void BattleSystem::BattleReward()

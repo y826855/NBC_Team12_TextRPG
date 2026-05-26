@@ -29,8 +29,10 @@ BattleSystem(Player*& player, Monster*& monster);
 void MonsterSpawn();
 
 
-void BattleStart();
+void NormalBattleStart();
     
+    
+void BossBattleStart();
     
     
 void BattleReward();
