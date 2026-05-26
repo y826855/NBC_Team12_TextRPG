@@ -116,7 +116,8 @@ EItem Monster::GetDropItem()
     return monsterData.dropItem;
 }
 
-void AsciiArt()
+
+void Monster::AsciiArt()
 {
     
     cout << 
