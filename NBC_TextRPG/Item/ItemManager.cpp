@@ -4,12 +4,12 @@
 
 ItemManager::ItemManager()
 {
-    ItemContainer.insert(make_pair(EItem::SlimeJelly, new ItemBase("슬라임 젤리", 30)));
+    ItemContainer.insert(make_pair(EItem::Chainsaw, new ItemBase("힐빌리 전기톱", 30)));
     ItemContainer.insert(make_pair(EItem::Berry, new ItemBase("베리", 5)));
     ItemContainer.insert(make_pair(EItem::Herb, new ItemBase("허브", 20)));
     ItemContainer.insert(make_pair(EItem::Water, new ItemBase("물", 10)));
-    ItemContainer.insert(make_pair(EItem::GhoulSkin, new ItemBase("오크가죽", 100)));
-    ItemContainer.insert(make_pair(EItem::LichBone, new ItemBase("드래곤의뼈", 300)));
+    ItemContainer.insert(make_pair(EItem::GhoulSkin, new ItemBase("구울의 살점", 100)));
+    ItemContainer.insert(make_pair(EItem::LichBone, new ItemBase("리치의 뼈", 300)));
 }
 
 ItemBase* ItemManager::GetItemByID(EItem itemID)
