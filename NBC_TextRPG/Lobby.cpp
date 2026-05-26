@@ -1,6 +1,7 @@
 ﻿#include "Lobby.h"
 
 #include "BattleSystem.h"
+#include "Item/Inventory.h"
 #include "Manager/PlayerManager.h"
 #include "MultiConsole/ConsoleController.h"
 #include "Utility/InputHelper.h"
@@ -37,6 +38,7 @@ void Lobby::ChoiceMenu()
 
 void Lobby::ContentLoop()
 {
+    Inventory* inventory =Inventory::GetInstance();
     //TODO 패배 처리 해야함
     while (true)
     {
@@ -55,7 +57,8 @@ void Lobby::ContentLoop()
             break;
         case LobbyState::Shop:
             //TODO : 초기화 부분 수정필요
-            //m_Shop->OpenShop();
+           
+            m_Shop->OpenShop(inventory);
             break;
         default: break;
         }
