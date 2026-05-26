@@ -6,10 +6,10 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    //if (!ConsoleController::GetInstance()->Initialize(argc, argv))
-    //{
-    //    return 0;
-    //}
+    if (!ConsoleController::GetInstance()->Initialize(argc, argv))
+    {
+        return 0;
+    }
 
     Lobby* lobby = new Lobby();
 
