@@ -8,6 +8,7 @@
 Hillbilly::Hillbilly(MonsterData monsterData) : Monster(monsterData)
 {
     cout << "힐빌리 생성";
+    SetName("힐빌리");
     SetExp(50);
     SetGold(30);
     SetDropItem(EItem::Chainsaw);

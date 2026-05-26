@@ -8,6 +8,7 @@
 Ghoul::Ghoul(MonsterData monsterData) : Monster(monsterData)
 {
     cout << "구울 생성";
+    SetName("구울");
     SetExp(20);
     SetGold(15);
     SetDropItem(EItem::GhoulSkin);
