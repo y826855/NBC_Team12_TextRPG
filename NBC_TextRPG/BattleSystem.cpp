@@ -48,7 +48,18 @@ void BattleSystem::MonsterSpawn()
     }
 }
 
-
+void BattleSystem::BattleStart()
+{
+    if (!isBossSpawn)   //일반전투
+    {
+        NormalBattleLoop();
+    }
+    
+    if (!isClear)   //보스전투
+    {
+        BossBattleLoop();
+    }
+}
 
 void BattleSystem::NormalBattleStart()//
 {
