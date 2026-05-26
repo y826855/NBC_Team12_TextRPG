@@ -3,12 +3,15 @@
 #include "BattleSystem.h"
 
 #include "Player.h"
+#include "Item/Inventory.h"
 #include "Item/ItemManager.h"
 #include "Manager/PlayerManager.h"
 #include "Monster/Boss.h"
 #include "Monster/Ghoul.h"
 #include "Monster/Hillbilly.h"
 #include "Monster/Lich.h"
+#include "MultiConsole/ConsoleController.h"
+#include "MultiConsole/ConsoleLogStream.h"
 
 
 using namespace std;
@@ -56,16 +59,16 @@ void BattleSystem::MonsterSpawn()
 
 void BattleSystem::BattleStart()
 {
-    if (!isBossSpawn)   //일반 전투
-    {    
-        cout << "\n\n일반 전투 시작\n\n";
+    if (!isBossSpawn) //일반 전투 
         NormalBattleLoop();
-    }
-
-    else // 보스 전투
-    {
+    
+    else //보스 전투 
         BossBattleLoop();
-    }
+
+    BattleReward();
+
+    delete monster;
+    monster = nullptr;
 }
 
 bool BattleSystem::IsGameOver()
@@ -77,14 +80,21 @@ void BattleSystem::PlayerDie()
 {
     cout << "전투 배패!\n 게임을 종료합니다.";
     bIsGameOver = true;
+    C_LOG(EConsoleTag::SmallPopup) << "\n\n---------플레이어 사망---------\n\n";
+}
+
+void BattleSystem::EndTurnPhase()
+{
+    Inventory::GetInstance()->UseItemInBattlePhase();
+    cout << "\n\n[전투를 지속합니다!]\n\n";
 }
 
 void BattleSystem::NormalBattleLoop()//
-{
+{\
     MonsterSpawn();
     player = GetPlayer();
 
-    cout << "\n\n========전투시작!=======\n\n";
+    cout << "\n\n========전투 시작!=======\n\n";
     
     while (true)
     {
@@ -95,14 +105,10 @@ void BattleSystem::NormalBattleLoop()//
 
         if (monster->IsDeath())
         {
-            cout << "\n\n[전투승리!]\n\n";
+            cout << "\n\n[전투 승리!]\n\n";
             
             BattleReward();
                 
-            delete monster;
-            monster = nullptr;
-            
-            
             //TODO: 상점입장 선택
             BossCheck();
             
@@ -115,8 +121,8 @@ void BattleSystem::NormalBattleLoop()//
         }
         else
         {
-            cout << "\n\n[전투를 지속합니다!]\n\n";
             monster->Attack();
+            EndTurnPhase();
         }
     }
 }//일반몬스터 전투
@@ -126,7 +132,7 @@ void BattleSystem::BossBattleLoop()
 {
     monster = new Boss();
 
-    cout << "\n\n========전투시작!=======\n\n";
+    cout << "\n\n========보스 전투 시작!=======\n\n";
     
     while (true)
     {
@@ -138,13 +144,9 @@ void BattleSystem::BossBattleLoop()
         if (monster->IsDeath())
         {
             cout << "게임클리어!\n\n";
-                
-            delete monster;
-            monster = nullptr;
+
             bIsGameOver = true;
                 
-            //BattleReward();
-            
             break;
         }
         else if (player->IsDeath())
@@ -154,8 +156,8 @@ void BattleSystem::BossBattleLoop()
         }
         else
         {
-            cout << "전투를 지속합니다!\n\n";
             monster->Attack();
+            EndTurnPhase();
         }
     }
 }//보스전투
@@ -168,6 +170,8 @@ void BattleSystem::BattleReward()
     
     player->AddExp(exp);
     player->AddGold(gold);
+    
+    Inventory::GetInstance()->AddItem(monster->GetDropItem(), 1);
 }
 
 
