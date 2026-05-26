@@ -42,11 +42,14 @@ public:
     
     EItem GetDropItem();
     
-    //ToDo: string GetName(); 이건 나중에 게임 로그 달 때 생각하자
+    void AsciiArt();
+    
+    string GetName();
 
 protected:
-    
     void SetStat();
+    
+    void SetBossStat();
     
     void SetExp(int exp);
     

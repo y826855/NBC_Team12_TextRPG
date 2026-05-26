@@ -2,7 +2,10 @@
 #include <string>
 #include "Monster/Monster.h"
 #include "Player.h"
+#include "Utility/InputHelper.h"
+
 class Monster;
+
 
 
 class BattleSystem
@@ -11,7 +14,11 @@ class BattleSystem
 public:
 
 Player*& player;   
-Monster*& monster; 
+Monster*& monster;
+    
+    
+bool isBossSpawn=false;
+bool isClear=false;
 
 
 
@@ -21,14 +28,14 @@ BattleSystem(Player*& player, Monster*& monster);
 
 void MonsterSpawn();
 
-
+    
 void BattleStart();
     
+
+void NormalBattleLoop();
     
-void PlayerAttack();
     
-    
-void MonsterAttack();
+void BossBattleLoop();
     
     
 void BattleReward();
@@ -36,6 +43,9 @@ void BattleReward();
     
 void ItemReward();
 
+
+void BossCheck();
+    
     
 void ChoiceMenu();
 

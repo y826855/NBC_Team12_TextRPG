@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="Item\Inventory.cpp" />
     <ClCompile Include="BattleSystem.cpp" />
+    <ClCompile Include="Item\Shop.cpp" />
     <ClCompile Include="Monster\Ghoul.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -240,6 +241,7 @@
     <ClCompile Include="Manager\PlayerManager.cpp" />
     <ClCompile Include="MultiConsole\MultiConsoleManager.cpp" />
     <ClCompile Include="MultiConsole\TestConsole.cpp" />
+    <ClCompile Include="Monster\Boss.cpp" />
     <ClCompile Include="NBC_TextRPG.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextPrinter.cpp" />
@@ -247,6 +249,7 @@
   <ItemGroup>
     <ClInclude Include="Item\Inventory.h" />
     <ClInclude Include="BattleSystem.h" />
+    <ClInclude Include="Item\Shop.h" />
     <ClInclude Include="Monster\Ghoul.h" />
     <ClInclude Include="Monster\Hillbilly.h" />
     <ClInclude Include="Monster\Lich.h" />
@@ -256,6 +259,7 @@
     <ClInclude Include="Manager\PlayerManager.h" />
     <ClInclude Include="MultiConsole\MultiConsoleManager.h" />
     <ClInclude Include="MultiConsole\TestConsole.h" />
+    <ClInclude Include="Monster\Boss.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TextPrinter.h" />
     <ClInclude Include="Utility\InputHelper.h" />
