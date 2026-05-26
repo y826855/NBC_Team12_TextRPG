@@ -2,6 +2,7 @@
 #include "../Player.h"
 #include "../Item/ItemManager.h"
 #include "../Manager/PlayerManager.h"
+#include "../MultiConsole/ConsoleLogStream.h"
 
 Monster::Monster() 
 {
@@ -127,7 +128,7 @@ EItem Monster::GetDropItem()
 void Monster::AsciiArt()
 {
     
-    cout << 
+    C_LOG(Battle) << 
         R"(
 $$$$################################################################################################
 ####################################################################################################
