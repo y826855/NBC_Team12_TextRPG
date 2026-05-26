@@ -2,7 +2,10 @@
 #include <string>
 #include "Monster/Monster.h"
 #include "Player.h"
+#include "Utility/InputHelper.h"
+
 class Monster;
+
 
 
 class BattleSystem

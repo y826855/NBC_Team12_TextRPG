@@ -2,6 +2,7 @@
 #include <random>
 #include "BattleSystem.h"
 
+
 using namespace std;
 
 
@@ -63,16 +64,19 @@ void BattleSystem::BattleStart()
 
             cout << "플레이어가 공격합니다!\n\n";
 
-            player->Attack();  
+            PlayerAttack();  
 
 
             if (!player->IsDeath() && monster->IsDeath())
             {
                 cout << "전투승리!\n\n";
-
-
+                
                 delete monster;
                 monster = nullptr;
+                
+                BattleReward();
+                
+                //TODO: 상점입장 선택
             }
             else if (player->IsDeath() && !monster->IsDeath())
             {
@@ -89,7 +93,7 @@ void BattleSystem::BattleStart()
                 cout << "적의 공격!\n";
 
 
-                monster->Attack();
+                MonsterAttack();
             }
 
         }
@@ -143,7 +147,7 @@ void BattleSystem::ChoiceMenu()
         cout << "선택: ";
 
         int choice;
-        cin >> choice;
+        InputHelper::GetValidInput(" ",1,3);
 
 
         switch (choice)
