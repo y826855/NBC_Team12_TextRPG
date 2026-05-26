@@ -23,6 +23,8 @@ public:
     // 콘솔창에 메시지 전송 (닫혀있으면 자동으로 열고 전송)
     void Message(EConsoleTag tag, const string& message);
     void Message(const string& message);
+
+    void ClearAndMessage(EConsoleTag tag, const string& message);
     
     // 특정 태그를 지정해 콘솔창 닫기 (현재는 단일창 종료)
     void CloseConsole(EConsoleTag tag);
