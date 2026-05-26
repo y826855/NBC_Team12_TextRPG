@@ -44,7 +44,7 @@ public:
     
     void AsciiArt();
     
-    //ToDo: string GetName(); 이건 나중에 게임 로그 달 때 생각하자
+    string GetName();
 
 protected:
     void SetStat();
