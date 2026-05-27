@@ -13,6 +13,12 @@ Lobby::Lobby()
     m_Shop = new Shop();
 }
 
+Lobby::~Lobby()
+{
+    delete m_BattleSystem;
+    delete m_Shop;
+}
+
 void Lobby::Intro()
 {
     //플레이어 생성

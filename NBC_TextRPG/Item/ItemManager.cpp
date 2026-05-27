@@ -35,7 +35,7 @@ std::string ItemManager::GetNameByID(EItem itemID)
 {
     auto it = ItemContainer.find(itemID);
     if (it != ItemContainer.end())
-        return ItemContainer[itemID]->GetName();
+        return it->second->GetName();
     return "";
 }
 

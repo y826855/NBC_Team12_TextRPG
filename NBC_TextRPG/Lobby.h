@@ -19,6 +19,7 @@ class Lobby
     
 public:
     Lobby();
+    ~Lobby();
     void Intro();
     void ContentLoop();
 
