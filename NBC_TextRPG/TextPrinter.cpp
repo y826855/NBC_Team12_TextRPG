@@ -127,7 +127,7 @@ void TextPrinter::PrintText(ETextState state)
 		stat += "└──────────────────────────┘\n";
 		
 		C_LOG(EConsoleTag::UpperRight)<<stat;
-		Sleep(300);
+		Sleep(1000);
 		break;
 	}
 
