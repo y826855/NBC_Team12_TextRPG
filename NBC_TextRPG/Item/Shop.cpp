@@ -60,6 +60,7 @@ void Shop::BuyItem() const
     
     C_LOG(WindowTag)<< endl;
     C_LOG(WindowTag)<< "===== 구매 ====="<<endl;
+    C_LOG(WindowTag)<< "0. 돌아가기"<<endl;
 
     for (int i = 0; i < ShopItemList.size(); i++)
     {
@@ -68,7 +69,15 @@ void Shop::BuyItem() const
     }
 
     int max = ShopItemList.size();
-    int choice = InputHelper::GetValidInput<int>("구매할 아이템 선택 : ",1, max) - 1;
+    
+    int choice = InputHelper::GetValidInput<int>("구매할 아이템 선택 : ",0, max );
+    
+    if (choice == 0)
+    {
+        return;
+    }
+    choice -=1;
+    
     EItem itemID = ShopItemList[choice];
     auto choicedItemPrice = ItemManager::GetInstance()->GetItemByID(ShopItemList[choice])->GetPrice();
 
@@ -97,20 +106,29 @@ void Shop::SellItem() const
     
     C_LOG(WindowTag) << endl;
     C_LOG(WindowTag) << "===== 판매 =====" << endl;
+    C_LOG(WindowTag) << "0. 돌아가기" << endl;
     
     inventory->ShowInventory();
     C_LOG(WindowTag) << endl;
     
     auto items = inventory->GetAllItem();
+    
     int i = 1;
+    
     for (auto it : items)
     {
         auto item = ItemManager::GetInstance()->GetItemByID(it);
+        
         C_LOG(WindowTag) << i++ << "." << item->GetName() << endl;
     }
 
-    int choice = InputHelper::GetValidInput<int>("판매할 아이템 선택 : ",1,i) - 1;
-
+    int choice = InputHelper::GetValidInput<int>("판매할 아이템 선택 : ",0,i-1);
+    if (choice == 0)
+    {
+        return;
+    }
+    choice -=1;
+    
     EItem itemID = items[choice];
     
     bool isRemoved = inventory->RemoveItem(itemID,1);
@@ -118,6 +136,7 @@ void Shop::SellItem() const
     if (!isRemoved)
     {
         C_LOG(WindowTag) << "아이템이 부족합니다." << endl;
+        Sleep(1000);
         return;
     }
     
