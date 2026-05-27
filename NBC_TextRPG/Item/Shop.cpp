@@ -78,7 +78,7 @@ void Shop::BuyItem() const
         return;
     }
 
-    GetPlayer()->AddGold(choicedItemPrice);
+    GetPlayer()->AddGold(-choicedItemPrice);
     GetInventory()->AddItem(itemID,1);
 
     C_LOG(WindowTag) << "아이템 구매 완료!" << endl;
