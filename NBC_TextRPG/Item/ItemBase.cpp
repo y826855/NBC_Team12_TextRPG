@@ -1,5 +1,7 @@
 #include "ItemBase.h"
 
+using namespace std;
+
 ItemBase::ItemBase(string name, int price)
 {
     Name = name;

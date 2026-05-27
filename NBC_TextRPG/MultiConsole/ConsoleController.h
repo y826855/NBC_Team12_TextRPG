@@ -13,6 +13,7 @@ class ConsoleController : public Singleton<ConsoleController>
     friend class Singleton<ConsoleController>;
 public:
     ConsoleController() = default;
+    ~ConsoleController() override;
 
     // 시스템 초기화 (자식 모드 판별 및 엔진 설정)
     bool Initialize(int argc, char* argv[]);
@@ -34,6 +35,7 @@ public:
 
     // 모든 자식 콘솔창 종료
     void CloseAll();
+
 
 private:
     string TagToString(EConsoleTag tag);

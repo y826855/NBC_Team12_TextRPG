@@ -6,6 +6,13 @@
 
 using namespace std;
 
+ConsoleController::~ConsoleController()
+{
+    for (auto& pair : m_managers)
+        delete pair.second;
+    m_managers.clear();
+}
+
 bool ConsoleController::Initialize(int argc, char* argv[])
 {
     // 임시 객체로 자식 모드인지 확인
@@ -125,6 +132,7 @@ void ConsoleController::CloseAll()
         }
     }
 }
+
 
 string ConsoleController::TagToString(EConsoleTag tag)
 {
