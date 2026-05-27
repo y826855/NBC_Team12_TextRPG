@@ -1,6 +1,8 @@
 ﻿#include "Lobby.h"
 
 #include "BattleSystem.h"
+#include "TextPrinter.h"
+#include "Item/Inventory.h"
 #include "Manager/PlayerManager.h"
 #include "MultiConsole/ConsoleController.h"
 #include "Utility/InputHelper.h"
@@ -37,7 +39,6 @@ void Lobby::ChoiceMenu()
 
 void Lobby::ContentLoop()
 {
-    //TODO 패배 처리 해야함
     while (true)
     {
         ShowMenu();
@@ -49,13 +50,13 @@ void Lobby::ContentLoop()
             m_BattleSystem->BattleStart();
             if (m_BattleSystem->IsGameOver())
             {
+                Sleep(2000);
                 // 게임 오버!
                 return;   
             }
             break;
         case LobbyState::Shop:
-            //TODO : 초기화 부분 수정필요
-            //m_Shop->OpenShop();
+            m_Shop->OpenShop();
             break;
         default: break;
         }

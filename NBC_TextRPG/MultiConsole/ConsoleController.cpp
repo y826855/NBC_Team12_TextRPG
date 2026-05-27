@@ -19,8 +19,8 @@ void ConsoleController::AddConsole(EConsoleTag tag)
     static map<EConsoleTag, ConsoleWindowConfig> configs = {
         { EConsoleTag::Main,             { 100, 40,  860, 915, 80, 25 } },
         { EConsoleTag::UpperRight,       { 945, 40,  870, 450, 80, 20 } },
-        { EConsoleTag::LowerRight,       { 945, 500, 870, 450, 80, 25 } },
-        { EConsoleTag::LargePopup,       { 420, 35, 1040, 995, 60, 20 } },
+        { EConsoleTag::LowerRight,       { 945, 500, 870, 450, 80, 20 } },
+        { EConsoleTag::LargePopup,       { 420, 35, 1040, 995, 120, 50 } },
         { EConsoleTag::SmallPopup,       { 740, 360, 400, 300, 60, 20 } },
     };
 

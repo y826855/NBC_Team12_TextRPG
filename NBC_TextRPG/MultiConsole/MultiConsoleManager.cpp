@@ -1,6 +1,7 @@
 ﻿#include "MultiConsoleManager.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -139,15 +140,21 @@ void MultiConsoleManager::RunChildMode(const string& tag, int x, int y, int w, i
 
     cout << "[Child] 연결되었습니다. 메시지 수신 대기 중...\n\n" << endl;
 
-    // 2. 데이터 수신 루프 
-    char buffer[512]; //TODO : 글자수 최대치를 올려야 할 수 있습니다.
-    DWORD bytesRead;
     while (true)
     {
-        if (ReadFile(hPipe, buffer, sizeof(buffer) - 1, &bytesRead, nullptr) && bytesRead > 0)
+        uint32_t messageLength = 0;
+        DWORD bytesRead = 0;
+
+        // 1. 헤더(메시지 길이) 읽기: 먼저 4바이트만 읽어서 길이를 파악합니다.
+        if (ReadFile(hPipe, &messageLength, sizeof(messageLength), &bytesRead, nullptr) && bytesRead == sizeof(messageLength))
         {
-            buffer[bytesRead] = '\0';
-            string msg(buffer);
+            if (messageLength == 0) continue;
+
+            // 2. 바디 읽기: 파악한 길이만큼 버퍼를 준비하고 데이터를 읽습니다.
+            vector<char> buffer(messageLength + 1, '\0');
+            if (ReadFile(hPipe, buffer.data(), messageLength, &bytesRead, nullptr) && bytesRead > 0)
+            {
+                string msg(buffer.data());
             if (msg == "exit")
             {
                 cout << "[Child] 종료 명령을 받았습니다." << endl;
@@ -155,25 +162,21 @@ void MultiConsoleManager::RunChildMode(const string& tag, int x, int y, int w, i
             }
             else if (msg == "clear")
             {
-                // system("cls") 대신 Windows API를 사용하여 화면을 지웁니다.
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
                 COORD coord = { 0, 0 };
                 CONSOLE_SCREEN_BUFFER_INFO csbi;
                 DWORD written;
 
-                // 콘솔 버퍼의 현재 정보를 가져옵니다 (크기, 속성 등)
                 if (GetConsoleScreenBufferInfo(hConsole, &csbi))
                 {
-                    // 1. 화면 전체를 공백(' ')으로 채웁니다.
                     FillConsoleOutputCharacterA(hConsole, ' ', csbi.dwSize.X * csbi.dwSize.Y, coord, &written);
-                    // 2. 화면 전체의 속성(색상 등)을 현재 설정으로 초기화합니다.
                     FillConsoleOutputAttribute(hConsole, csbi.wAttributes, csbi.dwSize.X * csbi.dwSize.Y, coord, &written);
-                    // 3. 커서를 좌측 상단(0, 0)으로 이동시킵니다.
                     SetConsoleCursorPosition(hConsole, coord);
                 }
                 continue;
             }
             cout << msg << endl;
+            }
         }
         else
         {
@@ -196,11 +199,22 @@ bool MultiConsoleManager::SendToChild(const string& message)
         return false;
     }
 
+    // 1. 메시지 길이를 먼저 보냅니다. (4바이트)
+    uint32_t messageLength = static_cast<uint32_t>(message.length());
     DWORD bytesWritten;
-    BOOL result = WriteFile(
+    BOOL result = WriteFile(hPipe, &messageLength, sizeof(messageLength), &bytesWritten, nullptr);
+
+    if (!result)
+    {
+        Cleanup();
+        return false;
+    }
+
+    // 2. 실제 메시지 본문을 보냅니다.
+    result = WriteFile(
         hPipe,
         message.c_str(),
-        static_cast<DWORD>(message.length()),
+        messageLength,
         &bytesWritten,
         nullptr
     );

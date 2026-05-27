@@ -10,6 +10,7 @@ class ItemBase
 
 public:
     ItemBase(string name, int price);
+    virtual ~ItemBase() = default;
 
     string GetName();
     int GetPrice() const;

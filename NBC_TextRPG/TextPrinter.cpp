@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "Manager/PlayerManager.h"
+#include "MultiConsole/ConsoleController.h"
 #include "MultiConsole/ConsoleLogStream.h"
 #include "MultiConsole/ConsoleController.h"
 
@@ -63,7 +64,7 @@ void TextPrinter::PrintText(ETextState state)
 		stat += "└──────────────────────────┘\n";
 
 		
-		C_LOG(UpperRight)<<stat;
+		C_LOG(EConsoleTag::UpperRight)<<stat;
 		break;
 		
 	}

@@ -10,27 +10,36 @@ private :
 	int CurrentExp = 0;
 	int GoalExp = 100;
 	int LV = 1;
-	int ATK = 10;
+	int ATK = 2;
 	int Gold = 0;
+
+	int ATKBuff = 0;
+
+	
     std::string PlayerName = " ";
+
 	bool bisDead = false;
-	
-	
+
 public:
 	void AddExp(int exp);
+	void AddHp(int Amount);
+	void AddGold(int gold);
+	void AddATKBuff(int Amount);
+	
 	int GetExp();
 	int GetLevel();
 	int GetGold();
-    int GetHp();
+	int GetHp();
 	int GetMaxHP();
 	int GetATK();
 	std::string GetPlayerName();
+	
 	void Attack(Monster* monster);
 	bool IsDeath();
 	void TakeDamage(int Damage);
 	void SetName(std::string name);
-	void AddGold(int gold);
-	
+	void ResetBuff();
+
 	Player();
 	
 private :

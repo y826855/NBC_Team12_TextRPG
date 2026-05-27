@@ -154,6 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Item\ConsumableItem\ATKBuffPotion.cpp" />
+    <ClCompile Include="Item\ConsumableItem\HealingPotion.cpp" />
     <ClCompile Include="Item\Inventory.cpp" />
     <ClCompile Include="BattleSystem.cpp" />
     <ClCompile Include="Item\Shop.cpp" />
@@ -250,6 +252,9 @@
     <ClCompile Include="TextPrinter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Item\ConsumableItem\ATKBuffPotion.h" />
+    <ClInclude Include="Item\ConsumableItem\HealingPotion.h" />
+    <ClInclude Include="Item\ConsumableItem\IConsumable.h" />
     <ClInclude Include="Item\Inventory.h" />
     <ClInclude Include="BattleSystem.h" />
     <ClInclude Include="Item\Shop.h" />

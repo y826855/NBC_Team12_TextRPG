@@ -1,5 +1,6 @@
 ﻿#include "Player.h"
 #include "TextPrinter.h"
+#include <algorithm>
 #include <string>
 
 #include "Monster/Monster.h"
@@ -28,6 +29,13 @@ int Player::GetLevel()
 int Player::GetGold()
 {
 	 return Gold;
+}
+
+void Player::AddHp(int Amount)
+{
+	HP += Amount;
+	HP = std::min(HP, Max_HP);
+	Logger(TextPrinter::PlayerStat);
 }
 
 int Player::GetHp()
@@ -68,10 +76,7 @@ void Player::TakeDamage(int Damage)
 		return;
 	}
 	HP -= Damage;
-	
 	Logger(TextPrinter::PlayerStat);
-	//Eraser();
-	
 	if (HP <= 0)
 	{
 		HP = 0;
@@ -86,9 +91,19 @@ void Player::SetName(std::string name)
 	cout<<endl<<"환영합니다 " << PlayerName<<"님"<<endl;
 }
 
+void Player::ResetBuff()
+{
+	ATKBuff = 0;
+}
+
 void Player::AddGold(int gold)
 {
 	this->Gold += gold;
+}
+
+void Player::AddATKBuff(int Amount)
+{
+	ATKBuff += Amount;
 }
 
 
