@@ -87,7 +87,7 @@ void BattleSystem::PlayerDie()
 void BattleSystem::EndTurnPhase()
 {
     //Inventory::GetInstance()->UseItemInBattlePhase();
-    cout << "\n\n[전투를 지속합니다!]\n\n";
+    cout << "\n\n\n [전투를 지속합니다!]\n\n";
 }
 
 void BattleSystem::NormalBattleLoop()//
@@ -95,25 +95,26 @@ void BattleSystem::NormalBattleLoop()//
     MonsterSpawn();
     player = GetPlayer();
 
-    cout << "\n\n========전투 시작!=======\n\n";
+    cout << "\n\n\n ==========전투 시작!==========\n\n";
     
     while (true)
     {
 
-        std::cout << "--------------------------------\n";
-        std::cout << " 행동을 선택하세요:\n";
-        std::cout << " [1] 공격하기  [2] 포션 마시기\n";
-        std::cout << "--------------------------------\n";
+        std::cout << " --------------------------------\n";
+        std::cout << "  행동을 선택하세요:\n";
+        std::cout << "  [1] 공격하기  [2] 포션 마시기\n";
+        std::cout << " --------------------------------\n";
         
 
-        int input = InputHelper::GetValidInput("입력 : ",1,2);
+        int input = InputHelper::GetValidInput(" 입력 : ",1,2);
         bool completedTurn = false;
         
         switch (input)
         {
         case 1:
-            std::cout << "\n\n [플레이어가 공격합니다!]\n\n";
+            std::cout << "\n\n [플레이어의 턴!]\n\n";
             player->Attack(monster);  
+            cout<<"\n";
             completedTurn = true; // 공격을 완료했으므로 턴 종료 조건 충족
             break;
 
@@ -138,7 +139,7 @@ void BattleSystem::NormalBattleLoop()//
         
         if (monster->IsDeath())
         {
-            cout << "\n\n[전투 승리!]\n\n";
+            cout << "\n\n\n[전투 승리!]\n\n";
             
             BattleReward();
                 
@@ -148,7 +149,7 @@ void BattleSystem::NormalBattleLoop()//
             break;
         }
         
-        std::cout << "[몬스터의 턴!]\n";
+        std::cout << "\n\n [몬스터의 턴!]\n\n";
         monster->Attack();
        
         
