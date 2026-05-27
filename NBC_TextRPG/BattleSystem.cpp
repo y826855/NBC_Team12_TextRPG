@@ -106,10 +106,10 @@ void BattleSystem::BossBattleLoop()//
     while (true)
     {
         Sleep(200);
-        std::cout << " --------------------------------\n";
-        std::cout << "  행동을 선택하세요:\n";
-        std::cout << "  [1] 공격하기  [2] 포션 마시기\n";
-        std::cout << " --------------------------------\n";
+        std::cout << " -------------------------------- \n";
+        std::cout << "\033[30;47m  행동을 선택하세요:            \033[0m\n";
+        std::cout << "\033[30;47m  [1] 공격하기  [2] 포션 마시기  \033[0m\n";
+        std::cout << " -------------------------------- \n";
         
 
         int input = InputHelper::GetValidInput(" 입력 : ",1,2);
@@ -180,10 +180,10 @@ void BattleSystem::NormalBattleLoop()
     while (true)
     {
         Sleep(200);
-        std::cout << " --------------------------------\n";
-        std::cout << "  행동을 선택하세요:\n";
-        std::cout << "  [1] 공격하기  [2] 포션 마시기\n";
-        std::cout << " --------------------------------\n";
+        std::cout << " -------------------------------- \n";
+        std::cout << "\033[30;47m  행동을 선택하세요:             \033[0m\n";
+        std::cout << "\033[30;47m  [1] 공격하기  [2] 포션 마시기  \033[0m\n";
+        std::cout << " -------------------------------- \n";
         
 
         int input = InputHelper::GetValidInput(" 입력 : ",1,2);
