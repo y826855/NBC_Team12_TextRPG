@@ -59,7 +59,6 @@ void Shop::OpenShop() const
         case 2:
             {
                 int sellResult = SellItem();
-                cout << sellResult;
                 if (sellResult != 0) Sleep(500);
                 break;
             }
