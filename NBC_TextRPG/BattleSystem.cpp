@@ -86,7 +86,7 @@ void BattleSystem::PlayerDie()
 
 void BattleSystem::EndTurnPhase()
 {
-    Inventory::GetInstance()->UseItemInBattlePhase();
+    //Inventory::GetInstance()->UseItemInBattlePhase();
     cout << "\n\n[전투를 지속합니다!]\n\n";
 }
 
