@@ -32,6 +32,8 @@ void Shop::OpenShop() const
     {
         GetInventory()->ShowInventory();
         ConsoleController::GetInstance()->Clear(WindowTag);
+
+        ShowPlayerGold();
         
         C_LOG(WindowTag)<< endl;
         C_LOG(WindowTag)<< "===== 상점 ====="<<endl;
@@ -42,23 +44,23 @@ void Shop::OpenShop() const
         
         int input = InputHelper::GetValidInput<int>(
             "선택 : ",1,3);
+
+        ConsoleController::GetInstance()->Clear(WindowTag);
+        ShowPlayerGold();
         
         switch (input)
         {
         case 1: BuyItem(); break;
         case 2: SellItem(); break;
-        case 3:
-            C_LOG(WindowTag)<<"상점을 떠납니다"<<endl;
-            return;
+        case 3: C_LOG(WindowTag)<<"상점을 떠납니다"<<endl; return;
         }
+
+        Sleep(500);
     }
 }
 
 void Shop::BuyItem() const
 {
-    ConsoleController::GetInstance()->Clear(WindowTag);
-    
-    C_LOG(WindowTag)<< endl;
     C_LOG(WindowTag)<< "===== 구매 ====="<<endl;
 
     for (int i = 0; i < ShopItemList.size(); i++)
@@ -84,14 +86,12 @@ void Shop::BuyItem() const
     C_LOG(WindowTag) << "아이템 구매 완료!" << endl;
 }
 
-void Shop::SellItem() const
+void Shop::SellItem() const 
 {
-    ConsoleController::GetInstance()->Clear(WindowTag);
-    
     auto inventory = GetInventory();
     if (inventory->IsEmpty())
     {
-        C_LOG(WindowTag) << "인벤토리가 비어있습니다." << endl;    
+        C_LOG(WindowTag) << "인벤토리가 비어있습니다." << endl;
         return;
     }
     
@@ -106,7 +106,8 @@ void Shop::SellItem() const
     for (auto it : items)
     {
         auto item = ItemManager::GetInstance()->GetItemByID(it);
-        C_LOG(WindowTag) << i++ << "." << item->GetName() << endl;
+        C_LOG(WindowTag) << i++ << "." << item->GetName()
+            << "[ " << GetSellPrice(item->GetPrice()) << "G ]" << endl;
     }
 
     int choice = InputHelper::GetValidInput<int>("판매할 아이템 선택 : ",1,i) - 1;
@@ -124,12 +125,22 @@ void Shop::SellItem() const
     int originPrice = ItemManager::GetInstance()->GetItemByID(itemID)->GetPrice();
     
     int sellPrice = static_cast<int>(originPrice * 0.6f);
-    
+
+    GetPlayer()->AddGold(sellPrice);
     C_LOG(WindowTag) << sellPrice << " Gold 획득!" << endl;
-    
+}
+
+void Shop::ShowPlayerGold() const
+{
+    C_LOG(WindowTag) << "\n\n[ 보유 골드 : " << GetPlayer()->GetGold() << "G ]\n\n";
 }
 
 void Shop::ShowItemInfo(int idx, string name, int gold) const
 {
     C_LOG(WindowTag)<< idx <<". " << name << " : " << gold <<" Gold" <<endl;
+}
+
+int Shop::GetSellPrice(int price) const
+{
+    return static_cast<int>(price * 0.6f);
 }
