@@ -35,4 +35,5 @@ private:
     HANDLE hPipe;
     HANDLE hChildProcess;
     const int bufferSize = 512;
+    void InitChildConsole(); // 자식 콘솔의 설정을 초기화하는 함수 추가
 };
