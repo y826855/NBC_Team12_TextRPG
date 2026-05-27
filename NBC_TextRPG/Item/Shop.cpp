@@ -67,7 +67,7 @@ void Shop::BuyItem() const
         ShowItemInfo(i + 1, item->GetName(), item->GetPrice());
     }
 
-    int max = ShopItemList.size() + 1;
+    int max = ShopItemList.size();
     int choice = InputHelper::GetValidInput<int>("구매할 아이템 선택 : ",1, max) - 1;
     EItem itemID = ShopItemList[choice];
     auto choicedItemPrice = ItemManager::GetInstance()->GetItemByID(ShopItemList[choice])->GetPrice();

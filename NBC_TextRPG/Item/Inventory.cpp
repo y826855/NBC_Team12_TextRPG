@@ -113,7 +113,7 @@ void Inventory::UseItemInBattlePhase()
     }
 
     int max = consumableItems.size();
-    int choice = InputHelper::GetValidInput("\n\n사용 아이템 입력 : ", 1, max + 1) - 1;
+    int choice = InputHelper::GetValidInput("\n\n사용 아이템 입력 : ", 1, max) - 1;
     
     UseItem(consumableItems[choice]);
 }
