@@ -19,7 +19,7 @@ Ghoul::~Ghoul()
 
 void Ghoul::Attack()
 {
-    cout << "카구네 휘두르기: 찰싹!";
+    cout << "카구네 휘두르기: 찰싹!" << endl;
     GetPlayer()->TakeDamage(monsterData.mATK);
 }
 
