@@ -87,7 +87,7 @@ void Inventory::ShowInventory() const
     }
 }
 
-void Inventory::UseItemInBattlePhase()
+bool Inventory::UseItemInBattlePhase()
 {
     ConsoleController::GetInstance()->Clear(WindowTag);
     
@@ -101,7 +101,7 @@ void Inventory::UseItemInBattlePhase()
     if (consumableItems.empty())
     {
         cout << "\n사용 가능한 아이템 없음\n" << endl;
-        return;
+        return false;
     }
 
     int index = 1;
@@ -116,6 +116,7 @@ void Inventory::UseItemInBattlePhase()
     int choice = InputHelper::GetValidInput("\n\n사용 아이템 입력 : ", 1, max) - 1;
     
     UseItem(consumableItems[choice]);
+    return true;
 }
 
 

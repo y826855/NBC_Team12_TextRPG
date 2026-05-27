@@ -24,7 +24,7 @@ public:
     bool UseItem(EItem itemID);
     
     void ShowInventory() const;
-    void UseItemInBattlePhase();
+    bool UseItemInBattlePhase();
     std::vector<EItem> GetAllItem() const;
     bool IsEmpty() const;
 
