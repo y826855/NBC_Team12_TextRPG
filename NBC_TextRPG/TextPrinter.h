@@ -1,7 +1,7 @@
 #pragma once
 #include "Utility/Singleton.h"
 #define Logger(msg) TextPrinter::GetInstance()->PrintText(msg)
-#define Eraser() TextPrinter::GetInstancce()->ResetText();
+#define Eraser() TextPrinter::GetInstance()->ResetText();
 #include <string>
 #include <iostream>
 

@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Monster/Monster.h"
+#include "MultiConsole/ConsoleLogStream.h"
 
 void Player::AddExp(int exp)
 {
@@ -49,7 +50,7 @@ int Player::GetMaxHP()
 
 int Player::GetATK()
 {
-	return ATK + ATKBuff;
+	return ATK;
 }
 
 std::string Player::GetPlayerName()

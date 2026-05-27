@@ -5,12 +5,12 @@ class Player
 {
 private :
 
-	int Max_HP = 400;
+	int Max_HP = 200;
 	int HP = Max_HP;
 	int CurrentExp = 0;
 	int GoalExp = 100;
 	int LV = 1;
-	int ATK = 2;
+	int ATK = 20;
 	int Gold = 0;
 
 	int ATKBuff = 0;
