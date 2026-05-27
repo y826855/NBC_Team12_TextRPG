@@ -3,6 +3,7 @@
 #include "BattleSystem.h"
 
 #include "Player.h"
+#include "TextPrinter.h"
 #include "Item/Inventory.h"
 #include "Item/ItemManager.h"
 #include "Manager/PlayerManager.h"
@@ -60,12 +61,14 @@ void BattleSystem::MonsterSpawn()
 
 void BattleSystem::BattleStart()
 {
+    Logger(TextPrinter::PlayerStat);
     if (!isBossSpawn) //일반 전투 
         NormalBattleLoop();
     
     else //보스 전투 
         BossBattleLoop();
 
+    Logger(TextPrinter::PlayerStat);
     BattleReward();
 
     delete monster;
@@ -112,7 +115,12 @@ void BattleSystem::NormalBattleLoop()//
         switch (input)
         {
         case 1:
-            std::cout << "\n\n [플레이어의 턴!]\n\n";
+            //std::cout << "\n\n [플레이어의 턴!]\n\n";
+            InitConsole();//터미널 색상인식
+            cout<<"\n\n";
+            cout << "\033[97;44m   [플레이어의 턴!]                        \033[0m";  //밝은 흰색글, 파란배경
+            cout<<"\n\n";
+            
             player->Attack(monster);  
             cout<<"\n";
             completedTurn = true; // 공격을 완료했으므로 턴 종료 조건 충족
@@ -149,7 +157,11 @@ void BattleSystem::NormalBattleLoop()//
             break;
         }
         
-        std::cout << "\n\n [몬스터의 턴!]\n\n";
+        //std::cout << "\n\n [몬스터의 턴!]\n\n";
+        InitConsole();//터미널 색상인식
+        cout<<"\n\n";
+        cout << "\033[97;41m   [몬스터의 턴!]                          \033[0m";  //밝은 흰색글, 빨간배경
+        cout<<"\n\n";
         monster->Attack();
        
         
@@ -224,4 +236,16 @@ void BattleSystem::BossCheck()
         
         cout<<"\n ==이제 일반 몬스터는 상대도 안 된다!==\n\n";
     }
+}
+
+
+void BattleSystem::InitConsole()
+{
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    DWORD mode = 0;
+    GetConsoleMode(hOut, &mode);
+
+    mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, mode);
 }
