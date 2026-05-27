@@ -2,6 +2,7 @@
 #include "../Player.h"
 #include "../Item/ItemManager.h"
 #include "../Manager/PlayerManager.h"
+#include "../MultiConsole/ConsoleController.h"
 #include "../MultiConsole/ConsoleLogStream.h"
 
 Monster::Monster() 
@@ -114,9 +115,9 @@ void Monster::SetBossStat()
     int randHP = rand() % 11 + 20; //랜덤 구현 -> 플레이어 레벨 x20~30중 무작위 (11가지 가짓수)
     int randATK = rand() % 6 + 5;  //랜덤 구현 -> 플레이어 레벨 x 5~10중 무작위 (6가지 가짓수)
     
-    monsterData.mHP = (GetPlayer()->GetLevel()*randHP)*1.5;
+    monsterData.mHP = (GetPlayer()->GetLevel()*randHP)*4;
     
-    monsterData.mATK = (GetPlayer()->GetLevel()*randATK)*1.5;
+    monsterData.mATK = (GetPlayer()->GetLevel()*randATK)*4;
 }
 
 EItem Monster::GetDropItem()
@@ -130,15 +131,12 @@ void Monster::AsciiArt()
     
     C_LOG(EConsoleTag::LargePopup) << 
         R"(
-
-
-
-
-
-                   ############################$$####################
-                   ######################$##$#$$$###$################
-                   #################$$$#$#$$########$################
-                   ################$$$$==$$##@########$##############
+                      ▓   ▓  ▓▓▓  ▓▓▓▓  ▓   ▓ ▓   ▓ ▓▓▓ ▓   ▓  ▓▓▓                 
+                      ▓   ▓ ▓   ▓ ▓   ▓ ▓▓  ▓ ▓▓  ▓  ▓  ▓▓  ▓ ▓                    
+       ▓▓▓▓ ▓▓▓▓ ▓▓▓▓ ▓ ▓ ▓ ▓▓▓▓▓ ▓▓▓▓  ▓ ▓ ▓ ▓ ▓ ▓  ▓  ▓ ▓ ▓ ▓  ▓▓ ▓▓▓▓ ▓▓▓▓ ▓▓▓▓ 
+                      ▓▓ ▓▓ ▓   ▓ ▓  ▓  ▓  ▓▓ ▓  ▓▓  ▓  ▓  ▓▓ ▓   ▓                
+                      ▓   ▓ ▓   ▓ ▓   ▓ ▓   ▓ ▓   ▓ ▓▓▓ ▓   ▓  ▓▓▓                                  
+                  
                    ################$=$$$$##############$$############
                    ###############$=*##$###$##@#$$#@@#@###$##########
                    ############$$#$$#$$$####$$#$$#@@@################
@@ -191,6 +189,6 @@ void Monster::AsciiArt()
                    $=*!!*=======$$$$$$$$##$$$$$;..  ;,-!#$$$$$$######
 
 )";
-        
+    ConsoleController::GetInstance()->CloseConsole(EConsoleTag::LargePopup);
 }
 
