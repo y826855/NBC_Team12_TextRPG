@@ -14,7 +14,8 @@ class TextPrinter :public Singleton<TextPrinter>
 public :
     enum ETextState
     {
-       PlayerStat
+       PlayerStat,
+       LevelUp
     };
     
     
@@ -32,5 +33,6 @@ public:
 private :
     string MakeHpBar(int hp, int maxHp);
     string PadRight(const string& str, int width);
+    
 };
 

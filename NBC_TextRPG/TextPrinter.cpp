@@ -1,5 +1,6 @@
 ﻿#include "TextPrinter.h"
 #include <iostream>
+
 #include <windows.h>
 
 #include "Player.h"
@@ -12,18 +13,11 @@ void TextPrinter::PrintText(ETextState state)
 {
 	ConsoleController::GetInstance()->Clear(EConsoleTag::UpperRight);
 	
+	string stat ="\n";
 	switch (state)
 	{
 	case PlayerStat:
 		
-		int level = GetPlayer()->GetLevel();
-		int hp = GetPlayer()->GetHp();
-		int exp = GetPlayer()->GetExp();
-		int gold = GetPlayer()->GetGold();
-		int atk = GetPlayer()->GetATK();
-		int maxHp = GetPlayer()->GetMaxHP();
-		
-		string stat ="\n";
 		stat += "┌──────────────────────────┐\n";
 		stat += "│      PLAYER STATUS       │\n";
 		stat += "├──────────────────────────┤\n";
@@ -33,20 +27,20 @@ void TextPrinter::PrintText(ETextState state)
 			+ "│\n";
 
 		stat += "│ " +
-			PadRight("레벨     : " + to_string(level), 25)
+			PadRight("레벨     : " + to_string(GetPlayer()->GetLevel()), 25)
 			+ "│\n";
 
 		stat += "│ " +
-			PadRight("경험치   : " + to_string(exp), 25)
+			PadRight("경험치   : " + to_string(GetPlayer()->GetExp()), 25)
 			+ "│\n";
 
 		stat += "│ " +
-			PadRight("생명력   : " + to_string(hp), 25)
+			PadRight("생명력   : " + to_string(GetPlayer()->GetHp()), 25)
 			+ "│\n";
 
 		stat += "│ " +
 			PadRight(
-				"HP : " + MakeHpBar(hp, maxHp)
+				"HP : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
 				+ " "
 				,
 				25
@@ -54,11 +48,11 @@ void TextPrinter::PrintText(ETextState state)
 			+ "│\n";
 
 		stat += "│ " +
-			PadRight("공격력   : " + to_string(atk), 25)
+			PadRight("공격력   : " + to_string(GetPlayer()->GetATK()), 25)
 			+ "│\n";
 
 		stat += "│ " +
-			PadRight("골드     : " + to_string(gold) + " G", 25)
+			PadRight("골드     : " + to_string(GetPlayer()->GetGold()) + " G", 25)
 			+ "│\n";
 
 		stat += "└──────────────────────────┘\n";
@@ -67,6 +61,35 @@ void TextPrinter::PrintText(ETextState state)
 		C_LOG(EConsoleTag::UpperRight)<<stat;
 		break;
 		
+	case LevelUp:
+		
+		Beep(523, 150);
+		Beep(659, 150);
+		Beep(784, 150);
+		Beep(1046, 400);
+		
+		for (int i = 0; i < 6; ++i) // 0.5초 * 6 = 3초
+		{
+			string box = "\n";
+
+			box += "+------------------------+\n";
+
+			if (i % 2 == 0)
+				box += "|        LEVEL UP        |\n";
+			else
+				box += "|                        |\n";
+
+			box += "+------------------------+\n";
+
+			ConsoleController::GetInstance()->Clear(EConsoleTag::UpperRight);
+			C_LOG(EConsoleTag::UpperRight) << box;
+
+			Sleep(300);
+		}
+		
+		PrintText(ETextState::PlayerStat);
+		
+		break;
 	}
 
 }
@@ -106,3 +129,5 @@ string TextPrinter::PadRight(const string& str, int width)
 
 	return str + string(width - str.length(), ' ');
 }
+
+
