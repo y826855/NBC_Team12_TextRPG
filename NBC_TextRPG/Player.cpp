@@ -77,7 +77,7 @@ void Player::TakeDamage(int Damage)
 	}
 	HP -= Damage;
 	Logger(TextPrinter::PlayerStat);
-	cout << PlayerName << "이 공격받아 " << Damage << " 만큼의 피해를 입었다! " << "\n";
+	cout << "["<< PlayerName <<"]" << " 공격받아 " << Damage << " 만큼의 피해를 입었다! " << "\n";
 	if (HP <= 0)
 	{
 		HP = 0;
