@@ -32,6 +32,8 @@ void Shop::OpenShop() const
     {
         GetInventory()->ShowInventory();
         ConsoleController::GetInstance()->Clear(WindowTag);
+
+        ShowPlayerGold();
         
         C_LOG(WindowTag)<< endl;
         C_LOG(WindowTag)<< "===== 상점 ====="<<endl;
@@ -42,23 +44,35 @@ void Shop::OpenShop() const
         
         int input = InputHelper::GetValidInput<int>(
             "선택 : ",1,3);
+
+        ConsoleController::GetInstance()->Clear(WindowTag);
+        ShowPlayerGold();
         
         switch (input)
         {
-        case 1: BuyItem(); break;
-        case 2: SellItem(); break;
+        case 1:
+            {
+                int buyResult = BuyItem();
+                if (buyResult != 0) Sleep(500); 
+                break;
+            }
+        case 2:
+            {
+                int sellResult = SellItem();
+                cout << sellResult;
+                if (sellResult != 0) Sleep(500);
+                break;
+            }
         case 3:
             C_LOG(WindowTag)<<"상점을 떠납니다"<<endl;
+            Sleep(800);
             return;
         }
     }
 }
 
-void Shop::BuyItem() const
+int Shop::BuyItem() const
 {
-    ConsoleController::GetInstance()->Clear(WindowTag);
-    
-    C_LOG(WindowTag)<< endl;
     C_LOG(WindowTag)<< "===== 구매 ====="<<endl;
     C_LOG(WindowTag)<< "0. 돌아가기"<<endl;
 
@@ -74,34 +88,33 @@ void Shop::BuyItem() const
     
     if (choice == 0)
     {
-        return;
+        return 0;
     }
-    choice -=1;
+    int choiceIdx = choice -1; 
     
-    EItem itemID = ShopItemList[choice];
-    auto choicedItemPrice = ItemManager::GetInstance()->GetItemByID(ShopItemList[choice])->GetPrice();
+    EItem itemID = ShopItemList[choiceIdx];
+    auto choicedItemPrice = ItemManager::GetInstance()->GetItemByID(ShopItemList[choiceIdx])->GetPrice();
 
     if (GetPlayer()->GetGold() < choicedItemPrice)
     {
         C_LOG(WindowTag) << "골드가 부족합니다.." << endl;
-        return;
+        return choice;
     }
 
     GetPlayer()->AddGold(-choicedItemPrice);
     GetInventory()->AddItem(itemID,1);
 
     C_LOG(WindowTag) << "아이템 구매 완료!" << endl;
+    return choice;
 }
 
-void Shop::SellItem() const
+int Shop::SellItem() const 
 {
-    ConsoleController::GetInstance()->Clear(WindowTag);
-    
     auto inventory = GetInventory();
     if (inventory->IsEmpty())
     {
         C_LOG(WindowTag) << "인벤토리가 비어있습니다." << endl;    
-        return;
+        return -1;
     }
     
     C_LOG(WindowTag) << endl;
@@ -109,46 +122,52 @@ void Shop::SellItem() const
     C_LOG(WindowTag) << "0. 돌아가기" << endl;
     
     inventory->ShowInventory();
-    C_LOG(WindowTag) << endl;
     
     auto items = inventory->GetAllItem();
-    
     int i = 1;
-    
     for (auto it : items)
     {
         auto item = ItemManager::GetInstance()->GetItemByID(it);
-        
-        C_LOG(WindowTag) << i++ << "." << item->GetName() << endl;
+        C_LOG(WindowTag) << i++ << "." << item->GetName()
+            << "[ " << GetSellPrice(item->GetPrice()) << "G ]" << endl;
     }
 
     int choice = InputHelper::GetValidInput<int>("판매할 아이템 선택 : ",0,i-1);
     if (choice == 0)
     {
-        return;
+        return 0;
     }
-    choice -=1;
-    
-    EItem itemID = items[choice];
+    int choiceIdx = choice - 1;
+    EItem itemID = items[choiceIdx];
     
     bool isRemoved = inventory->RemoveItem(itemID,1);
     
     if (!isRemoved)
     {
         C_LOG(WindowTag) << "아이템이 부족합니다." << endl;
-        Sleep(1000);
-        return;
+        return choice;
     }
     
     int originPrice = ItemManager::GetInstance()->GetItemByID(itemID)->GetPrice();
     
     int sellPrice = static_cast<int>(originPrice * 0.6f);
-    
+
+    GetPlayer()->AddGold(sellPrice);
     C_LOG(WindowTag) << sellPrice << " Gold 획득!" << endl;
-    
+    return choice;
+}
+
+void Shop::ShowPlayerGold() const
+{
+    C_LOG(WindowTag) << "\n\n[ 보유 골드 : " << GetPlayer()->GetGold() << "G ]\n\n";
 }
 
 void Shop::ShowItemInfo(int idx, string name, int gold) const
 {
     C_LOG(WindowTag)<< idx <<". " << name << " : " << gold <<" Gold" <<endl;
+}
+
+int Shop::GetSellPrice(int price) const
+{
+    return static_cast<int>(price * 0.6f);
 }

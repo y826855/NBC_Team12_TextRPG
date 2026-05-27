@@ -63,7 +63,7 @@ void ConsoleController::Message(EConsoleTag tag, const string& message)
     }
 
     // 2. 태그가 포함된 메시지 포맷팅
-    string formattedMessage = "[" + TagToString(tag) + "] " + message;
+    string formattedMessage = " " + message;
 
     // 3. 메시지 전송
     if (!m_managers[tag]->SendToChild(formattedMessage))
