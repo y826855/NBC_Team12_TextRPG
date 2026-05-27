@@ -44,6 +44,8 @@ bool Inventory::UseItem(EItem itemID)
 
     item->Use(); 
     it->second--;
+    if (it->second <= 0)
+        ItemContainer.erase(it);
     
     return true;
 }
