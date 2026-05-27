@@ -11,6 +11,8 @@
 #include "../MultiConsole/ConsoleController.h"
 #include "../MultiConsole/ConsoleLogStream.h"
 
+#include <windows.h>//테스트용
+
 using namespace std;
 
 Shop::Shop()
@@ -32,15 +34,38 @@ void Shop::OpenShop() const
     {
         GetInventory()->ShowInventory();
         ConsoleController::GetInstance()->Clear(WindowTag);
-
+        
         ShowPlayerGold();
         
-        C_LOG(WindowTag)<< endl;
-        C_LOG(WindowTag)<< "===== 상점 ====="<<endl;
         
-        C_LOG(WindowTag)<< "1. 구매"<<endl;
-        C_LOG(WindowTag)<< "2. 판매"<<endl;
-        C_LOG(WindowTag)<< "3. 나가기"<<endl;
+        C_LOG(WindowTag)<<R"(
+        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        +                                                                                   +
+        +                        /$$$$$$  /$$   /$$  /$$$$$$  /$$$$$$$                      +
+        +                       /$$__  $$| $$  | $$ /$$__  $$| $$__  $$                     +
+        +                      | $$  \__/| $$  | $$| $$  \ $$| $$  \ $$                     +
+        +                      |  $$$$$$ | $$$$$$$$| $$  | $$| $$$$$$$/                     +
+        +                       \____  $$| $$__  $$| $$  | $$| $$____/                      +
+        +                       /$$  \ $$| $$  | $$| $$  | $$| $$                           +
+        +                      |  $$$$$$/| $$  | $$|  $$$$$$/| $$                           +
+        +                       \______/ |__/  |__/ \______/ |__/                           +
+        +                                                                                   +
+        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+          ============                       ============                      ============ 
+            1. 구매                            2. 판매                           3. 나가기
+          ============                       ============                      ============)";
+        
+        
+        
+        // C_LOG(WindowTag)<< endl;
+        // C_LOG(WindowTag)<< "===== 상점 ====="<<endl;
+        //
+        // C_LOG(WindowTag)<< "1. 구매"<<endl;
+        // C_LOG(WindowTag)<< "2. 판매"<<endl;
+        // C_LOG(WindowTag)<< "3. 나가기"<<endl;
         
         int input = InputHelper::GetValidInput<int>(
             "선택 : ",1,3);
