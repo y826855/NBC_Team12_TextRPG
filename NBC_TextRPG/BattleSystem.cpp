@@ -75,6 +75,8 @@ void BattleSystem::BattleStart()
 
     delete monster;
     monster = nullptr;
+
+    GetPlayer()->ResetBuff();
 }
 
 bool BattleSystem::IsGameOver()

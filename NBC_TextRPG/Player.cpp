@@ -94,6 +94,9 @@ void Player::SetName(std::string name)
 
 void Player::ResetBuff()
 {
+	if (ATKBuff > 0)
+		cout << " -----버프 효과 종료----- " << endl;
+	
 	ATKBuff = 0;
 }
 
