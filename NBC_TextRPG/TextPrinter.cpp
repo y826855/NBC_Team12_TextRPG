@@ -84,11 +84,50 @@ void TextPrinter::PrintText(ETextState state)
 			ConsoleController::GetInstance()->Clear(EConsoleTag::UpperRight);
 			C_LOG(EConsoleTag::UpperRight) << box;
 
-			Sleep(300);
+			Sleep(100);
 		}
+		ConsoleController::GetInstance()->Clear(EConsoleTag::UpperRight);
+		stat += "┌──────────────────────────┐\n";
+		stat += "│      PLAYER STATUS       │\n";
+		stat += "├──────────────────────────┤\n";
+
+		stat += "│ " +
+			PadRight("이름  : " + GetPlayer()->GetPlayerName(), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("레벨  : " + to_string(GetPlayer()->GetLevel()-1) + " -> "  + to_string(GetPlayer()->GetLevel()), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("경험치 : " + to_string(GetPlayer()->GetExp()), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("생명력 : " +to_string(GetPlayer()->GetHp()-GetPlayer()->GetLevel() * 20)+" -> " + to_string(GetPlayer()->GetHp()), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight(
+				"HP : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
+				+ " "
+				,
+				25
+			)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("공격력 : " +to_string(GetPlayer()->GetATK() - GetPlayer()->GetLevel()*5) +" -> " + to_string(GetPlayer()->GetATK()), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("골드     : " + to_string(GetPlayer()->GetGold()) + " G", 25)
+			+ "│\n";
+
+		stat += "└──────────────────────────┘\n";
 		
-		PrintText(ETextState::PlayerStat);
-		
+		C_LOG(EConsoleTag::UpperRight)<<stat;
+		Sleep(300);
 		break;
 	}
 
