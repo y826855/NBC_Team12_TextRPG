@@ -105,22 +105,31 @@ bool Inventory::UseItemInBattlePhase()
 
     if (consumableItems.empty())
     {
-        cout << "\n사용 가능한 아이템 없음\n" << endl;
+        C_LOG(WindowTag) << "\n사용 가능한 아이템 없음\n" << endl;
         return false;
     }
 
-    int index = 1;
-    for (auto consumable : consumableItems)
-    {
-        C_LOG(WindowTag) << index++ << "." << " 아이템 이름: "
-            << ItemManager::GetInstance()->GetNameByID(consumable)
-            << "[ 보유 갯수: " << ItemContainer[consumable] << " ]" << endl;
-    }
+    auto PrintConsumableList = [this, &consumableItems]() {
+        int index = 1;
+        for (auto consumable : consumableItems)
+        {
+            if (GetItemCount(consumable) <= 0) continue;
+            C_LOG(WindowTag) << index++ << "." << " 아이템 이름: "
+                << ItemManager::GetInstance()->GetNameByID(consumable)
+                << "[ 보유 갯수: " << ItemContainer[consumable] << " ]" << endl;
+        }
+    };
 
+    PrintConsumableList();
     int max = consumableItems.size();
     int choice = InputHelper::GetValidInput("\n\n사용 아이템 입력 : ", 1, max) - 1;
     
     UseItem(consumableItems[choice]);
+    ConsoleController::GetInstance()->Clear(WindowTag);
+    PrintConsumableList();
+
+    Sleep(500);
+    
     return true;
 }
 

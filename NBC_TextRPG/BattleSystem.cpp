@@ -24,6 +24,8 @@ BattleSystem::BattleSystem()
 {
     monster = nullptr;
     player = nullptr;
+
+    InitConsole();//터미널 색상인식
 }
 
 int BattleSystem::GetRandom(int min, int max)
@@ -89,7 +91,6 @@ void BattleSystem::PlayerDie()
 
 void BattleSystem::EndTurnPhase()
 {
-    //Inventory::GetInstance()->UseItemInBattlePhase();
     cout << "\n\n\n [전투를 지속합니다!]\n\n";
 }
 
@@ -115,8 +116,6 @@ void BattleSystem::BossBattleLoop()//
         switch (input)
         {
         case 1:
-            //std::cout << "\n\n [플레이어의 턴!]\n\n";
-            InitConsole();//터미널 색상인식
             cout<<"\n\n";
             cout << "\033[97;44m   [플레이어의 턴!]                        \033[0m";  //밝은 흰색글, 파란배경
             cout<<"\n\n";
@@ -128,10 +127,8 @@ void BattleSystem::BossBattleLoop()//
 
         case 2:
             std::cout << "\n\n [가방에서 포션을 꺼냅니다!]\n\n";
-            Inventory::GetInstance()->UseItemInBattlePhase();
-            // TODO: 포션 마시는 로직 구현 (예: player->UsePotion() 등)
-          
-            completedTurn = true; 
+            completedTurn = Inventory::GetInstance()->UseItemInBattlePhase();
+            
             break;
 
         default:
@@ -147,15 +144,13 @@ void BattleSystem::BossBattleLoop()//
         
         if (monster->IsDeath())
         {
-            cout << "\n\n\n[!!게임 클리어!!]\n\n";
-            
-            
+            C_LOG(EConsoleTag::SmallPopup) << "\n\n\n==============[!!게임 클리어!!]==============\n\n";
+            Sleep(300);
+            bIsGameOver=true;
             
             break;
         }
         
-        //std::cout << "\n\n [몬스터의 턴!]\n\n";
-        InitConsole();//터미널 색상인식
         cout<<"\n\n";
         cout << "\033[97;41m   [몬스터의 턴!]                          \033[0m";  //밝은 흰색글, 빨간배경
         cout<<"\n\n";
@@ -171,55 +166,17 @@ void BattleSystem::BossBattleLoop()//
     }
 }//보스몬스터 전투
 
-
-// void BattleSystem::BossBattleLoop()
-// {
-//     monster = new Boss();
-//
-//     cout << "\n\n========보스 전투 시작!=======\n\n";
-//     
-//     while (true)
-//     {
-//
-//         cout << "\n\n플레이어가 공격합니다!\n\n";
-//
-//         player->Attack(monster);  
-//
-//         if (monster->IsDeath())
-//         {
-//             cout << "게임클리어!\n\n";
-//
-//             bIsGameOver = true;
-//                 
-//             break;
-//         }
-//         else if (player->IsDeath())
-//         {
-//             PlayerDie();
-//             break;
-//         }
-//         else
-//         {
-//             monster->Attack();
-//             EndTurnPhase();
-//         }
-//     }
-// }//보스전투
-
-
-void BattleSystem::NormalBattleLoop()//
-{\
+void BattleSystem::NormalBattleLoop()
+{
     
     player = GetPlayer();
     
     MonsterSpawn();
 
-    
+    cout << "\n\n\n ==========전투 시작!==========\n\n";
     
     while (true)
     {
-        cout << "\n\n\n ==========전투 시작!==========\n\n";
-
         std::cout << " --------------------------------\n";
         std::cout << "  행동을 선택하세요:\n";
         std::cout << "  [1] 공격하기  [2] 포션 마시기\n";
@@ -232,8 +189,6 @@ void BattleSystem::NormalBattleLoop()//
         switch (input)
         {
         case 1:
-            //std::cout << "\n\n [플레이어의 턴!]\n\n";
-            InitConsole();//터미널 색상인식
             cout<<"\n\n";
             cout << "\033[97;44m   [플레이어의 턴!]                        \033[0m";  //밝은 흰색글, 파란배경
             cout<<"\n\n";
@@ -245,10 +200,7 @@ void BattleSystem::NormalBattleLoop()//
 
         case 2:
             std::cout << "\n\n [가방에서 포션을 꺼냅니다!]\n\n";
-            Inventory::GetInstance()->UseItemInBattlePhase();
-            // TODO: 포션 마시는 로직 구현 (예: player->UsePotion() 등)
-          
-            completedTurn = true; 
+            completedTurn = Inventory::GetInstance()->UseItemInBattlePhase();
             break;
 
         default:
@@ -268,14 +220,10 @@ void BattleSystem::NormalBattleLoop()//
             
             BattleReward();
             BossCheck();        
-            //TODO: 상점입장 선택
-            
             
             break;
         }
         
-        //std::cout << "\n\n [몬스터의 턴!]\n\n";
-        InitConsole();//터미널 색상인식
         cout<<"\n\n";
         cout << "\033[97;41m   [몬스터의 턴!]                          \033[0m";  //밝은 흰색글, 빨간배경
         cout<<"\n\n";
@@ -303,13 +251,6 @@ void BattleSystem::BattleReward()
     
     Inventory::GetInstance()->AddItem(monster->GetDropItem(), 1);
 }
-
-
-void BattleSystem::ItemReward()
-{
-    
-}
-
 
 void BattleSystem::BossCheck()
 {
