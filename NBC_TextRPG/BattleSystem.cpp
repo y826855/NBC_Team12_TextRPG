@@ -12,6 +12,7 @@
 #include "Monster/Lich.h"
 #include "MultiConsole/ConsoleController.h"
 #include "MultiConsole/ConsoleLogStream.h"
+#include "Utility/InputHelper.h"
 
 
 using namespace std;
@@ -99,10 +100,42 @@ void BattleSystem::NormalBattleLoop()//
     while (true)
     {
 
-        cout << "\n\n[플레이어가 공격합니다!]\n\n";
+        std::cout << "--------------------------------\n";
+        std::cout << " 행동을 선택하세요:\n";
+        std::cout << " [1] 공격하기  [2] 포션 마시기\n";
+        std::cout << "--------------------------------\n";
+        
 
-        player->Attack(monster);  
+        int input = InputHelper::GetValidInput("입력 : ",1,2);
+        bool completedTurn = false;
+        
+        switch (input)
+        {
+        case 1:
+            std::cout << "\n\n [플레이어가 공격합니다!]\n\n";
+            player->Attack(monster);  
+            completedTurn = true; // 공격을 완료했으므로 턴 종료 조건 충족
+            break;
 
+        case 2:
+            std::cout << "\n\n [가방에서 포션을 꺼냅니다!]\n\n";
+            Inventory::GetInstance()->UseItemInBattlePhase();
+            // TODO: 포션 마시는 로직 구현 (예: player->UsePotion() 등)
+          
+            completedTurn = true; 
+            break;
+
+        default:
+            std::cout << "\n 올바른 번호를 선택해 주세요 (1 또는 2).\n\n";
+            break;
+        }
+        
+        // 유효하지 않은 행동(번호 잘못 입력 등)을 했다면 몬스터가 공격하면 안 되므로 스킵
+        if (!completedTurn)
+        {
+            continue; 
+        }
+        
         if (monster->IsDeath())
         {
             cout << "\n\n[전투 승리!]\n\n";
@@ -114,16 +147,17 @@ void BattleSystem::NormalBattleLoop()//
             
             break;
         }
-        else if (player->IsDeath())
+        
+        std::cout << "\n😈 [몬스터의 턴!]\n";
+        monster->Attack();
+       
+        
+        if (player->IsDeath())
         {
             PlayerDie();
             break;
         }
-        else
-        {
-            monster->Attack();
-            EndTurnPhase();
-        }
+        EndTurnPhase();
     }
 }//일반몬스터 전투
 
