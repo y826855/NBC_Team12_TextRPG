@@ -124,7 +124,7 @@ void Player::LevelUp()
 	
 	string levelup;
 	levelup = "레벨이 올랐습니다 현재 레벨: " + std::to_string(LV);
-
+	Logger(TextPrinter::LevelUp);
 	cout<<levelup<<"\n";
 	
 	Logger(TextPrinter::PlayerStat);
