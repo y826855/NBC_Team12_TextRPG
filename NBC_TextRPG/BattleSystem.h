@@ -32,8 +32,6 @@ private:
     
     void BattleReward();
     
-    void ItemReward();
-
     void BossCheck();
     
     void InitConsole();
