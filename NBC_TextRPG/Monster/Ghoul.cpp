@@ -9,7 +9,7 @@ Ghoul::Ghoul() : Monster()
 {
     monsterData = {"구울", 0,0,25,15,EItem::GhoulSkin};
     SetStat();
-    cout << "구울 생성";
+    cout << "\n구울의 울음소리...";
     
 }
 
