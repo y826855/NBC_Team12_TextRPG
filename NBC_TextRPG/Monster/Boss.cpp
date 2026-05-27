@@ -22,7 +22,7 @@ Boss::~Boss()
 void Boss::Attack()
 {
     //monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp(); -> 임시 주석화
-    cout << "사랑의 뺨따귀: 철썩!";
+    cout << "사랑의 뺨따귀: 철썩!" << endl;
     GetPlayer()->TakeDamage(monsterData.mATK);
 }
 

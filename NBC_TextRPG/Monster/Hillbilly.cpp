@@ -20,7 +20,7 @@ Hillbilly::~Hillbilly()
 void Hillbilly::Attack()
 {
     //monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp(); -> 임시 주석화
-    cout << "전기톱 질주: 키이이이잉!";
+    cout << "전기톱 질주: 키이이이잉!" << endl;
     GetPlayer()->TakeDamage(monsterData.mATK);
 }
 

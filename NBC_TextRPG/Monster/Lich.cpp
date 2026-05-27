@@ -18,7 +18,7 @@ Lich::~Lich()
 
 void Lich::Attack()
 {
-    cout << "지옥의 비행: 슈우우욱!";
+    cout << "지옥의 비행: 슈우우욱!" << endl;
     GetPlayer()->TakeDamage(monsterData.mATK);
 }
 
