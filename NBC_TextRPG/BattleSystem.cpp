@@ -95,7 +95,7 @@ void BattleSystem::EndTurnPhase()
 }
 
 void BattleSystem::BossBattleLoop()//
-{\
+{
     monster = new Boss();
     
 
@@ -103,7 +103,7 @@ void BattleSystem::BossBattleLoop()//
     
     while (true)
     {
-
+        Sleep(200);
         std::cout << " --------------------------------\n";
         std::cout << "  행동을 선택하세요:\n";
         std::cout << "  [1] 공격하기  [2] 포션 마시기\n";
@@ -177,6 +177,7 @@ void BattleSystem::NormalBattleLoop()
     
     while (true)
     {
+        Sleep(200);
         std::cout << " --------------------------------\n";
         std::cout << "  행동을 선택하세요:\n";
         std::cout << "  [1] 공격하기  [2] 포션 마시기\n";
