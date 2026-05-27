@@ -148,7 +148,7 @@ void BattleSystem::NormalBattleLoop()//
             break;
         }
         
-        std::cout << "\n😈 [몬스터의 턴!]\n";
+        std::cout << "[몬스터의 턴!]\n";
         monster->Attack();
        
         
