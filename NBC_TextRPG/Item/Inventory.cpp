@@ -58,6 +58,9 @@ bool Inventory::RemoveItem(EItem itemID, int count)
     if (it->second < count)
         return false;
     it->second -=count;
+
+    if (it->second <= 0)
+        ItemContainer.erase(it);
     
     return true;
 }
