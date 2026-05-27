@@ -17,8 +17,11 @@ public:
 private:
     void BuyItem() const;
     void SellItem() const;
-    
+
+    void ShowPlayerGold() const;
     void ShowItemInfo(int idx, string name, int gold) const;
+
+    int GetSellPrice(int price) const;
 
     EConsoleTag WindowTag;
 
