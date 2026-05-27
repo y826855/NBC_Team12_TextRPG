@@ -248,7 +248,12 @@ void BattleSystem::NormalBattleLoop()//
             Inventory::GetInstance()->UseItemInBattlePhase();
             // TODO: 포션 마시는 로직 구현 (예: player->UsePotion() 등)
           
-            completedTurn = true; 
+            if (!completedTurn)
+            {
+                continue; 
+            }
+            
+            //completedTurn = true; 
             break;
 
         default:
