@@ -9,7 +9,7 @@ Lich::Lich() : Monster()
 {
     monsterData = {"리치", 0,0,50,50,EItem::LichBone};
     SetStat();
-    cout << "리치 생성";
+    cout << "\n리치의 시선이 느껴진다...";
 }
 
 Lich::~Lich()

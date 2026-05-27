@@ -9,7 +9,7 @@ Hillbilly::Hillbilly() : Monster()
 {
     monsterData = {"힐빌리", 0,0,30,30,EItem::Chainsaw};
     SetStat();
-    cout << "힐빌리 생성";
+    cout << "\n힐빌리의 전기톱 소리가 들린다...";
 }
 
 Hillbilly::~Hillbilly()
