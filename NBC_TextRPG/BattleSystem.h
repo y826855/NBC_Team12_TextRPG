@@ -36,7 +36,5 @@ private:
     
     void BossCheck();
     
-    void InitConsole();
-    
     //void ChoiceMenu();
 };

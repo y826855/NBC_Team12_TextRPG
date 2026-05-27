@@ -28,8 +28,21 @@ void EditWindow()
     editor.StartTracking();
 }
 
+void InitConsole()
+{
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    DWORD mode = 0;
+    GetConsoleMode(hOut, &mode);
+
+    mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, mode);
+}
+
 int main(int argc, char* argv[])
 {
+    InitConsole();
+    
     if (!ConsoleController::GetInstance()->Initialize(argc, argv))
     {
         return 0;

@@ -24,8 +24,6 @@ BattleSystem::BattleSystem()
 {
     monster = nullptr;
     player = nullptr;
-
-    InitConsole();//터미널 색상인식
 }
 
 int BattleSystem::GetRandom(int min, int max)
@@ -229,6 +227,7 @@ void BattleSystem::NormalBattleLoop()
         
         cout<<"\n\n";
         cout << "\033[97;41m   [몬스터의 턴!]                          \033[0m";  //밝은 흰색글, 빨간배경
+        
         cout<<"\n\n";
         monster->Attack();
        
@@ -263,16 +262,4 @@ void BattleSystem::BossCheck()
         
         cout<<"\n ==이제 일반 몬스터는 상대도 안 된다!==\n\n";
     }
-}
-
-
-void BattleSystem::InitConsole()
-{
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    DWORD mode = 0;
-    GetConsoleMode(hOut, &mode);
-
-    mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    SetConsoleMode(hOut, mode);
 }
