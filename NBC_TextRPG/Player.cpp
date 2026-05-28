@@ -77,8 +77,13 @@ void Player::TakeDamage(int Damage)
 		return;
 	}
 	HP -= Damage;
+  
 	Logger(TextPrinter::MonsterStat);
-	cout << "["<< PlayerName <<"]" << " 공격받아 " << Damage << " 만큼의 피해를 입었다! " << "\n";
+	
+	cout << "[" << PlayerName << "] 공격받아 "
+	 << "\033[31m" << Damage << "\033[0m"
+	 << " 만큼의 피해를 입었다!\n";
+	
 	if (HP <= 0)
 	{
 		HP = 0;
@@ -95,6 +100,9 @@ void Player::SetName(std::string name)
 
 void Player::ResetBuff()
 {
+	if (ATKBuff > 0)
+		cout << " -----버프 효과 종료----- " << endl;
+	
 	ATKBuff = 0;
 }
 

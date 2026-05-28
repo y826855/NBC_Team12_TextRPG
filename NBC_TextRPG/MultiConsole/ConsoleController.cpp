@@ -6,13 +6,6 @@
 
 using namespace std;
 
-ConsoleController::~ConsoleController()
-{
-    for (auto& pair : m_managers)
-        delete pair.second;
-    m_managers.clear();
-}
-
 bool ConsoleController::Initialize(int argc, char* argv[])
 {
     // 임시 객체로 자식 모드인지 확인
@@ -44,7 +37,7 @@ void ConsoleController::AddConsole(EConsoleTag tag)
 
     if (m_managers.find(tag) == m_managers.end())
     {
-        m_managers[tag] = new MultiConsoleManager();
+        m_managers[tag] = make_unique<MultiConsoleManager>();
     }
 
     if (!m_managers[tag]->IsConnected())
@@ -125,8 +118,8 @@ void ConsoleController::CloseAll()
 {
     for (auto const& pair : m_managers)
     {
-        MultiConsoleManager* manager = pair.second;
-        if (manager->IsConnected())
+        const auto& manager = pair.second;
+        if (manager && manager->IsConnected())
         {
             manager->SendToChild("exit");
         }
