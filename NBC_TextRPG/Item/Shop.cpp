@@ -158,9 +158,9 @@ int Shop::SellItem() const
 
 void Shop::ShowPlayerGold() const
 {
-    C_LOG(WindowTag) << "\n\n" << "\033[30;43m      [ 보유 골드 : "
+    C_LOG(WindowTag) << "\n\n\033[33m[ 보유 골드 : "
                  << GetPlayer()->GetGold()
-                 << "G ]      \033[0m\n";
+                 << "G ]\033[0m\n";
 }
 
 void Shop::ShowItemInfo(int idx, string name, int gold) const

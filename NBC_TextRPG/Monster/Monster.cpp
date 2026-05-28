@@ -24,11 +24,9 @@ void Monster::TakeDamage()
         monsterData.mHP = 0;
     }
     
-    cout << "\033[30;42m"
-     << "[" << monsterData.mName << "] "
-     << GetPlayer()->GetATK()
-     << " 만큼의 피해를 입었다!"
-     << "\033[0m\n" << endl;
+    cout << "[" << monsterData.mName << "] "
+     << "\033[34m" << GetPlayer()->GetATK() << "\033[0m"
+     << " 만큼의 피해를 주었다!\n" << endl;
 }
 
 bool Monster::IsDeath()
