@@ -56,20 +56,14 @@ void Shop::OpenShop() const
 
 
           ============                       ============                      ============ 
-            1. 구매                            2. 판매                           3. 나가기
+            1. 구매                            2. 판매                           0. 나가기
           ============                       ============                      ============)";
         
         
         
-        // C_LOG(WindowTag)<< endl;
-        // C_LOG(WindowTag)<< "===== 상점 ====="<<endl;
-        //
-        // C_LOG(WindowTag)<< "1. 구매"<<endl;
-        // C_LOG(WindowTag)<< "2. 판매"<<endl;
-        // C_LOG(WindowTag)<< "3. 나가기"<<endl;
         
         int input = InputHelper::GetValidInput<int>(
-            "선택 : ",1,3);
+            "\n선택 : ",0,2);
 
         ConsoleController::GetInstance()->Clear(WindowTag);
         ShowPlayerGold();
@@ -88,7 +82,7 @@ void Shop::OpenShop() const
                 if (sellResult != 0) Sleep(500);
                 break;
             }
-        case 3:
+        case 0:
             C_LOG(WindowTag)<<"상점을 떠납니다"<<endl;
             Sleep(800);
             return;
@@ -98,7 +92,7 @@ void Shop::OpenShop() const
 
 int Shop::BuyItem() const
 {
-    C_LOG(WindowTag)<<"  0. 돌아가기";
+    C_LOG(WindowTag)<<"  0. 돌아가기\n";
     
     C_LOG(WindowTag)<< "===============================================< 구매 >===============================================";
     C_LOG(WindowTag)<< "======================================================================================================";
@@ -115,7 +109,7 @@ int Shop::BuyItem() const
 
     int max = ShopItemList.size();
     
-    int choice = InputHelper::GetValidInput<int>("구매할 아이템 선택 : ",0, max );
+    int choice = InputHelper::GetValidInput<int>("\n구매할 아이템 선택 : ",0, max );
     
     if (choice == 0)
     {
@@ -148,7 +142,7 @@ int Shop::SellItem() const
         return -1;
     }
     
-    C_LOG(WindowTag) << "0. 돌아가기";
+    C_LOG(WindowTag) << "0. 돌아가기\n";
     
     C_LOG(WindowTag)<< "===============================================< 판매 >===============================================";
     C_LOG(WindowTag)<< "======================================================================================================";
@@ -173,7 +167,7 @@ int Shop::SellItem() const
     
     
 
-    int choice = InputHelper::GetValidInput<int>("판매할 아이템 선택 : ",0,i-1);
+    int choice = InputHelper::GetValidInput<int>("\n판매할 아이템 선택 : ",0,i-1);
     if (choice == 0)
     {
         return 0;
