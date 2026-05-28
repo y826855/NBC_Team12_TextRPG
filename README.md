@@ -7,7 +7,6 @@ https://www.notion.so/teamsparta/12-3672dc3ef5148068a6c5c01bba994dcb?v=3672dc3ef
 ## 📝 기획 및 설계구조
 https://miro.com/app/board/uXjVLi9zwcE=/
 
----
 ##🎯 프로젝트 소개: "확장 가능한 객체지향 RPG 설계"
 이 과제의 본질은 단순히 게임을 완성하는 것이 아니라, 객체지향 원칙(SOLID)을 적용해 나중에 몬스터나 아이템을 쉽게 추가할 수 있는 견고한 게임 시스템을 구축하는 것입니다.
 
