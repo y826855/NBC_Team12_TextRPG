@@ -12,7 +12,7 @@ Hillbilly::Hillbilly(MonsterData monsterdata) : Monster()
     this->monsterData.gold = monsterdata.gold;
     this->monsterData.dropItem = monsterdata.dropItem;
     this->SetStat();
-    cout << "\n힐빌리의 전기톱 소리가 들린다...";
+    cout << "\n\n*** 힐빌리의 전기톱소리... ***";
 }
 
 Hillbilly::~Hillbilly()
@@ -23,7 +23,7 @@ Hillbilly::~Hillbilly()
 void Hillbilly::Attack()
 {
     //monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp(); -> 임시 주석화
-    cout << "전기톱 질주: 키이이이잉!" << endl;
+    cout << "전기톱 질주: 키이이이잉!\n" << endl;
     GetPlayer()->TakeDamage(mATK);
 }
 
