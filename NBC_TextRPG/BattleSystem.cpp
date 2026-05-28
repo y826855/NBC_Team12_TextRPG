@@ -58,6 +58,34 @@ void BattleSystem::EndTurnPhase()
     cout << "\n\n\n [전투를 지속합니다!]\n\n";
 }
 
+void BattleSystem::PlayerTurnAction(int input, bool& completedTurn) const
+{
+    switch (input)
+    {
+    case 1:
+        cout<<"\n\n";
+        cout << "\033[97;44m   [플레이어의 턴!]                        \033[0m";  //밝은 흰색글, 파란배경
+        cout<<"\n\n";
+            
+        player->Attack();  
+        cout<<"\n";
+        completedTurn = true; // 공격을 완료했으므로 턴 종료 조건 충족
+        break;
+
+    case 2:
+        std::cout << "\n\n [ 사용 가능한 아이템을 찾습니다! ]\n\n";
+        completedTurn = Inventory::GetInstance()->UseItemInBattlePhase();
+            
+        break;
+
+    case 3:
+        std::cout << "\n\n [ 인벤토리를 확인합니다 ]\n\n";
+        Inventory::GetInstance()->ShowInventory();
+        completedTurn = false;
+        break;
+    }
+}
+
 void BattleSystem::BossBattleLoop()//
 {
    MonsterManager::GetInstance()->BossSpawn();
@@ -68,37 +96,16 @@ void BattleSystem::BossBattleLoop()//
     while (true)
     {
         Sleep(200);
-        std::cout << " -------------------------------- \n";
-        std::cout << "\n\033[30;47m  행동을 선택하세요:            \033[0m\n";
-        std::cout << "\033[30;47m  [1] 공격하기  [2] 포션 마시기  \033[0m\n";
-        std::cout << " -------------------------------- \n";
+        std::cout << "----------------------------------------------------\n";
+        std::cout << "  행동을 선택하세요:                                \n";
+        std::cout << "\033[32;1m  [1] 공격하기  [2] 아이템 사용  [3] 인벤토리 확인  \033[0m\n";
+        std::cout << "----------------------------------------------------\n";
         
 
-        int input = InputHelper::GetValidInput(" 입력 : ",1,2);
+        int input = InputHelper::GetValidInput(" 입력 : ",1,3);
         bool completedTurn = false;
         
-        switch (input)
-        {
-        case 1:
-            cout<<"\n\n";
-            cout << "\033[97;44m   [플레이어의 턴!]                        \033[0m";  //밝은 흰색글, 파란배경
-            cout<<"\n\n";
-            
-            player->Attack();  
-            cout<<"\n";
-            completedTurn = true; // 공격을 완료했으므로 턴 종료 조건 충족
-            break;
-
-        case 2:
-            std::cout << "\n\n [가방에서 포션을 꺼냅니다!]\n\n";
-            completedTurn = Inventory::GetInstance()->UseItemInBattlePhase();
-            
-            break;
-
-        default:
-            std::cout << "\n 올바른 번호를 선택해 주세요 (1 또는 2).\n\n";
-            break;
-        }
+        PlayerTurnAction(input, completedTurn);
         
         // 유효하지 않은 행동(번호 잘못 입력 등)을 했다면 몬스터가 공격하면 안 되므로 스킵
         if (!completedTurn)
@@ -142,36 +149,16 @@ void BattleSystem::NormalBattleLoop()
     while (true)
     {
         Sleep(200);
-        std::cout << " -------------------------------- \n";
-        std::cout << "\n\033[30;47m  행동을 선택하세요:             \033[0m\n";
-        std::cout << "\033[30;47m  [1] 공격하기  [2] 포션 마시기  \033[0m\n";
-        std::cout << " -------------------------------- \n";
-        
+        std::cout << "----------------------------------------------------\n";
+        std::cout << "  행동을 선택하세요:                                \n";
+        std::cout << "\033[32;1m  [1] 공격하기  [2] 아이템 사용  [3] 인벤토리 확인  \033[0m\n";
+        std::cout << "----------------------------------------------------\n";
 
-        int input = InputHelper::GetValidInput(" 입력 : ",1,2);
+
+        int input = InputHelper::GetValidInput(" 입력 : ",1,3);
         bool completedTurn = false;
         
-        switch (input)
-        {
-        case 1:
-            cout<<"\n\n";
-            cout << "\033[97;44m   [플레이어의 턴!]                        \033[0m";  //밝은 흰색글, 파란배경
-            cout<<"\n\n";
-            
-            player->Attack();  
-            cout<<"\n";
-            completedTurn = true; // 공격을 완료했으므로 턴 종료 조건 충족
-            break;
-
-        case 2:
-            std::cout << "\n\n [가방에서 포션을 꺼냅니다!]\n\n";
-            completedTurn = Inventory::GetInstance()->UseItemInBattlePhase();
-            break;
-
-        default:
-            std::cout << "\n 올바른 번호를 선택해 주세요 (1 또는 2).\n\n";
-            break;
-        }
+        PlayerTurnAction(input, completedTurn);
         
         // 유효하지 않은 행동(번호 잘못 입력 등)을 했다면 몬스터가 공격하면 안 되므로 스킵
         if (!completedTurn)

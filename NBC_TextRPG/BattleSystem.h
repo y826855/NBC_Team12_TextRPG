@@ -24,6 +24,7 @@ public:
     bool IsGameOver();
     void PlayerDie();
     void EndTurnPhase();
+    void PlayerTurnAction(int input, bool& completedTurn) const;
 
 private:
     void MonsterSpawn();

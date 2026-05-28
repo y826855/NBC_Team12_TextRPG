@@ -32,11 +32,11 @@ void TextPrinter::PrintText(ETextState state)
 			+ "│\n";
 
 		stat += "│ " +
-			PadRight("경험치   : " + to_string(GetPlayer()->GetExp()), 25)
+			PadRight("경험치   : " + ShowTwoValue(GetPlayer()->GetExp(), GetPlayer()->GetMaxExp()), 25)
 			+ "│\n";
 
 		stat += "│ " +
-			PadRight("생명력   : " + to_string(GetPlayer()->GetHp()), 25)
+			PadRight("생명력   : " + ShowTwoValue(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP()), 25)
 			+ "│\n";
 
 		stat += "│ " +
@@ -101,7 +101,7 @@ void TextPrinter::PrintText(ETextState state)
 			+ "│\n";
 
 		stat += "│ " +
-			PadRight("경험치 : " + to_string(GetPlayer()->GetExp()), 25)
+			PadRight("경험치 : " + ShowTwoValue(GetPlayer()->GetExp(), GetPlayer()->GetMaxExp()), 25)
 			+ "│\n";
 
 		stat += "│ " +
@@ -138,18 +138,18 @@ void TextPrinter::PrintText(ETextState state)
 		stat += "├──────────────────────────┤\n";
 
 		stat += "│ " +
-			PadRight("이름  : " + MonsterManager::GetInstance()->GetName(), 25)
+			PadRight("이름   : " + MonsterManager::GetInstance()->GetName(), 25)
 			+ "│\n";
 		
 
 		stat += "│ " +
-			PadRight("생명력 : " +to_string(MonsterManager::GetInstance()->GetHP()), 25)
+			PadRight("생명력 : " + ShowTwoValue(MonsterManager::GetInstance()->GetHP(), MonsterManager::GetInstance()->GetMaxHp()), 25)
 			+ "│\n";
 
 		stat += "│ " +
 			PadRight(
 				"체력바 : " + MakeHpBar(MonsterManager::GetInstance()->GetHP(), MonsterManager::GetInstance()->GetMaxHp())
-				+ " "
+				+ "  "
 				,
 				25
 			)
@@ -174,22 +174,22 @@ void TextPrinter::ResetText()
 
 string TextPrinter::MakeHpBar(int hp, int maxHp)
 {
-	int barCount = 12;
+	int barCount = 14;
 
 	int filled =
 		(hp * barCount) / maxHp;
 
-	string bar = "[";
+	string bar = "";
 
 	for (int i = 0; i < barCount; i++)
 	{
 		if (i < filled)
-			bar += "#";
+			bar += "\033[97;41m \033[0m";
 		else
 			bar += "-";
 	}
 
-	bar += "]";
+	bar += "";
 
 	return bar;
 	
@@ -201,6 +201,12 @@ string TextPrinter::PadRight(const string& str, int width)
 		return str;
 
 	return str + string(width - str.length(), ' ');
+}
+
+string TextPrinter::ShowTwoValue(int low, int high)
+{
+	string result = to_string(low) + "/" + to_string(high); 
+	return result;
 }
 
 
