@@ -11,6 +11,10 @@ https://miro.com/app/board/uXjVLi9zwcE=/
 ## Class UML
 <img width="7118" height="6009" alt="12NewUML" src="https://github.com/user-attachments/assets/a01cd1f0-110d-4b9e-a085-bdda892a9ade" />
 
+## Flow Chart
+<img width="3026" height="6327" alt="EItem Ecosystem and Battle-2026-05-28-061602" src="https://github.com/user-attachments/assets/1b9ec665-5652-4bee-b009-f3f5d34fb631" />
+
+
 ## Sequence Diagram
 <img width="4119" height="8192" alt="Lobby Interaction Pipeline-2026-05-27-081627" src="https://github.com/user-attachments/assets/43572cfc-fa05-4369-a265-97853d17eb40" />
 
