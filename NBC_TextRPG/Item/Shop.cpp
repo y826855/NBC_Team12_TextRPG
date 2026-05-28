@@ -11,6 +11,8 @@
 #include "../MultiConsole/ConsoleController.h"
 #include "../MultiConsole/ConsoleLogStream.h"
 
+#include <windows.h>//테스트용
+
 using namespace std;
 
 Shop::Shop()
@@ -32,15 +34,38 @@ void Shop::OpenShop() const
     {
         GetInventory()->ShowInventory();
         ConsoleController::GetInstance()->Clear(WindowTag);
-
+        
         ShowPlayerGold();
         
-        C_LOG(WindowTag)<< endl;
-        C_LOG(WindowTag)<< "===== 상점 ====="<<endl;
         
-        C_LOG(WindowTag)<< "1. 구매"<<endl;
-        C_LOG(WindowTag)<< "2. 판매"<<endl;
-        C_LOG(WindowTag)<< "3. 나가기"<<endl;
+        C_LOG(WindowTag)<<R"(
+        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        +                                                                                   +
+        +                        /$$$$$$  /$$   /$$  /$$$$$$  /$$$$$$$                      +
+        +                       /$$__  $$| $$  | $$ /$$__  $$| $$__  $$                     +
+        +                      | $$  \__/| $$  | $$| $$  \ $$| $$  \ $$                     +
+        +                      |  $$$$$$ | $$$$$$$$| $$  | $$| $$$$$$$/                     +
+        +                       \____  $$| $$__  $$| $$  | $$| $$____/                      +
+        +                       /$$  \ $$| $$  | $$| $$  | $$| $$                           +
+        +                      |  $$$$$$/| $$  | $$|  $$$$$$/| $$                           +
+        +                       \______/ |__/  |__/ \______/ |__/                           +
+        +                                                                                   +
+        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+          ============                       ============                      ============ 
+            1. 구매                            2. 판매                           3. 나가기
+          ============                       ============                      ============)";
+        
+        
+        
+        // C_LOG(WindowTag)<< endl;
+        // C_LOG(WindowTag)<< "===== 상점 ====="<<endl;
+        //
+        // C_LOG(WindowTag)<< "1. 구매"<<endl;
+        // C_LOG(WindowTag)<< "2. 판매"<<endl;
+        // C_LOG(WindowTag)<< "3. 나가기"<<endl;
         
         int input = InputHelper::GetValidInput<int>(
             "선택 : ",1,3);
@@ -72,8 +97,11 @@ void Shop::OpenShop() const
 
 int Shop::BuyItem() const
 {
-    C_LOG(WindowTag)<< "===== 구매 ====="<<endl;
-    C_LOG(WindowTag)<< "0. 돌아가기"<<endl;
+    C_LOG(WindowTag)<< "===============================================< 구매 >==============================================="<<endl;
+    C_LOG(WindowTag)<< "======================================================================================================\n";
+    C_LOG(WindowTag)<< "   No                                      아이템 이름                                  가격\n";
+    C_LOG(WindowTag)<< "======================================================================================================\n";
+    //C_LOG(WindowTag)<< "0. 돌아가기"<<endl;
 
     for (int i = 0; i < ShopItemList.size(); i++)
     {
@@ -165,7 +193,8 @@ void Shop::ShowPlayerGold() const
 
 void Shop::ShowItemInfo(int idx, string name, int gold) const
 {
-    C_LOG(WindowTag)<< idx <<". " << name << " : " << gold <<" Gold" <<endl;
+    //C_LOG(WindowTag)<< idx <<". " << name << " : " << gold <<" Gold" <<endl;
+    C_LOG(WindowTag)<<"   "<< idx <<"                                   "<< name << "                            " << gold <<" Gold" <<"\n";
 }
 
 int Shop::GetSellPrice(int price) const
