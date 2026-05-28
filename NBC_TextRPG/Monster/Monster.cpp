@@ -128,7 +128,7 @@ void Monster::SetBossStat()
     int randATK = rand() % 6 + 5;  //랜덤 구현 -> 플레이어 레벨 x 5~10중 무작위 (6가지 가짓수)
     
    mHP = (GetPlayer()->GetLevel()*randHP)*4;
-   
+    Max_mHP =mHP;
    mATK = (GetPlayer()->GetLevel()*randATK)*4;
 }
 
