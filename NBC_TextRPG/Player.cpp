@@ -22,6 +22,11 @@ int Player::GetExp()
 	return CurrentExp;
 }
 
+int Player::GetMaxExp()
+{
+	return GoalExp;
+}
+
 int Player::GetLevel()
 {
 	return LV;

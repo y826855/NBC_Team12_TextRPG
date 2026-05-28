@@ -27,6 +27,7 @@ public:
 	void AddATKBuff(int Amount);
 	
 	int GetExp();
+	int GetMaxExp();
 	int GetLevel();
 	int GetGold();
 	int GetHp();

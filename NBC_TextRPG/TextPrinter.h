@@ -35,6 +35,6 @@ public:
 private :
     string MakeHpBar(int hp, int maxHp);
     string PadRight(const string& str, int width);
-    
+    string ShowTwoValue(int low, int high);
 };
 
