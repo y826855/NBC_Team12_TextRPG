@@ -9,6 +9,8 @@ https://miro.com/app/board/uXjVLi9zwcE=/
 
 
 ## Class UML
+---
+클래스의 역활과 연결 구조를 나타내는 UML입니다
 <img width="7118" height="6009" alt="12NewUML" src="https://github.com/user-attachments/assets/a01cd1f0-110d-4b9e-a085-bdda892a9ade" />
 
 ## Flow Chart
