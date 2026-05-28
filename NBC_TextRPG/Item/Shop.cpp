@@ -161,7 +161,13 @@ int Shop::SellItem() const
         // C_LOG(WindowTag) << i++ << "." << item->GetName()
         //     << "[ " << GetSellPrice(item->GetPrice()) << "G ]" << endl;
         
-        C_LOG(WindowTag)<<std::setw(4)<< i++ << std::setw(47) << item->GetName() << std::setw(38) << GetSellPrice(item->GetPrice()) << " Gold" << endl;
+        C_LOG(WindowTag) << std::setw(4) << i++
+                 << std::setw(47) << item->GetName()
+                 << "\033[33m"
+                 << std::setw(38) << GetSellPrice(item->GetPrice())
+                 << " Gold"
+                 << "\033[0m"
+                 << endl;
     }
     
     
@@ -188,7 +194,10 @@ int Shop::SellItem() const
     int sellPrice = static_cast<int>(originPrice * 0.6f);
 
     GetPlayer()->AddGold(sellPrice);
-    C_LOG(WindowTag) << sellPrice << " Gold 획득!" << endl;
+    C_LOG(WindowTag) << "\033[33m"
+                 << sellPrice << " Gold"
+                 << "\033[0m"
+                 << " 획득!" << endl;
     return choice;
 }
 
@@ -202,7 +211,12 @@ void Shop::ShowPlayerGold() const
 void Shop::ShowItemInfo(int idx, string name, int gold) const
 {
     //C_LOG(WindowTag)<< idx <<". " << name << " : " << gold <<" Gold" <<endl;
-    C_LOG(WindowTag)<<std::setw(4)<< idx <<std::setw(47)<< name <<std::setw(38)<< gold <<" Gold" <<"\n\n";
+    C_LOG(WindowTag) << std::setw(4) << idx
+                 << std::setw(47) << name
+                 << "\033[33m"
+                 << std::setw(38) << gold << " Gold"
+                 << "\033[0m"
+                 << "\n\n";
     
 }
 
