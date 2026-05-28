@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 
@@ -27,7 +28,7 @@ class ItemManager : public Singleton<ItemManager>
 {
     friend class Singleton<ItemManager>;
 
-    unordered_map<EItem, ItemBase*> ItemContainer;
+    unordered_map<EItem, unique_ptr<ItemBase>> ItemContainer;
 
 public:
     ItemManager();
@@ -36,5 +37,4 @@ public:
     ItemBase* GetItemByID(EItem itemID);
     string GetNameByID(EItem itemID);
 
-    ~ItemManager() override;
 };

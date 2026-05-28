@@ -15,6 +15,8 @@ class BattleSystem
 public:
     
     BattleSystem();
+    ~BattleSystem() = default;
+    
     int GetRandom(int min, int max);
 
     void BattleStart();
@@ -33,8 +35,6 @@ private:
     void BattleReward();
     
     void BossCheck();
-    
-    void InitConsole();
     
     //void ChoiceMenu();
 };

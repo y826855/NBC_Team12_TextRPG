@@ -23,8 +23,6 @@ BattleSystem::BattleSystem()
 {
     monster = nullptr;
     player = nullptr;
-
-    InitConsole();//터미널 색상인식
 }
 
 
@@ -41,8 +39,7 @@ void BattleSystem::BattleStart()
 
     Logger(TextPrinter::PlayerStat);
    
-
-    
+    GetPlayer()->ResetBuff();
 }
 
 bool BattleSystem::IsGameOver()
@@ -72,10 +69,10 @@ void BattleSystem::BossBattleLoop()//
     while (true)
     {
         Sleep(200);
-        std::cout << " --------------------------------\n";
-        std::cout << "  행동을 선택하세요:\n";
-        std::cout << "  [1] 공격하기  [2] 포션 마시기\n";
-        std::cout << " --------------------------------\n";
+        std::cout << " -------------------------------- \n";
+        std::cout << "\033[30;47m  행동을 선택하세요:            \033[0m\n";
+        std::cout << "\033[30;47m  [1] 공격하기  [2] 포션 마시기  \033[0m\n";
+        std::cout << " -------------------------------- \n";
         
 
         int input = InputHelper::GetValidInput(" 입력 : ",1,2);
@@ -146,10 +143,10 @@ void BattleSystem::NormalBattleLoop()
     while (true)
     {
         Sleep(200);
-        std::cout << " --------------------------------\n";
-        std::cout << "  행동을 선택하세요:\n";
-        std::cout << "  [1] 공격하기  [2] 포션 마시기\n";
-        std::cout << " --------------------------------\n";
+        std::cout << " -------------------------------- \n";
+        std::cout << "\033[30;47m  행동을 선택하세요:             \033[0m\n";
+        std::cout << "\033[30;47m  [1] 공격하기  [2] 포션 마시기  \033[0m\n";
+        std::cout << " -------------------------------- \n";
         
 
         int input = InputHelper::GetValidInput(" 입력 : ",1,2);
@@ -196,6 +193,7 @@ void BattleSystem::NormalBattleLoop()
         
         cout<<"\n\n";
         cout << "\033[97;41m   [몬스터의 턴!]                          \033[0m";  //밝은 흰색글, 빨간배경
+        
         cout<<"\n\n";
       
        MonsterManager::GetInstance()->MonsterAttack();
@@ -231,16 +229,4 @@ void BattleSystem::BossCheck()
         
         cout<<"\n ==이제 일반 몬스터는 상대도 안 된다!==\n\n";
     }
-}
-
-
-void BattleSystem::InitConsole()
-{
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    DWORD mode = 0;
-    GetConsoleMode(hOut, &mode);
-
-    mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    SetConsoleMode(hOut, mode);
 }

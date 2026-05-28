@@ -1,29 +1,25 @@
 ﻿#include "Lobby.h"
-
 #include "BattleSystem.h"
 #include "TextPrinter.h"
-#include "Item/Inventory.h"
 #include "Manager/PlayerManager.h"
 #include "MultiConsole/ConsoleController.h"
 #include "Utility/InputHelper.h"
 
+using namespace std;
+
 Lobby::Lobby()
 {
-    m_BattleSystem = new BattleSystem();
-    m_Shop = new Shop();
+    m_BattleSystem = make_unique<BattleSystem>();
+    m_Shop = make_unique<Shop>();
 }
 
 Lobby::~Lobby()
 {
-    delete m_BattleSystem;
-    delete m_Shop;
 }
 
 void Lobby::Intro()
 {
-    //플레이어 생성
     SetNameByInput()
-    //플레이어 init
 }
 
 void Lobby::ShowMenu()

@@ -122,6 +122,8 @@ void MultiConsoleManager::RunChildMode(const string& tag, int x, int y, int w, i
             SWP_NOZORDER | SWP_SHOWWINDOW);
     }
 
+    InitChildConsole(); // 자식 콘솔의 가상 터미널 처리 모드 활성화
+
     cout << "[Child] 부모 파이프에 연결 중..." << endl;
 
     // 1. 파이프 연결 (CreateFile)
@@ -241,4 +243,15 @@ void MultiConsoleManager::Cleanup()
         CloseHandle(hChildProcess);
         hChildProcess = nullptr;
     }
+}
+
+void MultiConsoleManager::InitChildConsole()
+{
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    DWORD mode = 0;
+    GetConsoleMode(hOut, &mode);
+
+    mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, mode);
 }
