@@ -25,8 +25,8 @@ void Lobby::Intro()
 void Lobby::ShowMenu()
 {
     cout << endl;
-    cout << "[1] 전투" << endl;
-    cout << "[2] 상점" << endl;
+    cout << "\033[32;1m[1] 전투\033[0m" << endl;
+    cout << "\033[32;1m[2] 상점\033[0m" << endl;
 }
 
 void Lobby::ChoiceMenu()
