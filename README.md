@@ -51,6 +51,7 @@ https://miro.com/app/board/uXjVLi9zwcE=/
 
 기본 조작 시스템
 *숫자 선택 (`1`, `2`, `3` 등) + `Enter` : 메뉴 이동, 행동 선택, 아이템 구매 및 장착
+
 *`0` + `Enter` : 이전 화면으로 돌아가기 또는 뒤로가기
 
 ## Class UML
