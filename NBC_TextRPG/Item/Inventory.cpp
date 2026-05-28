@@ -24,7 +24,7 @@ void Inventory::AddItem(EItem itemID, int count)
 {
     ItemContainer[itemID] += count;
 
-    C_LOG(WindowTag) << ItemManager::GetInstance()->GetNameByID(itemID)
+    C_LOG(WindowTag) << " * " << ItemManager::GetInstance()->GetNameByID(itemID)
         + " " + std::to_string(count) +"개 획득!\n" << endl;
 }
 
@@ -109,14 +109,15 @@ bool Inventory::UseItemInBattlePhase()
         return false;
     }
 
+    C_LOG(WindowTag) << "\n=======아이템 사용=======\n"; 
     auto PrintConsumableList = [this, &consumableItems]() {
         int index = 1;
         for (auto consumable : consumableItems)
         {
             if (GetItemCount(consumable) <= 0) continue;
-            C_LOG(WindowTag) << index++ << "." << " 아이템 이름: "
+            C_LOG(WindowTag) << "[" <<index++ << "] " 
                 << ItemManager::GetInstance()->GetNameByID(consumable)
-                << "[ 보유 갯수: " << ItemContainer[consumable] << " ]" << endl;
+                << "      [ 보유 갯수: " << ItemContainer[consumable] << " ]" << endl;
         }
     };
 
@@ -154,7 +155,7 @@ bool Inventory::IsEmpty() const
 
 void Inventory::ShowItemInfo(const pair<EItem, int>& item) const
 {
-    C_LOG(WindowTag) << "아이템 이름: " << ItemManager::GetInstance()->GetNameByID(item.first)
+    C_LOG(WindowTag) << " - " << ItemManager::GetInstance()->GetNameByID(item.first)
         << "[ 보유 갯수: " << item.second << " ]" << endl;
 }
 
