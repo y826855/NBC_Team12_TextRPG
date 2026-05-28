@@ -9,6 +9,7 @@
 #include "../Manager/PlayerManager.h"
 #include "../Player.h"
 #include "../TextPrinter.h"
+#include "../MultiConsole/ConsoleLogStream.h"
 
 MonsterManager::MonsterManager()
 {
@@ -46,6 +47,8 @@ void MonsterManager::TakeDamage()
     CurrentMonster->TakeDamage();
     if (CurrentMonster->IsDeath())
     {
+        Logger(TextPrinter::MonsterStat);
+        C_LOG(EConsoleTag::UpperRight) << "몬스터 사망";
         BattleReward();
     }
     else

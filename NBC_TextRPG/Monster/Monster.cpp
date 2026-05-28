@@ -34,7 +34,6 @@ bool Monster::IsDeath()
     if (mHP <=0)
     {
         death = true;
-        cout << "몬스터 사망";
     }
     
     else

@@ -184,7 +184,8 @@ void BattleSystem::NormalBattleLoop()
         {
          
             cout << "\n\n\n[전투 승리!]\n\n";
-            
+
+            Sleep(600);
            // BattleReward();
             BossCheck();        
             completedTurn = false;
