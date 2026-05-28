@@ -5,12 +5,15 @@
 #include "../Manager/PlayerManager.h"
 
 
-Boss::Boss() : Monster()
+Boss::Boss(MonsterData monsterdata) : Monster( )
 {
-    monsterData = {"튜터팍", 0,0,100,100,EItem::Chainsaw};
+    this->monsterData.mName = monsterdata.mName;
+    this->monsterData.exp = monsterdata.exp;
+    this->monsterData.gold = monsterdata.gold;
+    this->monsterData.dropItem = monsterdata.dropItem;
     cout << "\n담당 튜터팍이 소환됩니다.";
     AsciiArt();
-    SetBossStat();
+   this->SetBossStat();
  
 }
 
@@ -23,6 +26,6 @@ void Boss::Attack()
 {
     //monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp(); -> 임시 주석화
     cout << "사랑의 뺨따귀: 철썩!" << endl;
-    GetPlayer()->TakeDamage(monsterData.mATK);
+    GetPlayer()->TakeDamage(mATK);
 }
 

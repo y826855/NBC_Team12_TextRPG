@@ -15,6 +15,8 @@ public :
     enum ETextState
     {
        PlayerStat,
+       MonsterStat,
+       MonsterDie,
        LevelUp
     };
     

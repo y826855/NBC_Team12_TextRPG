@@ -4,7 +4,7 @@
 class Hillbilly : public Monster
 {
 public:
-    Hillbilly();
+    Hillbilly(MonsterData monsterdata);
     ~Hillbilly() override; 
     
     void Attack() override;

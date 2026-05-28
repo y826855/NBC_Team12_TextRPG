@@ -11,11 +11,19 @@ enum class EItem;
 struct MonsterData
 {
     string mName;
-    int mHP;
-    int mATK;
     int exp;
     int gold;
     EItem dropItem;
+    
+    MonsterData() = default;
+    
+    MonsterData(string mName, int exp, int gold, EItem dropItem)
+    {
+        this->mName = mName;
+        this->exp = exp;
+        this->gold = gold;
+        this->dropItem = dropItem;
+    };
 };
 
 
@@ -45,6 +53,8 @@ public:
     void AsciiArt();
     
     string GetName();
+    int GetMaxHp();
+    int GetATK();
 
 protected:
     void SetStat();   
@@ -58,6 +68,10 @@ protected:
     void SetGold(int gold);
     
     void SetDropItem(EItem dropItem);
+    
+    int mHP;
+    int Max_mHP;
+    int mATK;
     
     MonsterData monsterData;
     bool death;

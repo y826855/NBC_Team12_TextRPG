@@ -5,10 +5,13 @@
 #include "../Manager/PlayerManager.h"
 
 
-Hillbilly::Hillbilly() : Monster()
+Hillbilly::Hillbilly(MonsterData monsterdata) : Monster()
 {
-    monsterData = {"힐빌리", 0,0,30,30,EItem::Chainsaw};
-    SetStat();
+    this->monsterData.mName = monsterdata.mName;
+    this->monsterData.exp = monsterdata.exp;
+    this->monsterData.gold = monsterdata.gold;
+    this->monsterData.dropItem = monsterdata.dropItem;
+    this->SetStat();
     cout << "\n힐빌리의 전기톱 소리가 들린다...";
 }
 
@@ -21,6 +24,6 @@ void Hillbilly::Attack()
 {
     //monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp(); -> 임시 주석화
     cout << "전기톱 질주: 키이이이잉!" << endl;
-    GetPlayer()->TakeDamage(monsterData.mATK);
+    GetPlayer()->TakeDamage(mATK);
 }
 

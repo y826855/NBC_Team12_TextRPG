@@ -4,7 +4,7 @@
 class Boss :public Monster
 {
 public:
-    Boss();
+    Boss(MonsterData monsterdata);
     ~Boss() override; 
     
     void Attack() override;
