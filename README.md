@@ -57,5 +57,7 @@ https://miro.com/app/board/uXjVLi9zwcE=/
 
 
 ## Sequence Diagram
+시간 흐름에 따라 구조들이 어떻게 호출되는 지 보여주는 Sequence Diagram
+---
 <img width="4119" height="8192" alt="Lobby Interaction Pipeline-2026-05-27-081627" src="https://github.com/user-attachments/assets/43572cfc-fa05-4369-a265-97853d17eb40" />
 
