@@ -31,7 +31,7 @@ void Lobby::ShowMenu()
 
 void Lobby::ChoiceMenu()
 {
-    int input = InputHelper::GetValidInput("입력 :", 1, 2);
+    int input = InputHelper::GetValidInput("\n입력 :", 1, 2);
     switch (input)
     {
     case  1: m_LobbyState = LobbyState::Battle; break;
