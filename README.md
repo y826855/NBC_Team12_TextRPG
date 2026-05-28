@@ -44,7 +44,7 @@ https://miro.com/app/board/uXjVLi9zwcE=/
 포션: 즉시 체력 50 회복.
 
 공격력 상승 아이템: 전투 중 공격력 보너스 부여.
----
+
 
 ## Class UML
 
