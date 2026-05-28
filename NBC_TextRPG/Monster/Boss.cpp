@@ -8,7 +8,7 @@
 Boss::Boss() : Monster()
 {
     monsterData = {"튜터팍", 0,0,100,100,EItem::Chainsaw};
-    cout << "\n\033[30;43m담당 튜터팍이 소환됩니다.\033[0m";
+    cout << "\n담당 튜터팍이 소환됩니다.";
     AsciiArt();
     SetBossStat();
  
@@ -22,7 +22,7 @@ Boss::~Boss()
 void Boss::Attack()
 {
     //monsterData.mHP = monsterData.mHP - GetPlayer()->GetHp(); -> 임시 주석화
-    cout << "\033[30;43m사랑의 뺨따귀: 철썩!\033[0m" << endl;
+    cout << "사랑의 뺨따귀: 철썩!" << endl;
     GetPlayer()->TakeDamage(monsterData.mATK);
 }
 
