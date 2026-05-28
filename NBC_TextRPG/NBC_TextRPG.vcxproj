@@ -242,6 +242,7 @@
     <ClCompile Include="Item\ItemBase.cpp" />
     <ClCompile Include="Item\ItemManager.cpp" />
     <ClCompile Include="Manager\PlayerManager.cpp" />
+    <ClCompile Include="Monster\MonsterManager.cpp" />
     <ClCompile Include="MultiConsole\ConsoleController.cpp" />
     <ClCompile Include="MultiConsole\ConsoleLogStream.cpp" />
     <ClCompile Include="MultiConsole\EditConsole.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\ItemManager.h" />
     <ClInclude Include="Manager\PlayerManager.h" />
+    <ClInclude Include="Monster\MonsterManager.h" />
     <ClInclude Include="MultiConsole\ConsoleController.h" />
     <ClInclude Include="MultiConsole\ConsoleLogStream.h" />
     <ClInclude Include="MultiConsole\ConsoleTypes.h" />

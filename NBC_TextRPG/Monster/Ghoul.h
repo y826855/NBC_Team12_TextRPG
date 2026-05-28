@@ -4,7 +4,7 @@
 class Ghoul : public Monster
 {
 public:
-    Ghoul();
+    Ghoul(MonsterData monsterdata);
     ~Ghoul() override; 
     
     void Attack() override;

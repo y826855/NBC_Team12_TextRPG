@@ -5,6 +5,7 @@
 
 #include "Monster/Monster.h"
 #include "MultiConsole/ConsoleLogStream.h"
+#include "Monster/MonsterManager.h"
 
 void Player::AddExp(int exp)
 {
@@ -58,9 +59,9 @@ std::string Player::GetPlayerName()
 	return PlayerName;
 }
 
-void Player::Attack(Monster* monster)
+void Player::Attack()
 {
-	monster->TakeDamage();
+	MonsterManager::GetInstance()->TakeDamage();
 }
 
 bool Player::IsDeath()
@@ -76,8 +77,13 @@ void Player::TakeDamage(int Damage)
 		return;
 	}
 	HP -= Damage;
-	Logger(TextPrinter::PlayerStat);
-	cout << "["<< PlayerName <<"]" << " 공격받아 " << Damage << " 만큼의 피해를 입었다! " << "\n";
+  
+	Logger(TextPrinter::MonsterStat);
+	
+	cout << "[" << PlayerName << "] 공격받아 "
+	 << "\033[31m" << Damage << "\033[0m"
+	 << " 만큼의 피해를 입었다!\n";
+	
 	if (HP <= 0)
 	{
 		HP = 0;
@@ -113,7 +119,14 @@ void Player::AddATKBuff(int Amount)
 
 Player::Player()
 {
-	
+	Max_HP = 200;
+	HP = Max_HP;
+	CurrentExp = 0;
+	GoalExp = 100;
+	LV = 1;
+	ATK = 20;
+	Gold = 0;
+	ATKBuff = 0;
 }
 
 void Player::LevelUp()

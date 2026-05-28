@@ -34,7 +34,7 @@ public:
 	int GetATK();
 	std::string GetPlayerName();
 	
-	void Attack(Monster* monster);
+	void Attack();
 	bool IsDeath();
 	void TakeDamage(int Damage);
 	void SetName(std::string name);

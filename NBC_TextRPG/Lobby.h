@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Item/Shop.h"
+#include <memory>
 
 class BattleSystem;
 
@@ -13,13 +14,15 @@ enum class LobbyState
 class Lobby
 {
 
-    BattleSystem* m_BattleSystem = nullptr;
-    Shop* m_Shop = nullptr;
+    std::unique_ptr<BattleSystem> m_BattleSystem;
+    std::unique_ptr<Shop> m_Shop;
     LobbyState m_LobbyState = LobbyState::None; 
     
+
 public:
     Lobby();
     ~Lobby();
+    
     void Intro();
     void ContentLoop();
 
