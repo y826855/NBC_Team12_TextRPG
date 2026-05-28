@@ -51,7 +51,7 @@ int Player::GetMaxHP()
 
 int Player::GetATK()
 {
-	return ATK;
+	return ATK + ATKBuff;
 }
 
 std::string Player::GetPlayerName()

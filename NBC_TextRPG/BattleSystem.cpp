@@ -37,9 +37,8 @@ void BattleSystem::BattleStart()
     else //보스 전투 
         BossBattleLoop();
 
-    Logger(TextPrinter::PlayerStat);
-   
     GetPlayer()->ResetBuff();
+    Logger(TextPrinter::PlayerStat);
 }
 
 bool BattleSystem::IsGameOver()
