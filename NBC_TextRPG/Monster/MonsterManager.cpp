@@ -25,13 +25,13 @@ MonsterManager::~MonsterManager()
  
 }
 
-int MonsterManager::GetRandom(int min, int max)
+/*int MonsterManager::GetRandom(int min, int max)
 {
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<int> dist(min, max);
     return dist(gen);
-}
+}*/
 
 void MonsterManager::BattleReward()
 {
@@ -116,29 +116,34 @@ void MonsterManager::MonsterSpawn()
   
     CurrentMonster.reset();
     if ( CurrentMonster != nullptr) return;
-    int MonsterNumber = GetRandom(1, 3);
-
-    switch (MonsterNumber)
-    {
-    case 1:
+    
+    int MonsterNumber = rand()%3+1;
+    
+        switch (MonsterNumber)
         {
-            MonsterData monster_data = GetMonsterDataByID(EMonster::Ghoul);
-            CurrentMonster =  std::make_unique<Ghoul>(monster_data);     
-            break;
+ 
+        case 1:
+            {
+                MonsterData monster_data = GetMonsterDataByID(EMonster::Ghoul);
+                CurrentMonster =  std::make_unique<Ghoul>(monster_data);
+                break;
+            }
+        case 2:
+            {
+                MonsterData monster_data = GetMonsterDataByID(EMonster::Hillbilly);
+                CurrentMonster =  std::make_unique<Hillbilly>(monster_data);
+                
+                break;
+            }
+        case 3:
+            {
+                MonsterData monster_data = GetMonsterDataByID(EMonster::Lich);
+                CurrentMonster =  std::make_unique<Lich>(monster_data);  
+                
+                break;
+            }
         }
-    case 2:
-        {
-            MonsterData monster_data = GetMonsterDataByID(EMonster::Hillbilly);
-            CurrentMonster =  std::make_unique<Hillbilly>(monster_data);     
-            break;
-        }
-    case 3:
-        {
-            MonsterData monster_data = GetMonsterDataByID(EMonster::Lich);
-            CurrentMonster =  std::make_unique<Lich>(monster_data);     
-            break;
-        }
-    }
+    
     
     Logger(TextPrinter::MonsterStat);
 }

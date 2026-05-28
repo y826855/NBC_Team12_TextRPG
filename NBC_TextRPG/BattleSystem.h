@@ -17,7 +17,7 @@ public:
     BattleSystem();
     ~BattleSystem() = default;
     
-    int GetRandom(int min, int max);
+    //int GetRandom(int min, int max);
 
     void BattleStart();
 
