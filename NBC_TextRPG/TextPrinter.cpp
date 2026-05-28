@@ -41,8 +41,8 @@ void TextPrinter::PrintText(ETextState state)
 
 		stat += "│ " +
 			PadRight(
-				"체력바 : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
-				+ " "
+				"체력바   : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
+				
 				,
 				25
 			)
@@ -110,8 +110,8 @@ void TextPrinter::PrintText(ETextState state)
 
 		stat += "│ " +
 			PadRight(
-				"체력바 : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
-				+ " "
+				"체력바   : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
+				
 				,
 				25
 			)
@@ -174,7 +174,7 @@ void TextPrinter::ResetText()
 
 string TextPrinter::MakeHpBar(int hp, int maxHp)
 {
-	int barCount = 16;
+	int barCount = 12;
 
 	int filled =
 		(hp * barCount) / maxHp;
