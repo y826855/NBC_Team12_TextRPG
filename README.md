@@ -7,8 +7,11 @@ https://www.notion.so/teamsparta/12-3672dc3ef5148068a6c5c01bba994dcb?v=3672dc3ef
 ## 📝 기획 및 설계구조
 https://miro.com/app/board/uXjVLi9zwcE=/
 
-## Class UML
+--- Class UML
+## old
+<img width="7567" height="4979" alt="oldUML" src="https://github.com/user-attachments/assets/c89a8155-1a60-4dd3-b742-7bc2c6acae1f" />
 
+## new
 <img width="7118" height="6009" alt="12NewUML" src="https://github.com/user-attachments/assets/a01cd1f0-110d-4b9e-a085-bdda892a9ade" />
 
 ---
