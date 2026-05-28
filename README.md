@@ -16,4 +16,4 @@ Class UML
 <img width="7118" height="6009" alt="12NewUML" src="https://github.com/user-attachments/assets/a01cd1f0-110d-4b9e-a085-bdda892a9ade" />
 
 ---
-테스트
+
