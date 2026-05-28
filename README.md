@@ -50,14 +50,16 @@ https://miro.com/app/board/uXjVLi9zwcE=/
 
 클래스의 역활과 연결 구조를 나타내는 UML입니다
 ---
-<img width="7118" height="6009" alt="12NewUML" src="https://github.com/user-attachments/assets/a01cd1f0-110d-4b9e-a085-bdda892a9ade" />
+<img width="7126" height="6009" alt="EItem Ecosystem and Battle-2026-05-28-070251" src="https://github.com/user-attachments/assets/d6362d34-8ef0-4efb-b81b-2907595987d2" />
 
 ## Flow Chart
+알고리즘의 조건 분기점을 나타내는 Flow Chart 입니다
+---
 <img width="3026" height="6327" alt="EItem Ecosystem and Battle-2026-05-28-061602" src="https://github.com/user-attachments/assets/1b9ec665-5652-4bee-b009-f3f5d34fb631" />
 
 
 ## Sequence Diagram
-시간 흐름에 따라 구조들이 어떻게 호출되는 지 보여주는 Sequence Diagram
+시간 흐름에 따라 구조들이 어떻게 호출되는 지 보여주는 Sequence Diagram 입니다
 ---
 <img width="4119" height="8192" alt="Lobby Interaction Pipeline-2026-05-27-081627" src="https://github.com/user-attachments/assets/43572cfc-fa05-4369-a265-97853d17eb40" />
 
