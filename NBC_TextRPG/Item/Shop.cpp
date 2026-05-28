@@ -1,5 +1,6 @@
 ﻿#include "Shop.h"
 #include <iostream>
+#include <iomanip>  //출력정렬을 위해 사용
 
 #include "../Utility/InputHelper.h"
 
@@ -11,7 +12,7 @@
 #include "../MultiConsole/ConsoleController.h"
 #include "../MultiConsole/ConsoleLogStream.h"
 
-#include <windows.h>//테스트용
+//#include <windows.h>//테스트용
 
 using namespace std;
 
@@ -97,9 +98,11 @@ void Shop::OpenShop() const
 
 int Shop::BuyItem() const
 {
-    C_LOG(WindowTag)<< "===============================================< 구매 >==============================================="<<endl;
-    C_LOG(WindowTag)<< "======================================================================================================\n";
-    C_LOG(WindowTag)<< "   No                                      아이템 이름                                  가격\n";
+    C_LOG(WindowTag)<<"  0. 돌아가기";
+    
+    C_LOG(WindowTag)<< "===============================================< 구매 >===============================================";
+    C_LOG(WindowTag)<< "======================================================================================================";
+    C_LOG(WindowTag)<< "   No                                      아이템 이름                                  구매가격";
     C_LOG(WindowTag)<< "======================================================================================================\n";
     //C_LOG(WindowTag)<< "0. 돌아가기"<<endl;
 
@@ -108,6 +111,7 @@ int Shop::BuyItem() const
         auto item = ItemManager::GetInstance()->GetItemByID(ShopItemList[i]);
         ShowItemInfo(i + 1, item->GetName(), item->GetPrice());
     }
+    
 
     int max = ShopItemList.size();
     
@@ -144,9 +148,14 @@ int Shop::SellItem() const
         return -1;
     }
     
-    C_LOG(WindowTag) << endl;
-    C_LOG(WindowTag) << "===== 판매 =====" << endl;
-    C_LOG(WindowTag) << "0. 돌아가기" << endl;
+    C_LOG(WindowTag) << "0. 돌아가기";
+    
+    C_LOG(WindowTag)<< "===============================================< 판매 >===============================================";
+    C_LOG(WindowTag)<< "======================================================================================================";
+    C_LOG(WindowTag)<< "   No                                      아이템 이름                                  판매가격";
+    C_LOG(WindowTag)<< "======================================================================================================\n";
+    //C_LOG(WindowTag) << endl;
+    //C_LOG(WindowTag) << "===== 판매 =====" << endl;
     
     inventory->ShowInventory();
     
@@ -155,9 +164,14 @@ int Shop::SellItem() const
     for (auto it : items)
     {
         auto item = ItemManager::GetInstance()->GetItemByID(it);
-        C_LOG(WindowTag) << i++ << "." << item->GetName()
-            << "[ " << GetSellPrice(item->GetPrice()) << "G ]" << endl;
+        // C_LOG(WindowTag) << i++ << "." << item->GetName()
+        //     << "[ " << GetSellPrice(item->GetPrice()) << "G ]" << endl;
+        
+        C_LOG(WindowTag)<<std::setw(4)<< i++ << std::setw(47) << item->GetName() << std::setw(38) << GetSellPrice(item->GetPrice()) << " Gold" << endl;
     }
+    
+    
+    
 
     int choice = InputHelper::GetValidInput<int>("판매할 아이템 선택 : ",0,i-1);
     if (choice == 0)
@@ -186,13 +200,14 @@ int Shop::SellItem() const
 
 void Shop::ShowPlayerGold() const
 {
-    C_LOG(WindowTag) << "\n\n[ 보유 골드 : " << GetPlayer()->GetGold() << "G ]\n\n";
+    C_LOG(WindowTag) << "\n[ 보유 골드 : " << GetPlayer()->GetGold() << "G ]\n\n";
 }
 
 void Shop::ShowItemInfo(int idx, string name, int gold) const
 {
     //C_LOG(WindowTag)<< idx <<". " << name << " : " << gold <<" Gold" <<endl;
-    C_LOG(WindowTag)<<"   "<< idx <<"                                   "<< name << "                            " << gold <<" Gold" <<"\n";
+    C_LOG(WindowTag)<<std::setw(4)<< idx <<std::setw(47)<< name <<std::setw(38)<< gold <<" Gold" <<"\n\n";
+    
 }
 
 int Shop::GetSellPrice(int price) const
