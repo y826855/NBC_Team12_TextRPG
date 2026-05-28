@@ -5,10 +5,13 @@
 #include "../Manager/PlayerManager.h"
 
 
-Lich::Lich() : Monster()
+Lich::Lich(MonsterData monsterdata) : Monster()
 {
-    monsterData = {"리치", 0,0,50,50,EItem::LichBone};
-    SetStat();
+    this->monsterData.mName = monsterdata.mName;
+    this->monsterData.exp = monsterdata.exp;
+    this->monsterData.gold = monsterdata.gold;
+    this->monsterData.dropItem = monsterdata.dropItem;
+    this->SetStat();
     cout << "\n리치의 시선이 느껴진다...";
 }
 
@@ -19,6 +22,6 @@ Lich::~Lich()
 void Lich::Attack()
 {
     cout << "지옥의 비행: 슈우우욱!" << endl;
-    GetPlayer()->TakeDamage(monsterData.mATK);
+    GetPlayer()->TakeDamage(mATK);
 }
 

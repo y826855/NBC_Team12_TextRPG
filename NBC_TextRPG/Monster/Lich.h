@@ -4,7 +4,7 @@
 class Lich : public Monster
 {
 public:
-    Lich();
+    Lich(MonsterData monsterdata);
     ~Lich() override; 
     
     void Attack() override;

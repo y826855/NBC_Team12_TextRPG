@@ -5,6 +5,7 @@
 
 #include "Player.h"
 #include "Manager/PlayerManager.h"
+#include "Monster/MonsterManager.h"
 #include "MultiConsole/ConsoleController.h"
 #include "MultiConsole/ConsoleLogStream.h"
 #include "MultiConsole/ConsoleController.h"
@@ -40,7 +41,7 @@ void TextPrinter::PrintText(ETextState state)
 
 		stat += "│ " +
 			PadRight(
-				"HP : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
+				"체력바 : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
 				+ " "
 				,
 				25
@@ -109,7 +110,7 @@ void TextPrinter::PrintText(ETextState state)
 
 		stat += "│ " +
 			PadRight(
-				"HP : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
+				"체력바 : " + MakeHpBar(GetPlayer()->GetHp(), GetPlayer()->GetMaxHP())
 				+ " "
 				,
 				25
@@ -128,6 +129,39 @@ void TextPrinter::PrintText(ETextState state)
 		
 		C_LOG(EConsoleTag::UpperRight)<<stat;
 		Sleep(1000);
+		break;
+		
+	case MonsterStat:
+		PrintText(PlayerStat);
+		stat += "┌──────────────────────────┐\n";
+		stat += "│      MONSTER STATUS      │\n";
+		stat += "├──────────────────────────┤\n";
+
+		stat += "│ " +
+			PadRight("이름  : " + MonsterManager::GetInstance()->GetName(), 25)
+			+ "│\n";
+		
+
+		stat += "│ " +
+			PadRight("생명력 : " +to_string(MonsterManager::GetInstance()->GetHP()), 25)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight(
+				"체력바 : " + MakeHpBar(MonsterManager::GetInstance()->GetHP(), MonsterManager::GetInstance()->GetMaxHp())
+				+ " "
+				,
+				25
+			)
+			+ "│\n";
+
+		stat += "│ " +
+			PadRight("공격력 : " +to_string(MonsterManager::GetInstance()->GetATK()), 25)
+			+ "│\n";
+
+		
+		stat += "└──────────────────────────┘\n";
+		C_LOG(EConsoleTag::UpperRight)<<stat;
 		break;
 	}
 

@@ -5,12 +5,11 @@
 #include "Player.h"
 #include "TextPrinter.h"
 #include "Item/Inventory.h"
-#include "Item/ItemManager.h"
+
 #include "Manager/PlayerManager.h"
-#include "Monster/Boss.h"
-#include "Monster/Ghoul.h"
-#include "Monster/Hillbilly.h"
-#include "Monster/Lich.h"
+
+
+#include "Monster/MonsterManager.h"
 #include "MultiConsole/ConsoleController.h"
 #include "MultiConsole/ConsoleLogStream.h"
 #include "Utility/InputHelper.h"
@@ -28,38 +27,8 @@ BattleSystem::BattleSystem()
     InitConsole();//터미널 색상인식
 }
 
-int BattleSystem::GetRandom(int min, int max)
-{
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<int> dist(min, max);
-    return dist(gen);
-}
 
-void BattleSystem::MonsterSpawn()
-{
-    if (monster != nullptr) return;
-    int MonsterNumber = GetRandom(1, 3);
 
-    switch (MonsterNumber)
-    {
-    case 1:
-        {
-            monster = new Ghoul();
-            break;
-        }
-    case 2:
-        {
-            monster = new Hillbilly();
-            break;
-        }
-    case 3:
-        {
-            monster = new Lich();
-            break;
-        }
-    }
-}
 
 void BattleSystem::BattleStart()
 {
@@ -71,10 +40,9 @@ void BattleSystem::BattleStart()
         BossBattleLoop();
 
     Logger(TextPrinter::PlayerStat);
-    BattleReward();
+   
 
-    delete monster;
-    monster = nullptr;
+    
 }
 
 bool BattleSystem::IsGameOver()
@@ -96,7 +64,7 @@ void BattleSystem::EndTurnPhase()
 
 void BattleSystem::BossBattleLoop()//
 {
-    monster = new Boss();
+   MonsterManager::GetInstance()->BossSpawn();
     
 
     cout << "\n\n\n ==========보스 전투 시작!==========\n\n";
@@ -120,7 +88,7 @@ void BattleSystem::BossBattleLoop()//
             cout << "\033[97;44m   [플레이어의 턴!]                        \033[0m";  //밝은 흰색글, 파란배경
             cout<<"\n\n";
             
-            player->Attack(monster);  
+            player->Attack();  
             cout<<"\n";
             completedTurn = true; // 공격을 완료했으므로 턴 종료 조건 충족
             break;
@@ -142,7 +110,7 @@ void BattleSystem::BossBattleLoop()//
             continue; 
         }
         
-        if (monster->IsDeath())
+        if (MonsterManager::GetInstance()->IsDeath())
         {
             C_LOG(EConsoleTag::SmallPopup) << "\n\n\n==============[!!게임 클리어!!]==============\n\n";
             Sleep(300);
@@ -154,7 +122,7 @@ void BattleSystem::BossBattleLoop()//
         cout<<"\n\n";
         cout << "\033[97;41m   [몬스터의 턴!]                          \033[0m";  //밝은 흰색글, 빨간배경
         cout<<"\n\n";
-        monster->Attack();
+        MonsterManager::GetInstance()->MonsterAttack();
        
         
         if (player->IsDeath())
@@ -171,8 +139,8 @@ void BattleSystem::NormalBattleLoop()
     
     player = GetPlayer();
     
-    MonsterSpawn();
-
+    MonsterManager::GetInstance()->MonsterSpawn();
+    
     cout << "\n\n\n ==========전투 시작!==========\n\n";
     
     while (true)
@@ -194,7 +162,7 @@ void BattleSystem::NormalBattleLoop()
             cout << "\033[97;44m   [플레이어의 턴!]                        \033[0m";  //밝은 흰색글, 파란배경
             cout<<"\n\n";
             
-            player->Attack(monster);  
+            player->Attack();  
             cout<<"\n";
             completedTurn = true; // 공격을 완료했으므로 턴 종료 조건 충족
             break;
@@ -215,22 +183,23 @@ void BattleSystem::NormalBattleLoop()
             continue; 
         }
         
-        if (monster->IsDeath())
+        if ( MonsterManager::GetInstance()->IsDeath())
         {
+         
             cout << "\n\n\n[전투 승리!]\n\n";
             
-            BattleReward();
+           // BattleReward();
             BossCheck();        
-            
+            completedTurn = false;
             break;
         }
         
         cout<<"\n\n";
         cout << "\033[97;41m   [몬스터의 턴!]                          \033[0m";  //밝은 흰색글, 빨간배경
         cout<<"\n\n";
-        monster->Attack();
-       
-        
+      
+       MonsterManager::GetInstance()->MonsterAttack();
+     
         if (player->IsDeath())
         {
             PlayerDie();
@@ -244,13 +213,14 @@ void BattleSystem::NormalBattleLoop()
 
 void BattleSystem::BattleReward()
 {
-    int exp=monster->GetExp();
-    int gold=monster->GetDropGold();
+    
+    int exp= MonsterManager::GetInstance()->GetExp();
+    int gold=  MonsterManager::GetInstance()->GetDropGold();
     
     player->AddExp(exp);
     player->AddGold(gold);
     
-    Inventory::GetInstance()->AddItem(monster->GetDropItem(), 1);
+    Inventory::GetInstance()->AddItem(MonsterManager::GetInstance()->GetDropItem(), 1);
 }
 
 void BattleSystem::BossCheck()
