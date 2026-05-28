@@ -97,8 +97,11 @@ void Shop::OpenShop() const
 
 int Shop::BuyItem() const
 {
-    C_LOG(WindowTag)<< "===== 구매 ====="<<endl;
-    C_LOG(WindowTag)<< "0. 돌아가기"<<endl;
+    C_LOG(WindowTag)<< "===============================================< 구매 >==============================================="<<endl;
+    C_LOG(WindowTag)<< "======================================================================================================\n";
+    C_LOG(WindowTag)<< "   No                                      아이템 이름                                  가격\n";
+    C_LOG(WindowTag)<< "======================================================================================================\n";
+    //C_LOG(WindowTag)<< "0. 돌아가기"<<endl;
 
     for (int i = 0; i < ShopItemList.size(); i++)
     {
@@ -188,7 +191,8 @@ void Shop::ShowPlayerGold() const
 
 void Shop::ShowItemInfo(int idx, string name, int gold) const
 {
-    C_LOG(WindowTag)<< idx <<". " << name << " : " << gold <<" Gold" <<endl;
+    //C_LOG(WindowTag)<< idx <<". " << name << " : " << gold <<" Gold" <<endl;
+    C_LOG(WindowTag)<<"   "<< idx <<"                                   "<< name << "                            " << gold <<" Gold" <<"\n";
 }
 
 int Shop::GetSellPrice(int price) const
