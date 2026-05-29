@@ -7,6 +7,9 @@ https://www.notion.so/teamsparta/12-3672dc3ef5148068a6c5c01bba994dcb?v=3672dc3ef
 ## 유튜브 링크
 https://www.youtube.com/watch?v=LIntOO1z5uE
 
+## PPT
+https://docs.google.com/presentation/d/19D7qgawdgs8P7ae0EY2DEaZb2OBXjKC0SAb3MDrzojY/edit
+
 ## 📝 Miro
 https://miro.com/app/board/uXjVLi9zwcE=/
 ---
