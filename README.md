@@ -5,7 +5,7 @@
 https://www.notion.so/teamsparta/12-3672dc3ef5148068a6c5c01bba994dcb?v=3672dc3ef514805ea946000c5316fdd5&source=copy_link
 
 ## 유튜브 링크
-[https://miro.com/app/board/uXjVLi9zwcE=/](https://www.youtube.com/watch?v=LIntOO1z5uE)
+https://www.youtube.com/watch?v=LIntOO1z5uE
 
 ## 📝 기획 및 설계구조
 
